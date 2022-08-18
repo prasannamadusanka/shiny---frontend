@@ -47,7 +47,7 @@ import SignUp from "layouts/authentication/sign-up";
 import Menu1 from "client/Menu";
 import Services from "client/services"
 import EventForm from "client/eventForm"
-import PricePlan from "layouts/pricePlan"
+import PricePlan from "client/pricePlan"
 import MenuSelection from "layouts/MenuSelection";
 import MyServices from "client/myservices"
 import Imashi from "layouts/imashi"
@@ -148,7 +148,7 @@ const routes = [
     name: "Menu Selection",
     key: "menuselection",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/menuselction",
+    route: "client/menu/menuselction",
     component: <MenuSelection />,
   },
   {
@@ -212,6 +212,14 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
     component: <SignUp />,
+  },
+  {
+    type: "collapse",
+    name: "Sign Up",
+    key: "sign-up",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/client/menu/pricePlan",
+    component: <PricePlan />,
   },
 ];
 export default routes;

@@ -68,12 +68,12 @@ import Headphones from "@mui/icons-material/Headphones";
 import LocalFireDepartment from "@mui/icons-material/LocalFireDepartment";
 
 function refreshMessages() {
-    const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
-  
-    return Array.from(new Array(50)).map(
-      () => messageExamples[getRandomInt(messageExamples.length)],
-    );
-  }
+  const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
+
+  return Array.from(new Array(50)).map(
+    () => messageExamples[getRandomInt(messageExamples.length)],
+  );
+}
 
 function Services() {
   //const { sales, tasks } = reportsLineChartData;
@@ -94,7 +94,7 @@ function Services() {
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-            <SimpleBlogCard
+              <SimpleBlogCard
 
                 title="My Bookings"
                 description=""
@@ -153,65 +153,65 @@ function Services() {
           </Grid>
         </Grid>
 
-        
+
         <Box sx={{ pb: 7 }} ref={ref}>
-      <CssBaseline />
-      <List>
-        {messages.map(({ primary, secondary, person,action }, index) => (
-          <MDBox key={person+index} component="li" display="flex" alignItems="center" py={1} mb={1}>
-             <MDBox mr={2}>
-        <MDAvatar src={person} alt="something here" shadow="md" />
-      </MDBox>
-      <MDBox display="flex" flexDirection="column" alignItems="flex-start" justifyContent="center">
-        <MDTypography variant="button" fontWeight="medium">
-          {primary}
-        </MDTypography>
-        <MDTypography variant="caption" color="text">
-          {secondary}
-        </MDTypography>
-      </MDBox>
-      <MDBox ml="auto">
-        {action.type === "internal" ? (
-          <MDButton component={Link} to={action.route} variant="text" color="info">
-            {action.label}
-          </MDButton>
-        ) : (
-          <MDButton
-            component="a"
-            href={action.route}
-            target="_blank"
-            rel="noreferrer"
-            variant="text"
-            color={action.color}
-          >
-            {action.label}
-          </MDButton>
-        )}
-      </MDBox>
-          
-           
-          </MDBox>
-        ))}
-      </List>
-      <Paper sx={{ position: 'fixed', bottom: 0, left: '20%', right: 0 }} elevation={3}>
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        >
-          <BottomNavigationAction label="Poruwa Ashtaka" icon={<MicNoneIcon />} />
-          <BottomNavigationAction label="Jayamangala" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Dancing teams" icon={<PartyModeIcon />} />
-          <BottomNavigationAction label="Music" icon={<Headphones />} />
-          <BottomNavigationAction label="Fireworks" icon={<LocalFireDepartment />} />
-          <BottomNavigationAction label="Milk fountain" icon={<ArchiveIcon />} />
-        </BottomNavigation>
-      </Paper>
-    </Box>
-        
-        
+          <CssBaseline />
+          <List>
+            {messages.map(({ primary, secondary, person, action }, index) => (
+              <MDBox key={person + index} component="li" display="flex" alignItems="center" py={1} mb={1}>
+                <MDBox mr={2}>
+                  <MDAvatar src={person} alt="something here" shadow="md" />
+                </MDBox>
+                <MDBox display="flex" flexDirection="column" alignItems="flex-start" justifyContent="center">
+                  <MDTypography variant="button" fontWeight="medium">
+                    {primary}
+                  </MDTypography>
+                  <MDTypography variant="caption" color="text">
+                    {secondary}
+                  </MDTypography>
+                </MDBox>
+                <MDBox ml="auto">
+                  {action.type === "internal" ? (
+                    <MDButton component={Link} to={action.route} variant="text" color="info">
+                      {action.label}
+                    </MDButton>
+                  ) : (
+                    <MDButton
+                      component="a"
+                      href={action.route}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="text"
+                      color={action.color}
+                    >
+                      {action.label}
+                    </MDButton>
+                  )}
+                </MDBox>
+
+
+              </MDBox>
+            ))}
+          </List>
+          <Paper sx={{ position: 'fixed', bottom: 0, left: '20%', right: 0 }} elevation={3}>
+            <BottomNavigation
+              showLabels
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+            >
+              <BottomNavigationAction label="Poruwa Ashtaka" icon={<MicNoneIcon />} />
+              <BottomNavigationAction label="Jayamangala" icon={<FavoriteIcon />} />
+              <BottomNavigationAction label="Dancing teams" icon={<PartyModeIcon />} />
+              <BottomNavigationAction label="Music" icon={<Headphones />} />
+              <BottomNavigationAction label="Fireworks" icon={<LocalFireDepartment />} />
+              <BottomNavigationAction label="Milk fountain" icon={<ArchiveIcon />} />
+            </BottomNavigation>
+          </Paper>
+        </Box>
+
+
       </MDBox>
       <Footer />
     </DashboardLayout>
@@ -219,28 +219,28 @@ function Services() {
 }
 
 const messageExamples = [
-    {
-      primary: 'Porua ashtaka - Waruna managala mandiraya',
-      secondary: "Waruna Mangala Mandiraya Provide Sri Lankan Best Ashtaka",
-      person:homeDecor1,
-      action: {
-        type: "internal",
-        route: "/pages/profile/profile-overview",
-        color: "info",
-        label: "Book now",
-      },
+  {
+    primary: 'Porua ashtaka - Waruna managala mandiraya',
+    secondary: "Waruna Mangala Mandiraya Provide Sri Lankan Best Ashtaka",
+    person: homeDecor1,
+    action: {
+      type: "internal",
+      route: "/pages/profile/profile-overview",
+      color: "info",
+      label: "Book now",
     },
-    {
-      primary: 'Ultra D.J Music package - Denon Music Enternaitment',
-      secondary: "THE BEST ENTERTAINMENT IN DOWN SOUTH ",
-      person:denon,
-      action: {
-        type: "internal",
-        route: "/pages/profile/profile-overview",
-        color: "info",
-        label: "Book now",
-      },
+  },
+  {
+    primary: 'Ultra D.J Music package - Denon Music Enternaitment',
+    secondary: "THE BEST ENTERTAINMENT IN DOWN SOUTH ",
+    person: denon,
+    action: {
+      type: "internal",
+      route: "/pages/profile/profile-overview",
+      color: "info",
+      label: "Book now",
     },
-  ];
+  },
+];
 
 export default Services;

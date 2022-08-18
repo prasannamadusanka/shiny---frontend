@@ -22,7 +22,6 @@ import Icon from "@mui/material/Icon";
 import { Menu } from "@mui/material";
 import EventSchedule from "client/eventSchedule";
 
-
 const clientRoutes=[
   {
     type: "collapse",
@@ -80,6 +79,8 @@ const clientRoutes=[
     route: "client/notifications",
     component: <MyBill />,
   },
+
+ 
     ];
     
     export default clientRoutes;

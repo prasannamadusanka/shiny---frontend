@@ -18,6 +18,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 
 import Divider from "@mui/material/Divider";
+import { Link } from "react-router-dom";
 
 // @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -74,9 +75,11 @@ function Menu() {
         <Typography variant="h2" align="center">From Our desired collection</Typography>
         <Typography variant="subtitle1" align="center">tthere are massive collection of menus</Typography>
         <Box textAlign='center'>
+        <Link to='/client/menu/pricePlan'>
           <Button endIcon={<SendIcon />} style={{ color: 'white', marginLeft: 'auto', marginRight: 'auto' }} variant="contained" >
             Getting Started
           </Button>
+          </Link>
         </Box>
       </Stack>
       <MDBox pt={2} px={2} lineHeight={1.25}>
@@ -119,7 +122,7 @@ function Menu() {
           </Grid>
           <Grid item xs={12} md={6} xl={3}>
             <ItemCard
-              image='./images/item-4.jpg'
+              image='/images/item-4.jpg'
               availability="Tropican Nasi Goreang"
               title="Chicken Biriyani"
               description="It is a best delicious food in our menu. it vcan be av"

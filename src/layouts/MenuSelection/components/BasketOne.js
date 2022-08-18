@@ -12,27 +12,38 @@ import MDTypography from "./../../../components/MDTypography";
 import MDButton from "components/MDButton";
 import MDAvatar from "components/MDAvatar";
 import Product from './../components/Product'
+import ProductOne from './ProductOne';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import CssBaseline from '@mui/material/CssBaseline';
+
 
 
 
 export default function BasketOne(props) {
     const { cartItems, onAdd, onRemove } = props;
-    const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
-    const taxPrice = itemsPrice * 0.14;
-    const shippingPrice = itemsPrice > 2000 ? 0 : 20;
-    const totalPrice = itemsPrice + taxPrice + shippingPrice;
+    // const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+    // const taxPrice = itemsPrice * 0.14;
+    // const shippingPrice = itemsPrice > 2000 ? 0 : 20;
+    // const totalPrice = itemsPrice + taxPrice + shippingPrice;
     return (
-        <MDBox m={2}p={3}>
-         
-            <Grid container spacing={6}>
+        <Box sx={{ pb: 7 }}>
+         <MDTypography
+  variant="h4"
+  color="success"
+  textGradient
+>
+  My Cart
+</MDTypography>
+        <CssBaseline />
+        <List>
                 {cartItems.map((item) => (
-                    <Grid xs={12} md={6} xl={3}>
-                           <Product key={item.id} product={item} onAdd={onRemove}></Product>
-                    </Grid>
+                 
+                           <ProductOne key={item.id} product={item} onAdd={onRemove}></ProductOne>
+                 
                 ))}
-            </Grid>
-  
-        </MDBox>
+            </List>
+            </Box>
 
     );
 }
