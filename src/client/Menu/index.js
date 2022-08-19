@@ -56,8 +56,19 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
+import { Fragment, useEffect, useState } from 'react';
+import { useParams, } from 'react-router-dom';
 
+// import urls
+import API from '../../services/baseURL';
+import options from '../../services/services';
 
+// function for getting data
+export const getItemList = async event => {
+  const response = await API.get(`client/view_items`, options);
+  // console.log(response.data[students])
+  return response.data;
+};
 
 const styles = {
   paperContainer: {
@@ -66,123 +77,112 @@ const styles = {
 };
 function Menu() {
 
+  // const {palette} = useTheme();
+  const { id } = useParams();
+  const [itemList, setItemList] = useState(null);
+  console.log("location")
+  console.log(id)
 
+  useEffect(() => {
+    getItemList().then(data => {
+      console.log(data)
+      // console.log(JSON.parse(data))
+      setItemList(data);
+    }).catch(err => {
+      console.log(err.error)
+    })
+  }, []);
+
+  useEffect(async () => {
+    console.log("set");
+    console.log(itemList);
+  }, [itemList]);
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Stack spacing={2}>
-        <Typography variant="h2" align="center">You can select your elegant menu items</Typography>
-        <Typography variant="h2" align="center">From Our desired collection</Typography>
-        <Typography variant="subtitle1" align="center">tthere are massive collection of menus</Typography>
-        <Box textAlign='center'>
-        <Link to='/client/menu/pricePlan'>
-          <Button endIcon={<SendIcon />} style={{ color: 'white', marginLeft: 'auto', marginRight: 'auto' }} variant="contained" >
-            Getting Started
-          </Button>
-          </Link>
-        </Box>
-      </Stack>
-      <MDBox pt={2} px={2} lineHeight={1.25}>
+      <Typography variant="h2" align="center">You can select your elegant menu items</Typography>
+      <Typography variant="h2" align="center">From Our desired collection</Typography>
+      <Typography variant="subtitle1" align="center">tthere are massive collection of menus</Typography>
+      <Box textAlign='center'></Box>
 
-        <MDButton variant="contained" color="warning">
-          Food Items
-          &nbsp;
-          <Icon>store</Icon>
-        </MDButton>
-        <MDButton variant="contained" color="warning" style={{ float: 'right' }}>
-          Price Plan&nbsp;
-          <Icon>add_shopping_cart</Icon></MDButton>
+      <Link to='/client/menu/pricePlan'>
+        <Button endIcon={<SendIcon />} style={{ color: 'white', marginLeft: 'auto', marginRight: 'auto' }} variant="contained" >
+          Getting Started
+        </Button>
+      </Link>
+      {/* </Box>
+      </Stack>  */}
+      <MDButton variant="contained" color="warning">
+        Food Items
+        &nbsp;
+        <Icon>store</Icon>
+      </MDButton>
+      <MDButton variant="contained" color="warning" style={{ float: 'right' }}>
+        Price Plan&nbsp;
+        <Icon>add_shopping_cart</Icon></MDButton>
 
-      </MDBox>
-      <MDBox p={2}>
-        <MDBox mt={2} mb={1}>
-          <MDTypography variant="h6" color="text" >
-            Rice And Pastas
-          </MDTypography>
+      {/* <Stack spacing={2}> */}
+      <div>
+        {/* map the object */}
+        {
+          itemList ? itemList.menus.map((item, index) => {
+            return (
+              <>
+                {/*<h2>kkkkkkkk</h2>*/}
+                {/* <h1 key={index}> {item.name}</h1> */}
 
-        </MDBox>
-        <Grid container spacing={6}>
-          <Grid item xs={12} md={6} xl={3}>
-            <ItemCard
-              image='./images/item-4.jpg'
-              availability="Tropican Nasi Goreang"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
+                <MDBox pt={2} px={2} lineHeight={1.25}>
+                </MDBox>
+                <MDBox p={2}>
+                  <MDBox mt={2} mb={1}>
+                    <MDTypography variant="h6" color="text" >
+                      {item.name}
+                    </MDTypography>
 
-            />
-          </Grid>
-          <Grid item xs={12} md={6} xl={3}>
-            <ItemCard
-              image='./images/item-4.jpg'
-              availability="Tropican Nasi Goreang"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
+                  </MDBox>
+                  <Grid container spacing={6}>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <ItemCard
+                        image='./images/item-4.jpg'
+                        availability="Tropican Nasi Goreang"
+                        title="Chicken Biriyani"
+                        description="It is a best delicious food in our menu. it vcan be av"
 
-            />
-          </Grid>
-          <Grid item xs={12} md={6} xl={3}>
-            <ItemCard
-              image='/images/item-4.jpg'
-              availability="Tropican Nasi Goreang"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <ItemCard
+                        image='./images/item-4.jpg'
+                        availability="Tropican Nasi Goreang"
+                        title="Chicken Biriyani"
+                        description="It is a best delicious food in our menu. it vcan be av"
 
-            />
-          </Grid>
-          <Grid item xs={12} md={6} xl={3}>
-            <ItemCard
-              image='./images/item-4.jpg'
-              availability="Tropican Nasi Goreang"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <ItemCard
+                        image='/images/item-4.jpg'
+                        availability="Tropican Nasi Goreang"
+                        title="Chicken Biriyani"
+                        description="It is a best delicious food in our menu. it vcan be av"
 
-            />
-          </Grid>
-        </Grid>
-        <MDBox mt={2} mb={1}>
-          <MDTypography variant="h6" color="text" >
-            Chicken Dishes
-          </MDTypography>
-          <Grid container spacing={6}>
-          <Grid item xs={12} md={6} xl={3}>
-            <ItemCard
-              image='./images/item-6.jpg'
-              availability="Grilled chicken"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
-
-            />
-          </Grid>
-          <Grid item xs={12} md={6} xl={3}>
-          <ItemCard
-              image='./images/item-6.jpg'
-              availability="Grilled chicken"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
-
-            />
-          </Grid>
-          <Grid item xs={12} md={6} xl={3}>
-            <ItemCard
-              image='./images/item-4.jpg'
-              availability="Tropican Nasi Goreang"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
-
-            />
-          </Grid>
-          <Grid item xs={12} md={6} xl={3}>
-            <ItemCard
-              image='./images/item-4.jpg'
-              availability="Tropican Nasi Goreang"
-              title="Chicken Biriyani"
-              description="It is a best delicious food in our menu. it vcan be av"
-
-            />
-          </Grid>
-        </Grid>
-        </MDBox>
-      </MDBox>
+                      />
+                    </Grid>
+                    <Grid item xs={12} md={6} xl={3}>
+                      <ItemCard
+                        image='./images/item-4.jpg'
+                        availability="Tropican Nasi Goreang"
+                        title="Chicken Biriyani"
+                        description="It is a best delicious food in our menu. it vcan be av"
+                      />
+                    </Grid>
+                  </Grid>
+                </MDBox>
+                {/*<img key={"2" + index} src={mother.url} width={"100px"}/>*/}
+              </>)
+          }) : <h1> Data 1 Loading</h1>
+        }
+      </div>
       <Footer />
     </DashboardLayout>
   );
