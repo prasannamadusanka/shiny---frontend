@@ -53,7 +53,7 @@ import MyServices from "client/myservices"
 import Imashi from "layouts/imashi"
 import MyBill from "layouts/mybill";
 import Landing from "landing/landing"
-
+import MyEvents from "client/myevents";
 // @mui icons
 import Icon from "@mui/material/Icon";
 //import FastfoodIcon from '@mui/material/Fastfood';
@@ -221,6 +221,13 @@ const routes = [
     route: "/client/menu/pricePlan",
     component: <PricePlan />,
   },
+  {
+    type: "collapse",
+    name: "My Events",
+    key: "myevents",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/client/myevents",
+    component: <MyEvents />,
+  },
 ];
 export default routes;
-

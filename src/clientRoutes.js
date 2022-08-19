@@ -15,7 +15,7 @@ import MyServices from "layouts/myservices"
 import Imashi from "layouts/imashi"
 import MyBill from "layouts/mybill";
 import Landing from "landing/landing"
-
+import MyEvents from "client/events";
 // @mui icons
 import Icon from "@mui/material/Icon";
 //import FastfoodIcon from '@mui/material/Fastfood';
@@ -78,6 +78,14 @@ const clientRoutes=[
     icon: <Icon fontSize="small">notifications</Icon>,
     route: "client/notifications",
     component: <MyBill />,
+  },
+  {
+    type: "collapse",
+    name: "My Events",
+    key: "myevents",
+    icon: <Icon fontSize="small">image</Icon>,
+    route: "/client/myevents",
+    component: <MyEvents />,
   },
 
  
