@@ -32,16 +32,52 @@ import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 // Data
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
-// Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
+import { useState } from "react";
+import { Card, ImageList, ImageListItem } from "@mui/material";
+
+//calendar
+import { Calendar } from "react-calendar";
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
+  
+  //for calendar
+  const [date, setDate] = useState(new Date());
+
+  const images = [
+
+    {
+       img: 'https://i0.wp.com/ratemybistro.co.uk/wp-content/uploads/2016/11/20161022_125954-Medium.jpg?ssl=1',
+       title: 'Tomato basil',
+     },
+     {
+       img: 'https://www.studiovolpi.com/uploads/casehistory/ACT.O/Kitchen_.jpeg',
+       title: 'Sea star',
+     },
+     {
+       img: 'https://th.bing.com/th/id/R.ecfc734d619d2ed16d96139b59ca2fed?rik=zBEGkAA%2bvcLBgg&pid=ImgRaw&r=0',
+       title: 'Bike',
+     },
+  ];
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
+      <MDBox mb={3}>
+        <ImageList sx={{ width: 1140, height: 160 }} cols={3} rowHeight={164}>
+          {images.map((item) => (
+            <ImageListItem key={item.img}>
+              <img
+                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.title}
+                loading="lazy"
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+        </MDBox>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
@@ -107,14 +143,20 @@ function Dashboard() {
         <MDBox>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={6}>
-              <Projects />
+              <Card>
+                <p className='text-center'>
+                  <span className='bold'>Selected Date:</span>{' '} {date.toDateString()}
+                </p>
+                <Calendar onChange={setDate} value={date}/>
+                
+              </Card>
             </Grid>
-            <Grid xs={12} md={6} lg={6} container direction="row" rowspacing={1}>
+            <Grid xs={12} md={6} lg={6} container direction="column" >
               <Grid item xs={12}>
                 <MDBox mt={3.3} ml={2}>
                 <ProfileInfoCard
                   title="Wedding"
-                  description="special notice by chef"
+                  description="any special notice by chef"
                   info={{
                     fullName: "Alec M. Thompson",
                     mobile: "(+94) 123 548 123",
@@ -134,26 +176,26 @@ function Dashboard() {
                 </MDBox>
               </Grid>
               <Grid item xs={12}>
-              <MDBox mt={3.5} ml={2}>
-                <ProfileInfoCard
-                  title="Birthday"
-                  description="special notice by chef"
-                  info={{
-                    fullName: "Alec M. Thompson",
-                    mobile: "(+94) 856 234 123",
-                    email: "alecthompson@mail.com",
-                    address: "Temple junction,Mathara",
-                  }}
-                  social={[
-                    {
-                      link: "https://www.facebook.com/CreativeTim/",
-                      icon: <FacebookIcon />,
-                      color: "facebook",
-                    },
-                  ]}
-                  action={{ route: "", tooltip: "Goto Event" }}
-                  shadow={false}
-                />
+                <MDBox mt={3.5} ml={2}>
+                  <ProfileInfoCard
+                    title="Birthday"
+                    description="any notice by chef of this event"
+                    info={{
+                      fullName: "Mary Andrew",
+                      mobile: "(+94) 856 234 123",
+                      email: "maryandrew@mail.com",
+                      address: "Temple junction,Mathara",
+                    }}
+                    social={[
+                      {
+                        link: "https://www.facebook.com/CreativeTim/",
+                        icon: <FacebookIcon />,
+                        color: "facebook",
+                      },
+                    ]}
+                    action={{ route: "", tooltip: "Goto Event" }}
+                    shadow={false}
+                  />
                 </MDBox>
               </Grid>
             </Grid>
