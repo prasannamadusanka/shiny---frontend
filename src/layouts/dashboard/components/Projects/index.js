@@ -12,6 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+
 import { useState } from "react";
 
 // @mui material components
@@ -62,8 +63,8 @@ function Projects() {
     <Card>
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
-          <MDTypography variant="h6" gutterBottom>
-            Tasks To Be completed For Next Event
+          <MDTypography variant="h6"  gutterBottom>
+            Tuesday 8th July
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>
             <Icon
@@ -73,10 +74,10 @@ function Projects() {
                 mt: -0.5,
               }}
             >
-              done
+             
             </Icon>
             <MDTypography variant="button" fontWeight="regular" color="text">
-              &nbsp;<strong>30%</strong> Tasks are completed
+              
             </MDTypography>
           </MDBox>
         </MDBox>

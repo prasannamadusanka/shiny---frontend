@@ -20,58 +20,47 @@ import Icon from "@mui/material/Icon";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import Wedding from "assets/images/events/wedding.jpg"
+//import Calendar from 'react-calendar';
 // Material Dashboard 2 React example components
 import TimelineItem from "examples/Timeline/TimelineItem";
+import { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './index.css';
+
 
 function OrdersOverview() {
+  const [date, setDate] = useState(new Date());
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card sx={{ height: "80%" }}>
       <MDBox pt={3} px={3}>
         <MDTypography variant="h6" fontWeight="medium">
-          Upcoming Events
+         Event Shedule
         </MDTypography>
         <MDBox mt={0} mb={2}>
           <MDTypography variant="button" color="text" fontWeight="regular">
             <MDTypography display="inline" variant="body2" verticalAlign="middle">
-              <Icon sx={{ color: ({ palette: { success } }) => success.main }}>arrow_upward</Icon>
+              <Icon sx={{ color: ({ palette: { success } }) => success.main }}>star</Icon>
+              <Icon sx={{ color: ({ palette: { success } }) => success.main }}>star</Icon>
+              <Icon sx={{ color: ({ palette: { success } }) => success.main }}>star</Icon>
+              <Icon sx={{ color: ({ palette: { success } }) => success.main }}>star</Icon>
+              <Icon sx={{ color: ({ palette: { success } }) => success.main }}>star</Icon>
             </MDTypography>
             &nbsp;
             <MDTypography variant="button" color="text" fontWeight="medium">
-              24%
+              
             </MDTypography>{" "}
-            in this year
+            
           </MDTypography>
         </MDBox>
       </MDBox>
-      <MDBox p={3}>
-        <TimelineItem
-          color="success"
-          icon="restaurant_menu"
-          title="Wedding function - Hotel sundream"
-          dateTime="22 DEC 2022"
+      <MDBox p={5}>
+      <Calendar
+          onChange={setDate}
+          value={date}
+          selectRange={true}
         />
-        <TimelineItem
-          color="error"
-          icon="cake"
-          title="Birhday functon - Shiny garden"
-          dateTime="23 MAR 2023"
-        />
-         <TimelineItem
-          color="error"
-          icon="cake"
-          title="Birhday functon - Shiny garden"
-          dateTime="23 MAR 2023"
-        />
-        <TimelineItem
-        lastItem={true}
-          color="error"
-          icon="restaurant_menu"
-          title="Home coming function - Shiny lakeside resort"
-          dateTime="1 DEC 2023"
-        />
-      
-         
+
       </MDBox>
     </Card>
   );

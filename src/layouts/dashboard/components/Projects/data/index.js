@@ -21,27 +21,11 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDProgress from "components/MDProgress";
-import MDButton from "components/MDButton";
-import Icon from "@mui/material/Icon";
 
 // Images
-import foodmenu from "assets/images/small-logos/food-menu.jpg";
-import partyDecoration from "assets/images/small-logos/party-decoration.jpg";
-import payment from "assets/images/small-logos/payment.svg";
-import giftbox from "assets/images/small-logos/gift-box.png";
-import schedule from "assets/images/small-logos/schedule.png";
-import bar from "assets/images/small-logos/bar.svg";
 
 
-import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
-import logoSlack from "assets/images/small-logos/logo-slack.svg";
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
-import logoJira from "assets/images/small-logos/logo-jira.svg";
-import logoInvesion from "assets/images/small-logos/logo-invision.svg";
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+
 
 export default function data() {
   const avatars = (members) =>
@@ -80,136 +64,76 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "Tasks", accessor: "tasks", align: "left" },
-/*       { Header: "members", accessor: "members", width: "10%", align: "left" },
- */      { Header: "Started", accessor: "start", align: "left" },
-      { Header: "completion", accessor: "completion", align: "center" },
-      { Header: "Go to task", accessor: "gotask", align: "center" },
+      { Header: "Time", accessor: "companies", width: "45%", align: "center" },
+      { Header: "Item", accessor: "budget", align: "center" },
+      
     ],
 
     rows: [
       {
-        tasks: <Company image={foodmenu} name="Menu Selction" />,
-      
-        start: (
+        companies: <Company  name="8.00 a.m. - 9.00 a.m." />,
+        
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            2022.12.03
+            Welcome
+          </MDTypography>
+        ),
+        
+      },
+      {
+        companies: <Company  name="9.00 a.m. - 10.00 a.m." />,
+        
+        budget: (
+          <MDTypography variant="caption" color="text" fontWeight="medium">
+            Poruwa Ceremony
           </MDTypography>
         ),
         completion: (
           <MDBox width="8rem" textAlign="left">
-            <MDProgress value={60} color="info" variant="gradient" label={false} />
+            <MDProgress value={10} color="info" variant="gradient" label={false} />
           </MDBox>
-        ),
-        gotask: (
-          <MDButton variant="gradient" color="info">
-          Proceede
-        </MDButton>
-        
         ),
       },
       {
-        tasks: <Company image={partyDecoration} name="Decorate My Event" />,
-      
-        start: (
+        companies: <Company  name="10.00 a.m. - 11.00 a.m." />,
+        
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            -
+            Dancing Item
           </MDTypography>
         ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={0} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-        gotask: (
-          <MDButton variant="gradient" color="info">
-          Proceede
-        </MDButton>
         
-        ),
       },
       {
-        tasks: <Company image={payment} name="Payment & Subscriptions" />,
-      
-        start: (
+        companies: <Company  name="11.00 a.m. - 12.30 p.m." />,
+       
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            2022.12.10
+            Welcome Invitors
           </MDTypography>
         ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={40} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-        gotask: (
-          <MDButton variant="gradient" color="info">
-          Proceede
-        </MDButton>
-        
-        ),
+       
       },
       {
-        tasks: <Company image={giftbox} name="Order Complementary services" />,
-      
-        start: (
+        companies: <Company  name="12.30 p.m. - 3.30 p.m." />,
+        
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            2022.12.03
+            Lunch
           </MDTypography>
         ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={100} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-        gotask: (
-          <MDButton variant="gradient" color="info">
-          Proceede
-        </MDButton>
         
-        ),
       },
       {
-        tasks: <Company image={schedule} name="Event Schedule" />,
-      
-        start: (
+        companies: <Company  name="3.30 p.m. - 4.00 p.m." />,
+        
+        budget: (
           <MDTypography variant="caption" color="text" fontWeight="medium">
-            2022.12.03
+            Second Dance Item
           </MDTypography>
         ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={80} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-        gotask: (
-          <MDButton variant="gradient" color="info">
-          Proceede
-        </MDButton>
         
-        ),
       },
-      {
-        tasks: <Company image={bar} name="Setup my bar" />,
-      
-        start: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            2022.12.03
-          </MDTypography>
-        ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={80} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-        gotask: (
-          <MDButton variant="gradient" color="info">
-          Proceede
-        </MDButton>
-        
-        ),
-      },
-      
-    
     ],
   };
 }

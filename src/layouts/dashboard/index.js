@@ -23,38 +23,55 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
+
+
+
 // Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
+
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-
+//import Calender from "layouts/dashboard/components/calender";
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
+  
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      
       <MDBox py={3}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={18} md={8} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
                 color="dark"
-                icon="weekend"
-                title="Upcoming Events"
-                count={13}
+                icon="event"
+                count="08"
+                title="July"
+                description="Pax : 150,000 LKR"
                 percentage={{
                   color: "success",
-                  amount: "3",
-                  label: "events in this year",
+                  amount: "",
+                  label: "",
+                  description: "Pax : 150,000  * * * * * * * * * * * * Client : Nimal Perera * * * * * * * * Event : Wedding * * * * * * * * * * * Contact : 0762846523 * * * * * * *  Menu : 05  * * * * * * * * * * * * *",
+                  }}
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <ComplexStatisticsCard
+                icon="event"
+                title="July"
+                count="18"
+                percentage={{
+                  color: "success",
+                  amount: "",
+                  label: "",
+                  description: "Pax : 150,000  * * * * * * * * * * * * Client : Nimal Perera * * * * * * * * Event : Wedding * * * * * * * * * * * Contact : 0762846523 * * * * * * *  Menu : 05  * * * * * * * * * * * * *",
                 }}
               />
             </MDBox>
@@ -62,13 +79,14 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                icon="leaderboard"
-                title="Events Still Pending"
-                count="8"
+                icon="event"
+                title="July"
+                count="21"
                 percentage={{
                   color: "success",
-                  amount: "13k",
-                  label: "Have to pay",
+                  amount: "",
+                  label: "",
+                  description: "Pax : 150,000  * * * * * * * * * * * * Client : Nimal Perera * * * * * * * * Event : Wedding * * * * * * * * * * * Contact : 0762846523 * * * * * * *  Menu : 05  * * * * * * * * * * * * *",
                 }}
               />
             </MDBox>
@@ -76,87 +94,30 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
               <ComplexStatisticsCard
-                color="success"
-                icon="store"
-                title="Total Bill Amount"
-                count="34k"
+                icon="event"
+                title="July"
+                count="22"
                 percentage={{
                   color: "success",
-                  amount: "+4%",
-                  label: "upcoming event",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="primary"
-                icon="person_add"
-                title="Total payments"
-                count="10k"
-                percentage={{
-                  color: "success",
-                  amount: "2022.10.12",
-                  label: "- Last advance",
+                  amount: "",
+                  label: "",
+                  description: "Pax : 150,000  * * * * * * * * * * * * Client : Nimal Perera * * * * * * * * Event : Wedding * * * * * * * * * * * Contact : 0762846523 * * * * * * *  Menu : 05  * * * * * * * * * * * * *",
                 }}
               />
             </MDBox>
           </Grid>
         </Grid>
-        <MDBox mt={4.5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-              <ReportsLineChart
-                  color="primary"
-                  title="Last Year"
-                  description={
-                    <>
-                      <strong>2</strong> events done in last year.
-                    </>
-                  }
-                  date="5 events succesfully completed"
-                  chart={sales}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="success"
-                  title="This Year"
-                  description={
-                    <>
-                      <strong>3</strong> Upcoming events in this year.
-                    </>
-                  }
-                  date="5 events succesfully completed"
-                  chart={sales}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="dark"
-                  title="Next year"
-                  description="5 upcoming events in next year"
-                  date="3 events still not confirmed"
-                  chart={tasks}
-                />
-              </MDBox>
-            </Grid>
-          </Grid>
-        </MDBox>
+        
         <MDBox>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
+            <Grid item xs={12} md={6} lg={7}>
               <Projects />
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
+            <Grid item xs={12} md={6} lg={5}>
+              <OrdersOverview/>
+            
             </Grid>
+            
           </Grid>
         </MDBox>
       </MDBox>
