@@ -70,6 +70,12 @@ export const getItemList = async event => {
   return response.data;
 };
 
+export const getTypeList = async event => {
+  const response = await API.get(`client/view_types`, options);
+  // console.log(response.data[students])
+  return response.data;
+};
+
 const styles = {
   paperContainer: {
     backgroundImage: `url(${homeDecor1})`
@@ -96,7 +102,22 @@ function Menu() {
   useEffect(async () => {
     console.log("set");
     console.log(itemList);
+
   }, [itemList]);
+
+
+  const inputObject = {
+    "foodList":
+      [{
+        "name": "Tropican Nasi Goreang 1",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      }, {
+        "name": "Tropican Nasi Goreang 2",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      }]
+  };
+
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -126,11 +147,10 @@ function Menu() {
         {/* map the object */}
         {
           itemList ? itemList.menus.map((item, index) => {
+
             return (
               <>
-                {/*<h2>kkkkkkkk</h2>*/}
                 {/* <h1 key={index}> {item.name}</h1> */}
-
                 <MDBox pt={2} px={2} lineHeight={1.25}>
                 </MDBox>
                 <MDBox p={2}>
@@ -140,43 +160,54 @@ function Menu() {
                     </MDTypography>
 
                   </MDBox>
-                  <Grid container spacing={6}>
-                    <Grid item xs={12} md={6} xl={3}>
-                      <ItemCard
-                        image='./images/item-4.jpg'
-                        availability="Tropican Nasi Goreang"
-                        title="Chicken Biriyani"
-                        description="It is a best delicious food in our menu. it vcan be av"
+                  {
 
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6} xl={3}>
-                      <ItemCard
-                        image='./images/item-4.jpg'
-                        availability="Tropican Nasi Goreang"
-                        title="Chicken Biriyani"
-                        description="It is a best delicious food in our menu. it vcan be av"
+                    inputObject.foodList.map((i, index) => {
+                      return (
+                        <div>
+                          <Grid container spacing={6}>
+                            <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability={i.name}
+                                title="Chicken Biriyani"
+                                description={i.age}
 
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6} xl={3}>
-                      <ItemCard
-                        image='/images/item-4.jpg'
-                        availability="Tropican Nasi Goreang"
-                        title="Chicken Biriyani"
-                        description="It is a best delicious food in our menu. it vcan be av"
+                              />
+                            </Grid>
+                            {/* <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability="Tropican Nasi Goreang"
+                                title="Chicken Biriyani"
+                                description="It is a best delicious food in our menu. it vcan be av"
 
-                      />
-                    </Grid>
-                    <Grid item xs={12} md={6} xl={3}>
-                      <ItemCard
-                        image='./images/item-4.jpg'
-                        availability="Tropican Nasi Goreang"
-                        title="Chicken Biriyani"
-                        description="It is a best delicious food in our menu. it vcan be av"
-                      />
-                    </Grid>
-                  </Grid>
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability="Tropican Nasi Goreang"
+                                title="Chicken Biriyani"
+                                description="It is a best delicious food in our menu. it vcan be av"
+
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability="Tropican Nasi Goreang"
+                                title="Chicken Biriyani"
+                                description="It is a best delicious food in our menu. it vcan be av"
+                              />
+                            </Grid> */}
+                          </Grid>
+                        </div>
+                      )
+                    })
+
+                  }
+
                 </MDBox>
                 {/*<img key={"2" + index} src={mother.url} width={"100px"}/>*/}
               </>)
