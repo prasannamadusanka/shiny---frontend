@@ -41,7 +41,6 @@ import team4 from "assets/images/apple.jpg";
 
 
 function Recepes() {
-  const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = projectsTableData();
 
   return (
@@ -72,10 +71,10 @@ function Recepes() {
                     title="mix fruit juice"
                     description="As Uber works through a huge amount of internal management turmoil."
                     ingredients={[
-                      { image: team1, name: "Elena Morison" },
-                      { image: team2, name: "Ryan Milly" },
-                      { image: team3, name: "Nick Daniel" },
-                      { image: team4, name: "Peterson" },
+                      { image: team1, name: "mixfruit" },
+                      { image: team2, name: "mango" },
+                      { image: team3, name: "marie" },
+                      { image: team4, name: "apple" },
                     ]}
                 />
               </MDBox>

@@ -39,8 +39,6 @@ import { Link } from "react-router-dom";
 
 function CreateRecepesNext() {
 
-  const categoryies = ["one","two","three","four","five"];
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -64,17 +62,16 @@ function CreateRecepesNext() {
                   </MDTypography>
                 </MDBox>
                 <MDBox mt={5} ml={5}>
-                  <MDBox mt={2} display="flex">
-                    <MDTypography variant="h6" fontWeight="medium" mb={2}>
-                      New Ingredient&nbsp;&nbsp;
+                <MDBox mt={2} display="flex" sx={{ width: "97%" }}>
+                    <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84}>
+                      New Ingredient
                     </MDTypography>
                     <MDButton variant="gradient" color="dark" >
                       <Icon sx={{ fontWeight: "bold" }}>add</Icon>
-                      {/* &nbsp;add new ingredient */}
                     </MDButton>
                   </MDBox>
                   <Grid item xs={11} justifyContent="center" alignItems="center">
-                    <MDBox bgColor='#f0f2f5'p={1} mt={3} mb={2}>
+                    <MDBox bgColor='#f8f9fa'p={1} mt={3} mb={2}>
                         <MDBox mt={2} sx={{minwidth:'100%'}}>
                             <MDBox spacing={10}>
                                 <MDInput type="text" label="Name" sx={{ width: "95%" }}></MDInput>

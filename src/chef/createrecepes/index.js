@@ -36,10 +36,16 @@ import { Card, FormHelperText, Input, InputLabel } from "@mui/material";
 import MDInput from "components/MDInput";
 import { Link } from "react-router-dom";
 
+import Select from 'react-select';
+
 
 function CreateRecepes() {
 
-  const categoryies = ["one","two","three","four","five"];
+  const categoryies = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
 
   return (
     <DashboardLayout>
@@ -64,52 +70,52 @@ function CreateRecepes() {
                   </MDTypography>
                 </MDBox>
                 <MDBox mt={5} ml={5}>
-                    <MDBox mt={2} mr={5} display="flex">
+                    <MDBox mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
-                        Namefullwidth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
-                      <MDInput type="text" label="Name" sx={{ width: '50%' }} fullWidth></MDInput>
+                      <MDInput type="text" label="Name"  sx={{ width: "89%" }}></MDInput>
                     </MDBox>
                     <MDBox mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Category&nbsp;&nbsp;
                       </MDTypography>
-                      <MDInput type="text" label="Category" value={categoryies} sx={{ width: '48%' }} ></MDInput>
+                      {/* <Select options={categoryies} width='100'/> */}
+                      <MDInput type="text" label="Category" sx={{ width: "89%" }} ></MDInput>
                     </MDBox>
                     <MDBox mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
-                        Image&nbsp;&nbsp;
+                        Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
-                      <MDInput type="url" label="Image URL"  borderLeft={"2"} sx={{ width: "95%" }}></MDInput>
+                      <MDInput type="url" label="Image URL"  borderLeft={"2"} sx={{ width: "89%" }}></MDInput>
                     </MDBox>
-                  <MDBox mt={2} display="flex">
-                    <MDTypography variant="h6" fontWeight="medium" mb={2}>
-                      Ingredients for One Dish&nbsp;&nbsp;
+                  <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
+                    <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84} pt={2} pl={0.25}>
+                      Ingredients for One Dish
                     </MDTypography>
                     <MDButton variant="gradient" color="dark" >
                       <Icon sx={{ fontWeight: "bold" }}>add</Icon>
-                      {/* &nbsp;add new ingredient */}
                     </MDButton>
                   </MDBox>
-                  <MDBox mt={2} display="flex" sx={{minwidth:'100%'}}>
-                    <MDBox>
-                      <MDInput type="text" label="Name" sx={{ width: "50%" }}></MDInput>
+                  <Grid item xs={12} display='flex'mt={2}>
+                    <MDBox sx={{ width: "50%" }}>
+                      <MDInput type="text" label="Name" sx={{ width: "95%" }}></MDInput>
                     </MDBox>
-                    <MDBox>
-                      <MDInput type="number" label="Kg"  borderLeft={"2"} sx={{ width: "50%" }}></MDInput>
+                    <MDBox sx={{ width: "49%" }}>
+                      <MDInput type="number" label="Kg" sx={{ width: "95%" }}></MDInput>
                     </MDBox>
-                  </MDBox>
+                  </Grid>
                   <MDBox mt={2} mb={5}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2}>
                       Chef Tips
                     </MDTypography>
-                    <MDInput type="text" label="" multiline rows={5} sx={{ width: '95%' }}></MDInput>
+                    <MDInput type="text" label="" multiline rows={5} sx={{ width: '97%' }}></MDInput>
                   </MDBox>
                   <MDBox mt={2} mb={5}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2}>
                       Description
                     </MDTypography>
-                    <MDInput type="text" label="" multiline rows={5} sx={{ width: '95%' }}></MDInput>
+                    <MDInput type="text" label="" multiline rows={5} sx={{ width: '97%' }}></MDInput>
                   </MDBox>
                   <Link to="/createrecepesnext">
                     <MDButton label= "next" variant="gradient" color="info">
