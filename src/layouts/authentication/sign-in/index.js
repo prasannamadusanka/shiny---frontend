@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -25,7 +25,7 @@ import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
-
+import { useNavigate } from 'react-router-dom';
 // @mui icons
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -45,6 +45,8 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import API from '../../../services/baseURL';
 import options from '../../../services/functions';
+
+
 
 // function validationSchema() {
 //   const password = document.getElementById("password").value
@@ -66,8 +68,7 @@ import options from '../../../services/functions';
 
 // }
 // function for getting data
-export const getItemList = async event => {
-  // validationSchema()
+const getItemList = async event => {
 
   const password = document.getElementById("password").value
   const email = document.getElementById("email").value
@@ -77,9 +78,18 @@ export const getItemList = async event => {
       password: password
     }
   }, options);
-  console.log(response.data)
-  return response.data;
+  data(response.data.data)
+  return response.data
+
 };
+function data(resoponse) {
+  alert(resoponse)
+  if (resoponse == '2') {
+    alert("hi")
+    // useNavigate('https://www.w3schools.com/js/js_window_location.asp')
+  }
+
+}
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -195,3 +205,5 @@ function Basic() {
 }
 
 export default Basic;
+
+
