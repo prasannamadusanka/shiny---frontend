@@ -31,10 +31,6 @@ import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 
-// Data
-import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
-
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 
@@ -49,43 +45,44 @@ import { useState } from "react";
 import { Card, ImageList, ImageListItem } from "@mui/material";
 
 function Dashboard() {
-  const { sales, tasks } = reportsLineChartData;
 
   //for calendar
   const [date, setDate] = useState(new Date());
 
   const images = [
 
- {
-    img: 'https://i0.wp.com/ratemybistro.co.uk/wp-content/uploads/2016/11/20161022_125954-Medium.jpg?ssl=1',
-    title: 'Tomato basil',
-  },
-  {
-    img: 'https://www.studiovolpi.com/uploads/casehistory/ACT.O/Kitchen_.jpeg',
-    title: 'Sea star',
-  },
-  {
-    img: 'https://th.bing.com/th/id/R.ecfc734d619d2ed16d96139b59ca2fed?rik=zBEGkAA%2bvcLBgg&pid=ImgRaw&r=0',
-    title: 'Bike',
-  },
-];
+    {
+      img: 'https://i0.wp.com/ratemybistro.co.uk/wp-content/uploads/2016/11/20161022_125954-Medium.jpg?ssl=1',
+      title: 'Tomato basil',
+    },
+    {
+      img: 'https://www.studiovolpi.com/uploads/casehistory/ACT.O/Kitchen_.jpeg',
+      title: 'Sea star',
+    },
+    {
+      img: 'https://th.bing.com/th/id/R.ecfc734d619d2ed16d96139b59ca2fed?rik=zBEGkAA%2bvcLBgg&pid=ImgRaw&r=0',
+      title: 'Bike',
+    },
+  ];
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox py={3}>
-      <ImageList sx={{ width: 1140, height: 160 }} cols={3} rowHeight={164}>
-      {images.map((item) => (
-        <ImageListItem key={item.img}>
-          <img
-            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-        </ImageListItem>
-      ))}
+        <MDBox mb={3}>
+        <ImageList sx={{ width: 1140, height: 160 }} cols={3} rowHeight={164}>
+          {images.map((item) => (
+            <ImageListItem key={item.img}>
+              <img
+                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.title}
+                loading="lazy"
+              />
+            </ImageListItem>
+          ))}
         </ImageList>
+        </MDBox>
         {/* <img src={bgImage} height="150" width={1140}></img> */}
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>

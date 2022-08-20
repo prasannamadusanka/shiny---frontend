@@ -15,9 +15,9 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import vegetableTableData from "layouts/ingredients/data/vegetableTableData";
-import fruitTableData from "layouts/ingredients/data/fruitTableData";
-import oilTableData from "layouts/ingredients/data/oilTableData";
+import vegetableTableData from "chef/ingredients/data/vegetableTableData";
+import fruitTableData from "chef/ingredients/data/fruitTableData";
+import oilTableData from "chef/ingredients/data/oilTableData";
 
 export default class Ingredients extends Component {
 
