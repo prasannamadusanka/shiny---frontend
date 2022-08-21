@@ -61,6 +61,15 @@ import { Menu } from "@mui/material";
 import EventSchedule from "client/eventSchedule";
 
 const routes = [
+
+  {
+    type: "collapse",
+    name: "Landing",
+    key: "dashboard2",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/",
+    component: <Landing />,
+  },
   {
     type: "collapse",
     name: "Dashboard",
@@ -117,15 +126,7 @@ const routes = [
     route: "client/notifications",
     component: <Notifications />,
   },
- 
-  {
-    type: "collapse",
-    name: "Landing",
-    key: "dashboard2",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/landing",
-    component: <Landing />,
-  },
+
   {
     type: "collapse",
     name: "Tables",
@@ -142,6 +143,14 @@ const routes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/menu",
     component: <Menu1 />,
+  },
+  {
+    type: "collapse",
+    name: "Menu",
+    key: "menu",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/rtl",
+    component: <RTL/>
   },
   {
     type: "collapse",

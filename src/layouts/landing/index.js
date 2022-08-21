@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { setDirection, useMaterialUIController, setDirection } from "context";
+import scrollreveal from "scrollreveal";
+import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
@@ -8,46 +11,26 @@ import Products from "./components/Products";
 import ScrollToTop from "./components/ScrollToTop";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
-import scrollreveal from "scrollreveal";
-import { useMaterialUIController, setDirection } from "context";
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-//const [, dispatch] = useMaterialUIController();
-import './index.css';
+
+// import { useEffect } from "react";
+// import { useMaterialUIController, setDirection } from "context";
+
+// const [, dispatch] = useMaterialUIController();
+import "./index.css";
+
 function Landing() {
-    const [, dispatch] = useMaterialUIController();
-   
+  const [, dispatch] = useMaterialUIController();
+  // const { sales, tasks } = reportsLineChartData;
     useEffect(() => {
         setDirection(dispatch, "rtl");
-        const sr = scrollreveal({
-          origin: "top",
-          distance: "80px",
-          duration: 2000,
-          reset: false,
-        });
-        sr.reveal(
-          `
-            nav,
-            #home,
-            #services,
-            #portfolio,
-            #testimonials,
-            #products,
-            #newsletter,
-            .footer
-        `,
-          {
-            opacity: 0,
-            interval: 200,
-          }
-        );
-        return () => setDirection(dispatch, "ltr");
-      }, []);
 
+        return () => setDirection(dispatch, "ltr");
+    }, []);
   return (
     <>
       <ScrollToTop />
       <Navbar />
-     
+
       <Hero />
       <Services />
       <Portfolio />

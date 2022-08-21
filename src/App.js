@@ -55,6 +55,7 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "./assets/images/logo-shiny.png";
 import brandDark from "assets/images/logo-shiny.png";
+import LandingRoutes from "./LandingRoutes";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -170,7 +171,7 @@ export default function App() {
   ) : (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
+      {direction === "client" && (
         <>
           <Sidenav
             color={sidenavColor}
@@ -184,16 +185,9 @@ export default function App() {
            {configsButton}  
         </>
       )}
-          {layout === "client" && (
+          {direction === "rtl" && (
         <>
-          <Sidenav
-            color={sidenavColor}
-            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-            brandName="Shiny Hotels Hikkaduwa"
-            routes={clientRoutes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
+
         {/*   <Configurator /> */}
          {/*  {configsButton} */}
         </>

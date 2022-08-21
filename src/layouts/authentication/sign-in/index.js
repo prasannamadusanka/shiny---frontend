@@ -45,50 +45,30 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import API from '../../../services/baseURL';
 import options from '../../../services/functions';
+const myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port).split("/s/")[0];
 
-
-
-// function validationSchema() {
-//   const password = document.getElementById("password").value
-//   const email = document.getElementById("email").value
-//   const data1 = {
-//     "email": email,
-//     "password": password
-//   }
-//   console.log(data1)
-
-//   Yup.object().shape({
-//     password: Yup.string()
-//       .min(6, 'Password must be 6 character length')
-//       .required('Password is required!'),
-//     email: Yup.string().email('Invalid Email address').required('Email is required!'),
-
-//   });
-//   // console.log(document.getElementById("email").value)
-
-// }
-// function for getting data
 const getItemList = async event => {
 
   const password = document.getElementById("password").value
   const email = document.getElementById("email").value
-  const response = await API.get(`student`, {
+  const response = await API.get(`systemlogin`, {
     params: {
       email: email,
       password: password
     }
   }, options);
-  data(response.data.data)
+  navigate(response.data.data)
   return response.data
 
 };
-function data(resoponse) {
-  alert(resoponse)
-  if (resoponse == '2') {
-    alert("hi")
-    // useNavigate('https://www.w3schools.com/js/js_window_location.asp')
-  }
 
+function navigate(resoponse) {
+  if (resoponse == '1') {
+    window.location.href = myUrl + '/' + 'dashboard';
+  }
+  else if (resoponse == '2') {
+    window.location.href = myUrl + '/' + 'client' + '/' + 'dashboard';
+  }
 }
 
 function Basic() {
@@ -103,23 +83,6 @@ function Basic() {
     remember: true,
   };
 
-  // form field validation schema
-
-  // useEffect(() => {
-  //   getItemList().then(data => {
-  //     console.log(data)
-  //     // console.log(JSON.parse(data))
-  //     setItemList(data);
-  //   }).catch(err => {
-  //     console.log(err.error)
-  //   })
-  // }, []);
-
-  // useEffect(async () => {
-  //   console.log("set");
-  //   console.log(itemList);
-
-  // }, [itemList]);
   return (
     <BasicLayout image={bgImage}>
 
