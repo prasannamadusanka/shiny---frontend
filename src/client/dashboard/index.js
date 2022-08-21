@@ -42,9 +42,9 @@ function Dashboard() {
   const [, dispatch] = useMaterialUIController();
   const { sales, tasks } = reportsLineChartData;
   useEffect(() => {
-    setDirection(dispatch, "client");
+    setLayout(dispatch, "client");
 
-    return () => setDirection(dispatch, "ltr");
+    return () => setDirection(dispatch, "dashboard");
   }, []);
 
   return (

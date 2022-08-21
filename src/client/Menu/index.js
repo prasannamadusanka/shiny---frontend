@@ -61,17 +61,17 @@ import { useParams, } from 'react-router-dom';
 
 // import urls
 import API from '../../services/baseURL';
-//import options from '../../services/services';
+import options from '../../services/services';
 
 // function for getting data
 export const getItemList = async event => {
-  const response = await API.get(`client/view_items`);
+  const response = await API.get(`client/view_items`, options);
   // console.log(response.data[students])
   return response.data;
 };
 
 export const getTypeList = async event => {
-  const response = await API.get(`client/view_types`);
+  const response = await API.get(`client/view_types`, options);
   // console.log(response.data[students])
   return response.data;
 };
@@ -98,7 +98,6 @@ function Menu() {
       console.log(err.error)
     })
   }, []);
-
 
   useEffect(async () => {
     console.log("set");
@@ -161,32 +160,56 @@ function Menu() {
                     </MDTypography>
 
                   </MDBox>
-                  <Grid container spacing={6}>
-                    {
+                  {
 
-                      inputObject.foodList.map((i, index) => {
-                        return (
+                    inputObject.foodList.map((i, index) => {
+                      return (
+                        <div>
+                          <Grid container spacing={6}>
+                            <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability={i.name}
+                                title="Chicken Biriyani"
+                                description={i.age}
 
+                              />
+                            </Grid>
+                            {/* <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability="Tropican Nasi Goreang"
+                                title="Chicken Biriyani"
+                                description="It is a best delicious food in our menu. it vcan be av"
 
-                          <Grid item xs={12} md={6} xl={3}>
-                            <ItemCard
-                              image='/images/item-4.jpg'
-                              availability={i.name}
-                              title="Chicken Biriyani"
-                              description={i.age}
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability="Tropican Nasi Goreang"
+                                title="Chicken Biriyani"
+                                description="It is a best delicious food in our menu. it vcan be av"
 
-                            />
+                              />
+                            </Grid>
+                            <Grid item xs={12} md={6} xl={3}>
+                              <ItemCard
+                                image='/images/item-4.jpg'
+                                availability="Tropican Nasi Goreang"
+                                title="Chicken Biriyani"
+                                description="It is a best delicious food in our menu. it vcan be av"
+                              />
+                            </Grid> */}
                           </Grid>
+                        </div>
+                      )
+                    })
 
-
-                        )
-                      })
-
-                    }
-                  </Grid>
+                  }
 
                 </MDBox>
-
+                {/*<img key={"2" + index} src={mother.url} width={"100px"}/>*/}
               </>)
           }) : <h1> Data 1 Loading</h1>
         }
