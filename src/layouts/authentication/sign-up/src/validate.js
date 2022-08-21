@@ -37,7 +37,6 @@ const validateSignUpForm = payload => {
   ) {
     isFormValid = false;
     errors.address = "Please provide a address";
-    console.log(errors.address)
   }
 //   if (
 //     !payload ||
