@@ -34,6 +34,7 @@ import Footer from "examples/Footer";
 import FormControl from '@mui/material/FormControl';
 import { Card, FormHelperText, Input, InputLabel } from "@mui/material";
 import MDInput from "components/MDInput";
+
 import { Link } from "react-router-dom";
 
 import Select from 'react-select';
@@ -119,7 +120,7 @@ function CreateRecepes() {
                     </MDBox>
                   <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84} pt={2} pl={0.25}>
-                      Ingredients for One Dish
+                      Ingredients for One
                     </MDTypography>
                     <MDButton variant="gradient" color="dark" >
                       <Icon sx={{ fontWeight: "bold" }} onClick={() => addFormFields()}>add</Icon>

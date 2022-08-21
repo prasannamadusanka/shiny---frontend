@@ -31,9 +31,6 @@ import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 
-// Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-
 //calendar
 import { Calendar } from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
@@ -43,6 +40,8 @@ import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 import { useState } from "react";
 import { Card, ImageList, ImageListItem } from "@mui/material";
+
+import { Link } from "react-router-dom";
 
 function Dashboard() {
 
@@ -87,31 +86,35 @@ function Dashboard() {
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="error"
-                icon="star"
-                title="Pending Predictions"
-                count={2}
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "immediate",
-                }}
-              />
+              <Link to="/pendingpredictions">
+                <ComplexStatisticsCard
+                  color="error"
+                  icon="star"
+                  title="Pending Predictions"
+                  count={2}
+                  percentage={{
+                    color: "success",
+                    amount: "",
+                    label: "immediate",
+                  }}
+                />
+              </Link>
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                icon="alarm"
-                title="Next Event"
-                count={15}
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "hours",
-                }}
-              />
+              <Link to="/eventchef">
+                <ComplexStatisticsCard
+                  icon="alarm"
+                  title="Next Event"
+                  count={15}
+                  percentage={{
+                    color: "success",
+                    amount: "",
+                    label: "hours",
+                  }}
+                />
+              </Link>
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
@@ -176,7 +179,7 @@ function Dashboard() {
                       color: "facebook",
                     },
                   ]}
-                  action={{ route: "", tooltip: "Goto Event" }}
+                  action={{ route: "/event", tooltip: "Goto Event" }}
                   shadow={false}
                 />
                 </MDBox>
@@ -199,7 +202,7 @@ function Dashboard() {
                         color: "facebook",
                       },
                     ]}
-                    action={{ route: "", tooltip: "Goto Event" }}
+                    action={{ route: "/event", tooltip: "Goto Event" }}
                     shadow={false}
                   />
                 </MDBox>

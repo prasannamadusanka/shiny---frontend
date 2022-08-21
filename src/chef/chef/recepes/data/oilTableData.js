@@ -22,18 +22,14 @@ import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 
 // Images
-import potato from "assets/images/potato.jpg";
-import beans from "assets/images/beans.jpg";
-import beetroot from "assets/images/beetroot.jpg";
-import carrot from "assets/images/carrot.jpg";
-import cabbage from "assets/images/cabbage.jpg";
-import pumkin from "assets/images/pumkin.jpg";
-
-import { Link } from "react-router-dom";
-import MDButton from "components/MDButton";
+import coconutoil from "assets/images/coconutoil.jpg";
+import ghee from "assets/images/ghee.webp";
+import grapesseedoil from "assets/images/grapesseedoil.webp";
+import peanutoil from "assets/images/peanutoil.jpg";
+import olliveoil from "assets/images/olliveoil.jpg";
 
 export default function data() {
-  const Vegetable = ({ image, name, description }) => (
+  const Oil = ({ image, name, description }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
       <MDBox ml={2} lineHeight={1}>
@@ -66,10 +62,10 @@ export default function data() {
 
     rows: [
       {
-        name: <Vegetable image={beans} name="Beans" description="description about beans" />,
+        name: <Oil image={coconutoil} name="coconutoil" description="description about coconutoil" />,
         stock: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            3 Kg
+            3 L
           </MDTypography>
         ),
         status: (
@@ -88,16 +84,16 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-            <MDButton href="/order" variant="text" color="info">
-              Order
-            </MDButton>
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Order
+          </MDTypography>
         ),
       },
       {
-        name: <Vegetable image={pumkin} name="Pumkin" description="description about pumkin" />,
+        name: <Oil image={olliveoil} name="olliveoil" description="description about olliveoil" />,
         stock: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            7 Kg
+            7 L
           </MDTypography>
         ),
         status: (
@@ -112,20 +108,20 @@ export default function data() {
         ),
         pending_qty: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            10 Kg
+            10 L
           </MDTypography>
         ),
         action: (
-          <MDButton href="/order" variant="text" color="info" disabled>
+          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Order
-          </MDButton>
+          </MDTypography>
         ),
       },
       {
-        name: <Vegetable image={beetroot} name="Beet-root" description="description about beet-root" />,
+        name: <Oil image={ghee} name="ghee" description="description about ghee" />,
         stock: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            6 Kg
+            6 L
           </MDTypography>
         ),
         status: (
@@ -144,16 +140,16 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDButton href="/order" variant="text" color="info" >
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
             Order
-          </MDButton>
+          </MDTypography>
         ),
       },
       {
-        name: <Vegetable image={cabbage} name="Cabbage" description="description about cabbage" />,
+        name: <Oil image={peanutoil} name="peanutoil" description="description about peanutoil" />,
         stock: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            8 Kg
+            8 L
           </MDTypography>
         ),
         status: (
@@ -172,16 +168,16 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDButton href="/order" variant="text" color="info" >
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
             Order
-          </MDButton>
+          </MDTypography>
         ),
       },
       {
-        name: <Vegetable image={carrot} name="Carrot" description="description about carrot" />,
+        name: <Oil image={grapesseedoil} name="grapesseedoil" description="description about grapesseedoil" />,
         stock: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            5 Kg
+            5 L
           </MDTypography>
         ),
         status: (
@@ -196,43 +192,16 @@ export default function data() {
         ),
         pending_qty: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            5 Kg
+            5 L
           </MDTypography>
         ),
         action: (
-          <MDButton href="/order" variant="text" color="info" disabled>
+          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
             Order
-          </MDButton>
+          </MDTypography>
         ),
       },
-      {
-        name: <Vegetable image={potato} name="Potato" description="description about potato" />,
-        stock: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            2 Kg
-          </MDTypography>
-        ),
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="pending" color="dark" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        ordered_date: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            14/09/20
-          </MDTypography>
-        ),
-        pending_qty: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            20 Kg
-          </MDTypography>
-        ),
-        action: (
-          <MDButton href="/order" variant="text" color="info" disabled>
-            Order
-          </MDButton>
-        ),
-      },
+      
     ],
   };
 }
