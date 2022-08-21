@@ -62,14 +62,7 @@ import EventSchedule from "client/eventSchedule";
 
 const routes = [
 
-  {
-    type: "collapse",
-    name: "Landing",
-    key: "dashboard2",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/",
-    component: <Landing />,
-  },
+
   {
     type: "collapse",
     name: "Dashboard",
@@ -237,6 +230,14 @@ const routes = [
     icon: <Icon fontSize="small">assignment</Icon>,
     route: "/client/myevents",
     component: <MyEvents />,
+  },
+  {
+    type: "collapse",
+    name: "Landing",
+    key: "dashboard2",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/",
+    component: <Landing />,
   },
 ];
 export default routes;
