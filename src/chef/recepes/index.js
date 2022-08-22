@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+import React, { Component } from 'react'
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -26,92 +13,130 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
-import ItemCard from "examples/Cards/ItemCard/ItemCard";
 
 // Data
-import authorsTableData from "layouts/tables/data/authorsTableData";
-import projectsTableData from "layouts/tables/data/projectsTableData";
+import welcomeDrinkTableData from "chef/recepes/data/welcomeDrinkTableData";
+import riceDishTableData from "chef/recepes/data/riceDishTableData";
+import saladTableData from "chef/recepes/data/saladTableData";
 
-//images
-import mixfruitjuice from "assets/images/mix-fruit-juice.jpg";
-import team1 from "assets/images/orange.jpg";
-import team2 from "assets/images/mango.jpg";
-import team3 from "assets/images/marie.jpg";
-import team4 from "assets/images/apple.jpg";
+//
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 
-function Recepes() {
-  const { columns: pColumns, rows: pRows } = projectsTableData();
+export default function Recepes () {
 
-  return (
-    <DashboardLayout>
-      <DashboardNavbar />
-      <MDBox pt={6} pb={3}>
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Welcome Drinks
-                </MDTypography>
-              </MDBox>
-              <MDBox pt={3}>
-                <ItemCard
-                    image={mixfruitjuice}
-                    ingredientlist="ingredientlist"
-                    title="mix fruit juice"
-                    description="As Uber works through a huge amount of internal management turmoil."
-                    ingredients={[
-                      { image: team1, name: "mixfruit" },
-                      { image: team2, name: "mango" },
-                      { image: team3, name: "marie" },
-                      { image: team4, name: "apple" },
-                    ]}
-                />
-              </MDBox>
-            </Card>
+
+  
+    const [, dispatch] = useMaterialUIController();
+    useEffect(() => {
+      setDirection(dispatch, "chef");
+  
+      return () => setDirection(dispatch, "ltr");
+    }, []);
+  
+    
+    
+    const { columns, rows } = welcomeDrinkTableData();
+    const { columns: pColumns, rows: pRows } = riceDishTableData();
+    const { columns: oColumns, rows: oRows } = saladTableData();
+
+    return (
+        <DashboardLayout>
+        <DashboardNavbar />
+        <MDBox pt={6} pb={3}>
+          <Grid container spacing={6}>
+            
+            <Grid item xs={12}>
+              <Card>
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="success"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h6" color="white">
+                    welcome drinks
+                  </MDTypography>
+                </MDBox>
+                <MDBox pt={3}>
+                  <DataTable
+                    canSearch
+                    table={{ columns, rows }}
+                    isSorted={false}
+                    entriesPerPage={true}
+                    showTotalEntries={true}
+                    noEndBorder
+                  />
+                </MDBox>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Card>
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="success"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h6" color="white">
+                    Rice Dishes
+                  </MDTypography>
+                </MDBox>
+                <MDBox pt={3}>
+                  <DataTable
+                    canSearch
+                    table={{ columns: pColumns, rows: pRows }}
+                    isSorted={false}
+                    entriesPerPage={true}
+                    showTotalEntries={true}
+                    noEndBorder
+                  />
+                </MDBox>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Card>
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="success"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h6" color="white">
+                    Salads
+                  </MDTypography>
+                </MDBox>
+                <MDBox pt={3}>
+                  <DataTable
+                    canSearch
+                    table={{ columns: oColumns, rows: oRows }}
+                    isSorted={false}
+                    entriesPerPage={true}
+                    showTotalEntries={true}
+                    noEndBorder
+                  />
+                </MDBox>
+              </Card>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Salads
-                </MDTypography>
-              </MDBox>
-              <MDBox pt={3}>
-                <DataTable
-                  table={{ columns: pColumns, rows: pRows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
-              </MDBox>
-            </Card>
-          </Grid>
-        </Grid>
-      </MDBox>
-      <Footer />
-    </DashboardLayout>
-  );
+        </MDBox>
+        <Footer />
+      </DashboardLayout>
+    );
+  
 }
-
-export default Recepes;

@@ -34,12 +34,27 @@ import Footer from "examples/Footer";
 import FormControl from '@mui/material/FormControl';
 import { Card, FormHelperText, Input, InputLabel } from "@mui/material";
 import MDInput from "components/MDInput";
+
 import { Link } from "react-router-dom";
 
 import Select from 'react-select';
 
+import React, { useState } from 'react';
+
+//
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 
 function CreateRecepes() {
+  
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "chef");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
 
   const categoryies = [
     { value: 'welcomedrink', label: 'welcome drink' },
@@ -52,6 +67,22 @@ function CreateRecepes() {
     { value: 'seafooddish', label: 'seafood dish' },
     { value: 'porkdish', label: 'pork dish' },
   ]
+
+
+  const [formValues, setFormValues] = useState([{ name: "", quantity  : ""}])
+
+  let handleSubmit = (event) => {
+    event.preventDefault();
+    alert(JSON.stringify(formValues));
+  }
+  let addFormFields = () => {
+    setFormValues([...formValues, { name: "", quantity: "" }])
+  }
+  let removeFormFields = (i) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues)
+  }
 
   return (
     <DashboardLayout>
@@ -75,6 +106,8 @@ function CreateRecepes() {
                     New Recepe
                   </MDTypography>
                 </MDBox>
+
+                <form  onSubmit={handleSubmit}>
                 <MDBox mt={5} ml={5}>
                     <MDBox mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
@@ -99,20 +132,25 @@ function CreateRecepes() {
                     </MDBox>
                   <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84} pt={2} pl={0.25}>
-                      Ingredients for One Dish
+                      Ingredients for One
                     </MDTypography>
                     <MDButton variant="gradient" color="dark" >
-                      <Icon sx={{ fontWeight: "bold" }}>add</Icon>
+                      <Icon sx={{ fontWeight: "bold" }} onClick={() => addFormFields()}>add</Icon>
                     </MDButton>
                   </MDBox>
+                  {formValues.map((element, index) => (
                   <Grid item xs={12} display='flex'mt={2}>
                     <MDBox sx={{ width: "50%" }}>
-                      <MDInput type="text" label="Name" sx={{ width: "95%" }}></MDInput>
+                      <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput>
                     </MDBox>
-                    <MDBox sx={{ width: "49%" }}>
-                      <MDInput type="number" label="Kg" sx={{ width: "95%" }}></MDInput>
+                    <MDBox sx={{ width: "40%" }}>
+                      <MDInput type="number" name="quantity" value={element.quantity || ""} label="Kg / L" sx={{ width: "90%" }}></MDInput>
                     </MDBox>
+                    <MDButton variant="gradient" color="secondary" >
+                      <Icon sx={{ fontWeight: "bold" }} onClick={() => removeFormFields(index)}>remove</Icon>
+                    </MDButton>
                   </Grid>
+                  ))}
                   <MDBox mt={2} mb={5}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2}>
                       Chef Tips
@@ -125,19 +163,22 @@ function CreateRecepes() {
                     </MDTypography>
                     <MDInput type="text" label="" multiline rows={5} sx={{ width: '97%' }}></MDInput>
                   </MDBox>
-                  <Link to="/createrecepesnext">
+                  <Link to="/chef/createrecepes/next">
                     <MDButton label= "next" variant="gradient" color="info">
                         &nbsp;Next
                     </MDButton>
                   </Link>
-                {/* <MDBox mt={5} ml={5}>
-                <FormControl size="medium">
-                  <InputLabel htmlFor="my-input">Name</InputLabel>
-                  <Input id="my-input" aria-describedby="my-helper-text" />
-                  <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-                </FormControl>
-                </MDBox> */}
+                  {/* <MDBox mt={5} ml={5}>
+                  <FormControl size="medium">
+                    <InputLabel htmlFor="my-input">Name</InputLabel>
+                    <Input id="my-input" aria-describedby="my-helper-text" />
+                    <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+                  </FormControl>
+                  </MDBox> */}
                 </MDBox>
+                </form>
+
+
               </MDBox>
             </Card>
           </Grid>

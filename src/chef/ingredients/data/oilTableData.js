@@ -20,13 +20,14 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
+import MDButton from "components/MDButton";
 
 // Images
-import coconutoil from "assets/images/coconutoil.jpg";
-import ghee from "assets/images/ghee.webp";
-import grapesseedoil from "assets/images/grapesseedoil.webp";
-import peanutoil from "assets/images/peanutoil.jpg";
-import olliveoil from "assets/images/olliveoil.jpg";
+import coconutoil from "assets/images/chef/coconutoil.jpg";
+import ghee from "assets/images/chef/ghee.webp";
+import grapesseedoil from "assets/images/chef/grapesseedoil.webp";
+import peanutoil from "assets/images/chef/peanutoil.jpg";
+import olliveoil from "assets/images/chef/olliveoil.jpg";
 
 export default function data() {
   const Oil = ({ image, name, description }) => (
@@ -84,16 +85,16 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
-            Order
-          </MDTypography>
+          <MDButton href="/order" variant="text" color="info">
+              Order
+            </MDButton>
         ),
       },
       {
         name: <Oil image={olliveoil} name="olliveoil" description="description about olliveoil" />,
         stock: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            7 L
+            3 L
           </MDTypography>
         ),
         status: (
@@ -112,9 +113,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          <MDButton href="/order" variant="text" color="info" disabled>
             Order
-          </MDTypography>
+          </MDButton>
         ),
       },
       {
@@ -140,9 +141,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
-            Order
-          </MDTypography>
+          <MDButton href="/order" variant="text" color="info">
+              Order
+            </MDButton>
         ),
       },
       {
@@ -168,9 +169,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
-            Order
-          </MDTypography>
+          <MDButton href="/order" variant="text" color="info">
+              Order
+            </MDButton>
         ),
       },
       {
@@ -196,9 +197,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          <MDButton href="/order" variant="text" color="info" disabled>
             Order
-          </MDTypography>
+          </MDButton>
         ),
       },
       

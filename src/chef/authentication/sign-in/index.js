@@ -36,7 +36,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // Authentication layout components
-import BasicLayout from "layouts/authentication/components/BasicLayout";
+import BasicLayout from "chef/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";

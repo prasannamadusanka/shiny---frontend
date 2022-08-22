@@ -19,10 +19,21 @@ import vegetableTableData from "chef/ingredients/data/vegetableTableData";
 import fruitTableData from "chef/ingredients/data/fruitTableData";
 import oilTableData from "chef/ingredients/data/oilTableData";
 
-export default class Ingredients extends Component {
+//
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 
-  render() {
+export default function Ingredients () {
+
+    
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "chef");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
     const { columns, rows } = vegetableTableData();
     const { columns: pColumns, rows: pRows } = fruitTableData();
     const { columns: oColumns, rows: oRows } = oilTableData();
@@ -124,5 +135,5 @@ export default class Ingredients extends Component {
         <Footer />
       </DashboardLayout>
     );
-  }
+  
 }

@@ -20,14 +20,17 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
+import MDButton from "components/MDButton";
 
 // Images
-import potato from "assets/images/potato.jpg";
-import beans from "assets/images/beans.jpg";
-import beetroot from "assets/images/beetroot.jpg";
-import carrot from "assets/images/carrot.jpg";
-import cabbage from "assets/images/cabbage.jpg";
-import pumkin from "assets/images/pumkin.jpg";
+import potato from "assets/images/chef/potato.jpg";
+import beans from "assets/images/chef/beans.jpg";
+import beetroot from "assets/images/chef/beetroot.jpg";
+import carrot from "assets/images/chef/carrot.jpg";
+import cabbage from "assets/images/chef/cabbage.jpg";
+import pumkin from "assets/images/chef/pumkin.jpg";
+
+import { Link } from "react-router-dom";
 
 export default function data() {
   const Vegetable = ({ image, name, description }) => (
@@ -85,9 +88,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
-            Order
-          </MDTypography>
+            <MDButton href="/order" variant="text" color="info">
+              Order
+            </MDButton>
         ),
       },
       {
@@ -113,9 +116,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          <MDButton href="/order" variant="text" color="info" disabled>
             Order
-          </MDTypography>
+          </MDButton>
         ),
       },
       {
@@ -141,9 +144,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+          <MDButton href="/order" variant="text" color="info" >
             Order
-          </MDTypography>
+          </MDButton>
         ),
       },
       {
@@ -169,9 +172,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+          <MDButton href="/order" variant="text" color="info" >
             Order
-          </MDTypography>
+          </MDButton>
         ),
       },
       {
@@ -197,9 +200,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          <MDButton href="/order" variant="text" color="info" disabled>
             Order
-          </MDTypography>
+          </MDButton>
         ),
       },
       {
@@ -225,9 +228,9 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          <MDButton href="/order" variant="text" color="info" disabled>
             Order
-          </MDTypography>
+          </MDButton>
         ),
       },
     ],

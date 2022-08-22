@@ -31,9 +31,6 @@ import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 
-// Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-
 //calendar
 import { Calendar } from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
@@ -44,78 +41,69 @@ import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import { useState } from "react";
 import { Card, ImageList, ImageListItem } from "@mui/material";
 
+import { Link } from "react-router-dom";
+
+//
+import Header from "chef/dashboard/components/Header";
+
+//
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 function Dashboard() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "chef");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
 
   //for calendar
   const [date, setDate] = useState(new Date());
 
-  const images = [
-
-    {
-      img: 'https://i0.wp.com/ratemybistro.co.uk/wp-content/uploads/2016/11/20161022_125954-Medium.jpg?ssl=1',
-      title: 'Tomato basil',
-    },
-    {
-      img: 'https://www.studiovolpi.com/uploads/casehistory/ACT.O/Kitchen_.jpeg',
-      title: 'Sea star',
-    },
-    {
-      img: 'https://th.bing.com/th/id/R.ecfc734d619d2ed16d96139b59ca2fed?rik=zBEGkAA%2bvcLBgg&pid=ImgRaw&r=0',
-      title: 'Bike',
-    },
-  ];
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
-        <MDBox mb={3}>
-        <ImageList sx={{ width: 1140, height: 160 }} cols={3} rowHeight={164}>
-          {images.map((item) => (
-            <ImageListItem key={item.img}>
-              <img
-                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-                loading="lazy"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-        </MDBox>
-        {/* <img src={bgImage} height="150" width={1140}></img> */}
+      <Header>
+      <MDBox py={3} mt={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="error"
-                icon="star"
-                title="Pending Predictions"
-                count={2}
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "immediate",
-                }}
-              />
+              <Link to="/chef/pendingpredictions">
+                <ComplexStatisticsCard
+                  color="error"
+                  icon="star"
+                  title="Pending Predictions"
+                  count={2}
+                  percentage={{
+                    color: "success",
+                    amount: "",
+                    label: "immediate",
+                  }}
+                />
+              </Link>
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                icon="alarm"
-                title="Next Event"
-                count={15}
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "hours",
-                }}
-              />
+              <Link to="/chef/eventchef">
+                <ComplexStatisticsCard
+                  icon="alarm"
+                  title="Next Event"
+                  count={15}
+                  percentage={{
+                    color: "success",
+                    amount: "",
+                    label: "hours",
+                  }}
+                />
+              </Link>
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
+              <Link to="/chef/ingredients">
               <ComplexStatisticsCard
                 color="secondary"
                 icon="list"
@@ -127,6 +115,7 @@ function Dashboard() {
                   label: "now",
                 }}
               />
+              </Link>
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
@@ -176,7 +165,7 @@ function Dashboard() {
                       color: "facebook",
                     },
                   ]}
-                  action={{ route: "", tooltip: "Goto Event" }}
+                  action={{ route: "/event", tooltip: "Goto Event" }}
                   shadow={false}
                 />
                 </MDBox>
@@ -199,7 +188,7 @@ function Dashboard() {
                         color: "facebook",
                       },
                     ]}
-                    action={{ route: "", tooltip: "Goto Event" }}
+                    action={{ route: "/event", tooltip: "Goto Event" }}
                     shadow={false}
                   />
                 </MDBox>
@@ -208,6 +197,7 @@ function Dashboard() {
           </Grid>
         </MDBox>
       </MDBox>
+      </Header>
       <Footer />
     </DashboardLayout>
   );

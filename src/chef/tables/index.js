@@ -28,8 +28,8 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import authorsTableData from "layouts/tables/data/authorsTableData";
-import projectsTableData from "layouts/tables/data/projectsTableData";
+import authorsTableData from "chef/tables/data/authorsTableData";
+import projectsTableData from "chef/tables/data/projectsTableData";
 
 function Tables() {
   const { columns, rows } = authorsTableData();
@@ -59,7 +59,7 @@ function Tables() {
               <MDBox pt={3}>
                 <DataTable
                   table={{ columns, rows }}
-                  isSorted={false}
+                  isSorted={true}
                   entriesPerPage={false}
                   showTotalEntries={false}
                   noEndBorder
