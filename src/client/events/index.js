@@ -9,12 +9,18 @@ import Footer from 'examples/Footer';
 import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 
-export default function MyEvents() {
-  // const [value, setValue] = React.useState('1');
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  // };
+export default function MyEvents() {
+  const [, dispatch] = useMaterialUIController();
+//  const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
 
   return (
 

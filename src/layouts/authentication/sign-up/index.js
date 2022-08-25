@@ -27,14 +27,16 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import ReactDOM from 'react-dom';
 import SignUpContainer from "./src/SignUpContainer"
-
+import Box from "@mui/material/Box"
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 //import SignUpContainer from "./src/SignUpContainer"
 // Images
-import bgImage from "assets/images/bg-sign-up-cover.jpeg";
+import bgImage from "assets/images/wed.jpg";
 import API from "../../../services/baseURL";
 import options from "../../../services/services";
+
+import BasicLayout from "layouts/authentication/components/BasicLayout1";
 const myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port).split("/s/")[0];
 
 // const getItemList = async event => {
@@ -67,21 +69,9 @@ const myUrl = (window.location.protocol + "//" + window.location.hostname + ":" 
 // }
 function Cover() {
   return (
-   
-           
-         
-            <MDBox
-          variant="gradient"
-      
-          borderRadius="lg"
-          coloredShadow="success"
-          mx={2}
-      
-          
-          textAlign="center"
-        >
-      
-    {/* //
+    <BasicLayout image={bgImage}>
+      <MDBox lg={100} ml={2} mr={2}>
+        {/* //
     //   <Card>
     //      <MDBox
     //       variant="gradient"
@@ -168,12 +158,9 @@ function Cover() {
     //      
     //   </Card>
     // </CoverLayout> */}
-    <SignUpContainer />
-    </MDBox>
-   
-    
-  
-  
+        <SignUpContainer />
+      </MDBox>
+    </BasicLayout>
   );
 }
 

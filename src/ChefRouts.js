@@ -36,18 +36,13 @@ Coded by www.creative-tim.com
 */
 
 // Material Dashboard 2 React layouts
-import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import RTL from "layouts/rtl";
-import Notifications from "layouts/notifications";
-import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
-import Ingredients from "layouts/ingredients";
-import CreateRecepes from "layouts/createrecepes";
-import Recepes from "layouts/recepes";
-import DashboardEp from "layouts/dashboard_EP";
+import Dashboard from "chef/dashboard";
+import Ingredients from "chef/ingredients";
+import CreateRecepes from "chef/createrecepes";
+import Recepes from "chef/recepes";
+import EventChef from "chef/event";
+import PendingPredictions from "chef/pendingpredictions";
+import Menu from "chef/menu";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
@@ -58,55 +53,31 @@ const routes = [
     name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
+    route: "/chef/dashboard",
     component: <Dashboard />,
-  },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
-  },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
-  },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
   },
   {
     type: "collapse",
     name: "Ingredients",
     key: "ingredients",
     icon: <Icon fontSize="small">table</Icon>,
-    route: "/ingredients",
+    route: "/chef/ingredients",
     component: <Ingredients />,
+  },
+  {
+    type: "collapse",
+    name: "event",
+    key: "eventchef",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/chef/eventchef",
+    component: <EventChef/>,
   },
   {
     type: "collapse",
     name: "Recepes",
     key: "recepes",
-    icon: <Icon fontSize="small">menu</Icon>,
-    route: "/recepes",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/chef/recepes",
     component: <Recepes />,
   },
   {
@@ -114,48 +85,24 @@ const routes = [
     name: "CreateRecepes",
     key: "createrecepes",
     icon: <Icon fontSize="small">menu</Icon>,
-    route: "/createrecepes",
+    route: "/chef/createrecepes",
     component: <CreateRecepes />,
   },
   {
     type: "collapse",
-    name: "CreateRecepesNext",
-    key: "createrecepesnext",
+    name: "PendingPredictions",
+    key: "pendingpredictions",
     icon: <Icon fontSize="small">menu</Icon>,
-    route: "/createrecepesnext",
-    component: <CreateRecepesNext />,
+    route: "/chef/pendingpredictions",
+    component: <PendingPredictions />,
   },
   {
     type: "collapse",
-    name: "Dashboard_EP",
-    key: "dashboard_EP",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard-EP",
-    component: <DashboardEp />,
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
+    name: "Menues",
+    key: "menu",
+    icon: <Icon fontSize="small">menu</Icon>,
+    route: "/chef/menues",
+    component: <Menu />,
   },
 ];
 

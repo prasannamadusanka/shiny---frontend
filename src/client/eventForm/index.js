@@ -10,8 +10,20 @@ import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
 import { Grid, Typography } from "@mui/material";
 
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 
 const EventForm = () => {
+
+  const [, dispatch] = useMaterialUIController();
+//  const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
 
     const [formValues, setFormValues] = useState([{ name: "", email : ""}])
 

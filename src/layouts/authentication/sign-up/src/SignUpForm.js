@@ -7,9 +7,10 @@ import PasswordStr from "./PasswordStr";
 import "./style.css";
 //import { TextField } from "react-icons/md";
 import MDBox from "components/MDBox";
-import bgImage from "assets/images/bg-sign-up-cover.jpeg";
+import logo from "assets/images/logo-shiny.png";
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 import MDTypography from "components/MDTypography";
+import Grid from "@mui/material/Grid";
 
 const SignUpForm = ({
     history,
@@ -24,18 +25,28 @@ const SignUpForm = ({
     onPwChange
 }) => {
     return (
-    
+
         <div className="loginBox">
             {/* <MDAvatar src="assets/iimages"></MDAvatar> */}
-         <MDTypography variant="h3">Start your Journey with us</MDTypography>
+            <Grid container lg={20}>
+                <Grid item lg={4} pr={10}>
+                    <MDBox component="img" src={logo} />
+                </Grid>
+                <Grid item lg={8}>
+                    <MDBox textAlign="left" mt={10} ml={4}>
+                        <MDTypography variant="h2">SHINY HOTELS</MDTypography>
+                    </MDBox>
+                </Grid>
+            </Grid>
+            <MDTypography color="#3f51b5" variant="h4">Join us and make your dreams come true...!</MDTypography>
             {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
 
             <form onSubmit={onSubmit}>
-                
+
                 <MDBox mt={2} p={1}>
                     <TextField
-                    fullWidth="true"
-                    name="username"
+                        fullWidth="true"
+                        name="username"
                         label="username"
                         floatinglabeltext="user name"
                         value={user.username}
@@ -45,21 +56,21 @@ const SignUpForm = ({
                 </MDBox>
                 <MDBox mt={2} p={1}>
                     <TextField
-                    fullWidth
-                    name="email"
+                        fullWidth
+                        name="email"
                         label="email"
                         floatingLabelText="email"
                         value={user.email}
                         onChange={onChange}
                         errortext={errors.email}
-                        
+
                     />
                 </MDBox>
                 <MDBox mt={2} p={1}>
                     <TextField
-                    fullWidth="true"
-                    name="contactNumber"
-                        label="Contact number"
+                        fullWidth="true"
+                        name="contactNumber"
+                        label="contacNumber"
                         floatinglabeltext="email"
                         value={user.contactNumber}
                         onChange={onChange}
@@ -68,9 +79,9 @@ const SignUpForm = ({
                 </MDBox>
                 <MDBox mt={2} p={1}>
                     <TextField
-                    fullWidth="true"
-                    name="addressOne"
-                        label="address line 1"
+                        fullWidth="true"
+                        name="addressOne"
+                        label="addressOne"
                         floatinglabeltext="email"
                         value={user.addressOne}
                         onChange={onChange}
@@ -79,31 +90,31 @@ const SignUpForm = ({
                 </MDBox>
                 <MDBox mt={2} p={1}>
                     <TextField
-                    fullWidth="true"
-                    name="addressTwo"
-                        label="address line 2"
+                        fullWidth="true"
+                        name="addressTwo"
+                        label="addressTwo"
                         floatinglabeltext="email"
                         value={user.addressTwo}
                         onChange={onChange}
-                        
+
                     />
                 </MDBox>
                 <MDBox mt={2} p={1}>
                     <TextField
-                    fullWidth="true"
-                    name="nic"
+                        fullWidth="true"
+                        name="nic"
                         label="Nation Identity Card Number"
                         floatinglabeltext="nic"
                         value={user.nic}
                         onChange={onChange}
                         helperText={errors.nic}
                     />
-                   
+
                 </MDBox>
 
-                <MDBox mt={2} p={1} >
+                <MDBox lg={40} mt={2} p={1} >
                     <TextField
-                    fullwidth="true"
+                        fullwidth="true"
                         type={type}
                         name="password"
                         label="password"
@@ -126,16 +137,16 @@ const SignUpForm = ({
                     )}
                 </div>
                 <MDBox mt={2} p={1}>
-                <TextField
-                    type={type}
-                    fullWidth="true"
-                    name="pwconfirm"
-                    label="pwconfirm"
-                    floatinglabeltext="confirm password"
-                    value={user.pwconfirm}
-                    onChange={onChange}
-                    helperText={errors.pwconfirm}
-                />
+                    <TextField
+                        type={type}
+                        fullWidth="true"
+                        name="pwconfirm"
+                        label="pwconfirm"
+                        floatinglabeltext="confirm password"
+                        value={user.pwconfirm}
+                        onChange={onChange}
+                        helperText={errors.pwconfirm}
+                    />
                 </MDBox>
                 <br />
                 <Button
@@ -143,14 +154,14 @@ const SignUpForm = ({
                     primary={true}
                     type="submit"
                     label="submit"
-                >Sign up</Button>
+                ><strong><h2><font color="#00bcd4">Sign up</font></h2></strong></Button>
             </form>
             <p>
-                Aleady have an account? <br />
-                <a href="/">Log in here</a>
+                <font color="#3f51b5"><h5>Aleady have an account?</h5></font>
+                <a href="/"><font color="#3d5afe"><strong>Log in</strong></font></a>
             </p>
         </div>
-     
+
     );
 };
 

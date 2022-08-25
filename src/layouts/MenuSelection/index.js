@@ -1,218 +1,11 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
-/* import PropTypes from "prop-types";
-
-import Header from './components/Header';
-import Main from './components/Main';
-import Basket from './components/Basket';
-import BasketOne from './components/BasketOne';
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-import data from './data';
-import { Grid } from '@mui/material';
-import MDBox from "./../../components/MDBox";
-import MDTypography from "./../../components/MDTypography";
-import { useState } from 'react';
-import MDProgress from "components/MDProgress";
-//import './index.css';
-
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepButton from '@mui/material/StepButton';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-const steps = ['Rice and Pasta', 'Chicken dishes', 'Welcome drink','Dessert','Fish dishes','salad dishes'];
-
-
-
-function MenuSelection() {
-
-    const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
-
-  const totalSteps = () => {
-    return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
-
-  const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
-    setActiveStep(newActiveStep);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleStep = (step) => () => {
-    setActiveStep(step);
-  };
-
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-  };
-
-    const { products } = data;
-    const [cartItems, setCartItems] = useState([]);
-    const onAdd = (product) => {
-        const exist = cartItems.find((x) => x.id === product.id);
-        if (exist) {
-            setCartItems(
-                cartItems.map((x) =>
-                    x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
-                )
-            );
-        } else {
-            setCartItems([...cartItems, { ...product, qty: 1 }]);
-        }
-    };
-    const onRemove = (product) => {
-        const exist = cartItems.find((x) => x.id === product.id);
-        if (exist.qty === 1) {
-            setCartItems(cartItems.filter((x) => x.id !== product.id));
-        } else {
-            setCartItems(
-                cartItems.map((x) =>
-                    x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
-                )
-            );
-        }
-    };
-
-    return (
-        
-       
-        <DashboardLayout>
-      <DashboardNavbar />
-      <MDBox >
-      <Stepper nonLinear activeStep={activeStep}>
-        {steps.map((label, index) => (
-          <Step key={label} completed={completed[index]}>
-            <StepButton color="inherit" onClick={handleStep(index)}>
-              {label}
-            </StepButton>
-          </Step>
-        ))}
-      </Stepper>
-      <div>
-        {allStepsCompleted() ? (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleReset}>Reset</Button>
-            </Box>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
-              <Button onClick={handleNext} sx={{ mr: 1 }}>
-                Next
-              </Button>
-              {activeStep !== steps.length &&
-                (completed[activeStep] ? (
-                  <Typography variant="caption" sx={{ display: 'inline-block' }}>
-                    Step {activeStep + 1} already completed
-                  </Typography>
-                ) : (
-                  <Button onClick={handleComplete}>
-                    {completedSteps() === totalSteps() - 1
-                      ? 'Finish'
-                      : 'Complete Step'}
-                  </Button>
-                ))}
-            </Box>
-          </React.Fragment>
-        )}
-      </div>
-      </MDBox>
-     <MDBox mt={5}p={2}>
-          <Grid container spacing={6}>
-         <Main products={products} onAdd={onAdd}></Main>
-         </Grid>
-         </MDBox>
-        
-        
-   
-         <BasketOne
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-        ></BasketOne>
-    
-        
-       
-    
-         <Footer/>
-          </DashboardLayout>
-        
-      
-    );
-}
-
-
-
-export default MenuSelection;  */
 
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import Header from './components/Header';
 import React, { useState } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import MDBox from "./../../components/MDBox";
 import { Grid } from '@mui/material';
@@ -220,6 +13,8 @@ import data from './data';
 import SoupData from "./soupData";
 import BasketOne from './components/BasketOne';
 import Main from './components/Main';
+import { useMaterialUIController, setDirection } from "context";
+//import { useEffect } from "react";
 import {
   Stepper,
   Step,
@@ -240,6 +35,7 @@ import CheckoutSuccess from './CheckOutSuccess';
 //import useStyles from './styles';
 import Second from './Second';
 import MDTypography from "components/MDTypography";
+import API from '../../services/baseURL';
 
 
 // const { products } = data;
@@ -268,14 +64,52 @@ import MDTypography from "components/MDTypography";
 //     );
 //   }
 // };
+export const getItemList = async event => {
+  const type1 = "WelcomeDrink"
+  const response = await API.get(`client/welcomeitems`);
+  console.log(response.data)
+  return response.data;
+};
 const steps = ['Welcome drink', 'Soup', 'Salad', 'Rice Dishes', 'Noodles and Pasta', 'Fish dishes', 'Chicken Dishes', 'Desserts'];
 //const { formId, formField } = checkoutFormModel;
 
 function _renderStepContent(step) {
-  const { products } = data;
+  let productss= []
+
+  const [itemList, setItemList] = useState([]);
+  const {products} = data
   const { soups } = SoupData;
+  const item = []
   //console.log(soups)
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    getItemList().then(data => {
+      console.log(data.menus)
+      productss.push(data.menus)
+      // console.log(JSON.parse(data))
+     // const [ItemList, setItemList] = useState(data.menus);
+   
+      console.log(productss[0][0].id)
+    }).catch(err => {
+      console.log(err.error)
+    })
+  }, []);
+
+
+  useEffect(async () => {
+    //console.log("set");
+   console.log(itemList);
+    item.push(itemList)
+    console.log('hi')
+  console.log(item[0])
+  //const  products  = item;
+  //console.log(products)
+
+  }, [itemList]);
+ // console.log(item)
+  //const  products  = item;
+
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -301,14 +135,16 @@ function _renderStepContent(step) {
     }
   };
   switch (step) {
+   // console.log(productss[0][0].id)
     case 0:
+       //console.log(item[0])
       return (<React.Fragment>
         <div style={{ float: 'right' }}>
           <MDTypography color="warning">You can select upto maximum 3</MDTypography>
         </div>
         <MDBox mt={5} p={2}>
           <Grid container spacing={6}>
-            <Main products={products[0]} onAdd={onAdd}></Main>
+            <Main  products={products[0]} onAdd={onAdd}></Main>
           </Grid>
         </MDBox>
 
@@ -328,7 +164,7 @@ function _renderStepContent(step) {
         <MDBox mt={5} p={2}>
 
           <Grid container spacing={6}>
-            <Main products={products[0]} onAdd={onAdd}></Main>
+            <Main products={products[1]} onAdd={onAdd}></Main>
           </Grid>
         </MDBox>
 
@@ -348,7 +184,7 @@ function _renderStepContent(step) {
         <MDBox mt={5} p={2}>
 
           <Grid container spacing={6}>
-            <Main products={products[0]} onAdd={onAdd}></Main>
+            <Main products={products[2]} onAdd={onAdd}></Main>
           </Grid>
         </MDBox>
 
@@ -386,7 +222,7 @@ function _renderStepContent(step) {
       <MDBox mt={5} p={2}>
 
         <Grid container spacing={6}>
-          <Main products={products[0]} onAdd={onAdd}></Main>
+          <Main products={products[1]} onAdd={onAdd}></Main>
         </Grid>
       </MDBox>
 
@@ -424,7 +260,7 @@ function _renderStepContent(step) {
       <MDBox mt={5} p={2}>
 
         <Grid container spacing={6}>
-          <Main products={products[0]} onAdd={onAdd}></Main>
+          <Main products={products[2]} onAdd={onAdd}></Main>
         </Grid>
       </MDBox>
 
@@ -461,6 +297,14 @@ function _renderStepContent(step) {
 }
 
 export default function CheckoutPage() {
+
+  const [, dispatch] = useMaterialUIController();
+//  const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   // const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const isLastStep = activeStep === steps.length - 1;
@@ -510,12 +354,12 @@ export default function CheckoutPage() {
           {activeStep === steps.length ? (
             <React.Fragment>
               <Typography variant="h5" gutterBottom>
-           Thank you for your order.
-         </Typography>
-         <Typography variant="subtitle1">
-           Your order number is #2001539. We have emailed your order confirmation,
-           and will send you an update when your order has shipped.
-         </Typography>
+                Thank you for your order.
+              </Typography>
+              <Typography variant="subtitle1">
+                Your order number is #2001539. We have emailed your order confirmation,
+                and will send you an update when your order has shipped.
+              </Typography>
 
               {/* <BasketOne
                 cartItems={cartItems}

@@ -17,6 +17,9 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -48,6 +51,14 @@ import Event from "./event";
 
 
 function MyEvents() {
+  const [, dispatch] = useMaterialUIController();
+  //const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
 
   const [value, setValue] = React.useState('1');
 

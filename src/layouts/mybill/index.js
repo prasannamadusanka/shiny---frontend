@@ -27,12 +27,20 @@ import Footer from "examples/Footer";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
-
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 import Transactions from "layouts/mybill/components/Transactions";
 import Advances from "layouts/mybill/components/Advances";
 
 
 function MyBill() {
+  const [, dispatch] = useMaterialUIController();
+//  const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   return (
     <DashboardLayout>
       <DashboardNavbar absolute isMini />

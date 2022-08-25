@@ -56,7 +56,8 @@ import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 
-
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 const styles = {
   paperContainer: {
@@ -64,6 +65,13 @@ const styles = {
   }
 };
 function Menu() {
+  const [, dispatch] = useMaterialUIController();
+ // const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
 
 
   return (
