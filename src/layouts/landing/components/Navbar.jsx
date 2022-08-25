@@ -3,6 +3,7 @@ import styled from "styled-components";
 import foodYummy from "assets/images/logo-shiny.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 export default function Navbar() {
   const [navbarState, setNavbarState] = useState(false);
   const html = document.querySelector("html");
@@ -27,9 +28,10 @@ export default function Navbar() {
         </div>
         <ul className="links">
           <li>
-            <a href="#home" className="active">
-              Home
-            </a>
+          <a href="http://localhost:3001/authentication/sign-in">Login/Sign up</a>
+          
+            
+            
           </li>
           <li>
             <a href="#services">Sundream</a>

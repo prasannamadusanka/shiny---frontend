@@ -1,7 +1,4 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
+
 
 * Product Page: https://www.creative-tim.com/product/material-dashboard-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
@@ -38,27 +35,36 @@ Coded by www.creative-tim.com
 // Material Dashboard 2 React layouts
 import DashboardEp from "eventPlanner/dashboard_EP";
 import Event from "eventPlanner/event";
+import ServiceProviders from "eventPlanner/serviceproviders";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
 
-const routes = [
+const eventplannerroutes = [
   {
     type: "collapse",
     name: "Dashboard_EP",
     key: "dashboard_EP",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard-EP",
+    route: "/eventplanner/dashboard-EP",
     component: <DashboardEp />,
   },
   {
     type: "collapse",
     name: "event",
     key: "event",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/event",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/eventplanner/event",
     component: <Event/>,
+  },
+  {
+    type: "collapse",
+    name: "serviceProviders",
+    key: "serviceProviders",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/eventplanner/serviceProviders",
+    component: <ServiceProviders/>,
   },
 ];
 
-export default routes;
+export default eventplannerroutes;

@@ -56,12 +56,14 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useParams, } from 'react-router-dom';
 
 // import urls
 import API from '../../services/baseURL';
 //import options from '../../services/services';
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 // function for getting data
 export const getItemList = async event => {
@@ -82,6 +84,15 @@ const styles = {
   }
 };
 function Menu() {
+
+  const [, dispatch] = useMaterialUIController();
+  //const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
 
   // const {palette} = useTheme();
   const { id } = useParams();
@@ -110,6 +121,18 @@ function Menu() {
   const inputObject = {
     "foodList":
       [{
+        "name": "Tropican Nasi Goreang 1",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      }, {
+        "name": "Tropican Nasi Goreang 2",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      },{
+        "name": "Tropican Nasi Goreang 1",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      }, {
+        "name": "Tropican Nasi Goreang 2",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      },{
         "name": "Tropican Nasi Goreang 1",
         "age": "It is a best delicious food in our menu. it vcan be av"
       }, {
@@ -147,7 +170,7 @@ function Menu() {
       <div>
         {/* map the object */}
         {
-          itemList ? itemList.menus.map((item, index) => {
+          itemList ? itemList.food1.map((item, index) => {
 
             return (
               <>

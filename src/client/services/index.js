@@ -37,7 +37,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 //import person from "assets/images/home-decor-1.jpg";
 import SimpleBlogCard from "examples/Cards/BlogCards/SimpleBlogCard";
-
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -68,6 +69,9 @@ import Headphones from "@mui/icons-material/Headphones";
 import LocalFireDepartment from "@mui/icons-material/LocalFireDepartment";
 
 function refreshMessages() {
+
+  
+
     const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max));
   
     return Array.from(new Array(50)).map(
@@ -76,6 +80,13 @@ function refreshMessages() {
   }
 
 function Services() {
+  const [, dispatch] = useMaterialUIController();
+//  const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   //const { sales, tasks } = reportsLineChartData;
 
   const [value, setValue] = React.useState(0);

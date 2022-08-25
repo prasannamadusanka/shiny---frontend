@@ -4,6 +4,7 @@ const axios = require("axios");
 const FormValidators = require("./validate");
 import validateSignUpForm from "./validate";
 const zxcvbn = require("zxcvbn");
+const myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port).split("/s/")[0];
 
 class SignUpContainer extends Component {
   constructor(props) {
@@ -79,6 +80,7 @@ class SignUpContainer extends Component {
           localStorage.token = res.data.token;
           localStorage.isAuthenticated = true;
           window.location.reload();
+          //window.location.href = myUrl + '/' + 'client' + '/' + 'dashboard';
         } else {
           this.setState({
             errors: { message: res.data.message }

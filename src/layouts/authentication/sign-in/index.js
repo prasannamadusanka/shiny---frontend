@@ -12,8 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
-import { useState } from "react";
+//
+//import { useState } from "react";
 
 // react-router-dom components
 import { Link, Navigate } from "react-router-dom";
@@ -26,7 +26,7 @@ import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
 import MuiLink from "@mui/material/Link";
 import { useNavigate } from 'react-router-dom';
-// @mui icons
+import { useState } from 'react'
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -64,16 +64,45 @@ const getItemList = async event => {
 
 function navigate(resoponse) {
   if (resoponse == '1') {
-    window.location.href = myUrl + '/' + 'dashboard';
+    window.location.href = myUrl + '/' + 'chef' + '/' + 'dashboard';
   }
   else if (resoponse == '2') {
     window.location.href = myUrl + '/' + 'client' + '/' + 'dashboard';
   }
+  else if (resoponse == '3') {
+    window.location.href = myUrl + '/' + 'manager' + '/' + 'dashboard';
+  }
+  else if (resoponse == '0') {
+    window.location.href = myUrl + '/' + 'ServiceProvider' + '/' + 'dashboard';
+  }
+  else if (resoponse == '5') {
+    window.location.href = myUrl + '/' + 'eventplanner' + '/' + 'dashboard_EP';
+  }
+  else if (resoponse == '7') {
+    window.location.href = myUrl + '/' + 'ServiceProvider' + '/' + 'dashboard';
+  }
+  else if (resoponse == '8') {
+    window.location.href = myUrl + '/' + 'owner' + '/' + 'dashboard';
+  }
+
+  // else if (resoponse == '4') {
+  //   window.location.href = myUrl + '/' + 'chef' + '/' + 'dashboard';
+  // }
 }
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
   const [itemList, setItemList] = useState(null);
+  const [email,setemail]= useState(null)
+  const [password,setpassword]= useState(null)
+
+  function handleChange(event) {
+    setemail(event.target.value);
+  }
+  
+  function handleChanget(event) {
+    setpassword(event.target.value);
+  }
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
   const search = () => validationSchema();
@@ -122,11 +151,11 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" id="email" label="Email" value="sadhuniw@gmail.com" fullWidth />
+              <MDInput type="email" id="email" label="Email" value={email} onChange={handleChange} fullWidth />
 
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" id="password" name="password" value="(Udemy)@?!M)" label="Password" fullWidth />
+              <MDInput type="password" id="password" name="password" value={password} onChange={handleChanget} label="Password" fullWidth />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />

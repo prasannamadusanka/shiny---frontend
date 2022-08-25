@@ -62,11 +62,11 @@ function Bill({ name, total,advance,remaining,dueDate,dueAmount, noGutter }) {
                 <Icon>menu</Icon>&nbsp;See more
               </MDButton>
             </MDBox>
-            <Link to='/mybill'>
-            <MDButton variant="text" color="error" >
+          
+            <MDButton component={Link} to="client/billing/mybill" variant="text" color="error" >
               <Icon >payment</Icon>&nbsp;Pay now
             </MDButton>
-            </Link>
+          
           </MDBox>
         </MDBox>
         <MDBox mb={1} lineHeight={0}>

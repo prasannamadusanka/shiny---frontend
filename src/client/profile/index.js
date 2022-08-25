@@ -55,8 +55,20 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import TasksData from "./TasksData";
 
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 function Overview() {
   const { columns: pColumns, rows: pRows } = TasksData();
+
+  const [, dispatch] = useMaterialUIController();
+ // const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />

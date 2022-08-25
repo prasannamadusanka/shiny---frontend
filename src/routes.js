@@ -59,7 +59,58 @@ import Icon from "@mui/material/Icon";
 //import FastfoodIcon from '@mui/material/Fastfood';
 import { Menu } from "@mui/material";
 import EventSchedule from "client/eventSchedule";
+import DashboardManger from "manager/dashboard";
+import Serviceproviders from "manager/serviceproviders";
+import Events from "manager/event";
+import Expences from "manager/expence";
+import Payments from "manager/payment";
+import Menus from "manager/menu";
+import Banquet from "manager/banquet";
+import MyKitchen from "manager/myKitchen";
 
+import Dashboardchef from "chef/dashboard";
+//import Tables from "chef/tables";
+// import Billing from "chef/billing";
+// import Notifications from "chef/notifications";
+// import Profile from "chef/profile";
+// import SignIn from "chef/authentication/sign-in";
+// import SignUp from "chef/authentication/sign-up";
+import Ingredients from "chef/ingredients";
+import CreateRecepes from "chef/createrecepes";
+import CreateRecepesNext from "chef/createrecepesnext";
+import Recepes from "chef/recepes";
+import EventChef from "chef/event";
+import Recepe from "chef/recepe";
+import PendingPredictions from "chef/pendingpredictions";
+import Order from "chef/order";
+import Menuchef from "chef/menu";
+
+import DashboardEp from "eventPlanner/dashboard_EP";
+import Event from "eventPlanner/event";
+import ServiceProviders from "eventPlanner/serviceproviders";
+
+import Dashboardserviceprovider from "ServiceProvider/dashboard";
+import Chats from "ServiceProvider/chats";
+import Calendar from "ServiceProvider/calendar";
+import Billingservice from "ServiceProvider/billing";
+import EB from "ServiceProvider/edit_blog";
+import PB from "ServiceProvider/preview_blog";
+import Prelanding from "layouts/prelanding";
+import Register from "layouts/authentication/service-provider-reg-req";
+import PPE from "layouts/paym_prev_events";
+
+import Dashboardowner from "owner/dashboard";
+// import Tables from "layouts/tables";
+// import Billing from "layouts/billing";
+// import RTL from "layouts/rtl";
+// import Notifications from "layouts/notifications";
+// import Profile from "layouts/profile";
+// import SignIn from "layouts/authentication/sign-in";
+// import SignUp from "layouts/authentication/sign-up";
+// import Ownerdashboard from "layouts/ownerdashboard";
+import Calender from "owner/calender";
+import Reports  from "owner/reports";
+import Viewreports from "owner/viewreports"
 const routes = [
 
 
@@ -118,6 +169,14 @@ const routes = [
     icon: <Icon fontSize="small">notifications</Icon>,
     route: "client/notifications",
     component: <Notifications />,
+  },
+  {
+    type: "collapse",
+    name: "Notifications",
+    key: "notifications",
+    icon: <Icon fontSize="small">notifications</Icon>,
+    route: "client/billing/mybill",
+    component: <MyBill />,
   },
 
   {
@@ -231,13 +290,7 @@ const routes = [
     route: "/client/myevents",
     component: <MyEvents />,
   },
-  {
-    type: "collapse",
-    name: "Landing",
-    key: "dashboard2",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/",
-    component: <Landing />,
-  },
+
+ 
 ];
 export default routes;

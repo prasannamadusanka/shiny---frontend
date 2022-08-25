@@ -33,7 +33,19 @@ import BillingInformation from "layouts/billing/components/BillingInformation";
 import Transactions from "layouts/billing/components/Transactions";
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 function Billing() {
+
+  const [, dispatch] = useMaterialUIController();
+ // const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
   return (
     <DashboardLayout>
       <DashboardNavbar absolute isMini />
@@ -50,7 +62,7 @@ function Billing() {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <DefaultInfoCard
-                    icon="Beverages"
+                    icon="local_shipping"
                     title="Outside Services"
                     description="Upcoming event"
                     value="Rs.22.00k"
@@ -58,7 +70,7 @@ function Billing() {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <DefaultInfoCard
-                    icon="party_mode"
+                    icon="local_bar"
                     title="Bar services"
                     description="Upcoming event"
                     value="Rs.20.00k"
@@ -66,7 +78,7 @@ function Billing() {
                 </Grid>
                 <Grid item xs={12} md={3}>
                   <DefaultInfoCard
-                    icon="motorcycle"
+                    icon="trending_down"
                     title="Total Amount"
                     description="Upcoming event"
                     value="Rs.545.00k"

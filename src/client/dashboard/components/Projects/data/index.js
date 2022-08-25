@@ -31,6 +31,7 @@ import payment from "assets/images/small-logos/payment.svg";
 import giftbox from "assets/images/small-logos/gift-box.png";
 import schedule from "assets/images/small-logos/schedule.png";
 import bar from "assets/images/small-logos/bar.svg";
+import { Link } from "react-router-dom";
 
 
 import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
@@ -102,9 +103,11 @@ export default function data() {
           </MDBox>
         ),
         gotask: (
+          <Link to="/client/menu/pricePlan">
           <MDButton variant="gradient" color="info">
           Proceede
         </MDButton>
+        </Link>
         
         ),
       },

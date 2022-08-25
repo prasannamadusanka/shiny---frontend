@@ -26,8 +26,19 @@ import eventTableData from "./eventTableData"
 import Select from "react-select";
 
 import { NewsHeaderCard, ProductCard, UserCard } from 'react-ui-cards';
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 const EventSchedule = () => {
+
+  const [, dispatch] = useMaterialUIController();
+  //const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
   const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = eventTableData();
   const options = [

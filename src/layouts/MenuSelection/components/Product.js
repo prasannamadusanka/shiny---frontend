@@ -42,7 +42,7 @@ export default function Product(props) {
     </MDBox>
     <MDBox mt={1} mx={0.5}>
       <MDTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
-        {product.price}
+        {product.description}
       </MDTypography>
      
       <MDBox mb={3} lineHeight={0}>
