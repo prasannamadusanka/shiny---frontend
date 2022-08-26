@@ -37,86 +37,47 @@ Coded by www.creative-tim.com
 
 // Material Dashboard 2 React layouts
 import Dashboard from "chef/dashboard";
-import Tables from "chef/tables";
-import Billing from "chef/billing";
-import Notifications from "chef/notifications";
-import Profile from "chef/profile";
-import SignIn from "chef/authentication/sign-in";
-import SignUp from "chef/authentication/sign-up";
 import Ingredients from "chef/ingredients";
 import CreateRecepes from "chef/createrecepes";
 import Recepes from "chef/recepes";
 import EventChef from "chef/event";
-import Recepe from "chef/recepe";
 import PendingPredictions from "chef/pendingpredictions";
-import Order from "chef/order";
+import Menu from "chef/menu";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
 
-const routes = [
+const chefRoutes = [
   {
     type: "collapse",
     name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
+    route: "/chef/dashboard",
     component: <Dashboard />,
-  },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
-  },
-  {
-    type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
-  },
-  {
-    type: "collapse",
-    name: "RTL",
-    key: "rtl",
-    icon: <Icon fontSize="small">format_textdirection_r_to_l</Icon>,
-    route: "/rtl",
-    component: <RTL />,
-  },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
   },
   {
     type: "collapse",
     name: "Ingredients",
     key: "ingredients",
     icon: <Icon fontSize="small">table</Icon>,
-    route: "/ingredients",
+    route: "/chef/ingredients",
     component: <Ingredients />,
   },
   {
     type: "collapse",
-    name: "eventchef",
+    name: "event",
     key: "eventchef",
-    icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/eventchef",
+    icon: <Icon fontSize="small">assignment</Icon>,
+    route: "/chef/eventchef",
     component: <EventChef/>,
   },
   {
     type: "collapse",
     name: "Recepes",
     key: "recepes",
-    icon: <Icon fontSize="small">menu</Icon>,
-    route: "/recepes",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/chef/recepes",
     component: <Recepes />,
   },
   {
@@ -124,65 +85,25 @@ const routes = [
     name: "CreateRecepes",
     key: "createrecepes",
     icon: <Icon fontSize="small">menu</Icon>,
-    route: "/createrecepes",
+    route: "/chef/createrecepes",
     component: <CreateRecepes />,
-  },
-  {
-    type: "collapse",
-    name: "CreateRecepesNext",
-    key: "createrecepesnext",
-    icon: <Icon fontSize="small">menu</Icon>,
-    route: "/createrecepesnext",
-    component: <CreateRecepesNext />,
-  },
-  {
-    type: "collapse",
-    name: "Recepe",
-    key: "recepe",
-    icon: <Icon fontSize="small">menu</Icon>,
-    route: "/recepe",
-    component: <Recepe />,
   },
   {
     type: "collapse",
     name: "PendingPredictions",
     key: "pendingpredictions",
     icon: <Icon fontSize="small">menu</Icon>,
-    route: "/pendingpredictions",
+    route: "/chef/pendingpredictions",
     component: <PendingPredictions />,
   },
   {
     type: "collapse",
-    name: "Order",
-    key: "order",
+    name: "Menues",
+    key: "menu",
     icon: <Icon fontSize="small">menu</Icon>,
-    route: "/order",
-    component: <Order />,
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    icon: <Icon fontSize="small">login</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-  {
-    type: "collapse",
-    name: "Sign Up",
-    key: "sign-up",
-    icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />,
+    route: "/chef/menues",
+    component: <Menu />,
   },
 ];
 
-export default routes;
+export default chefRoutes;

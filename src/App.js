@@ -48,8 +48,8 @@ import createCache from "@emotion/cache";
 // Shiny Hotels React routes
 import clientRoutes from "clientRoutes";
 import routes from "routes";
-import ManagerRoutes from "manager_routes"
-import chefroutes from "chefRouts";
+import chefRoutes from "./ChefRouts";
+import ManagerRoutes from "manager_routes";
 import eventplannerroutes from "eveneplannerRouts";
 import routesserviceprovider from "serviceproviderRoutes";
 
@@ -60,7 +60,6 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "./assets/images/logo-shiny.png";
 import brandDark from "assets/images/logo-shiny.png";
-import LandingRoutes from "./LandingRoutes";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -196,7 +195,7 @@ export default function App() {
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="Shiny Hotels Hikkaduwa"
-            routes={chefroutes}
+            routes={chefRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
