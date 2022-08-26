@@ -48,7 +48,8 @@ import PlatformSettings from "layouts/profile/components/PlatformSettings";
 // Data
 import React from 'react';
 import {PricingTable, PricingSlot, PricingDetail} from 'react-pricing-table';
-
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 // Images
 import homeDecor1 from "assets/images/home-decor-1.jpg";
 import homeDecor2 from "assets/images/home-decor-2.jpg";
@@ -94,6 +95,14 @@ const opensweetalert=()=>
   })
 }
 function PricePlan() {
+  const [, dispatch] = useMaterialUIController();
+  //const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
  
   const options = [
     { value: 'chocolate', label: 'Chocolate' },

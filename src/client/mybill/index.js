@@ -18,6 +18,8 @@ import Grid from "@mui/material/Grid";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 // Material Dashboard 2 React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -33,6 +35,14 @@ import Advances from "layouts/mybill/components/Advances";
 
 
 function MyBill() {
+  const [, dispatch] = useMaterialUIController();
+ // const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
   return (
     <DashboardLayout>
       <DashboardNavbar absolute isMini />

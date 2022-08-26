@@ -8,8 +8,18 @@ import DataTable from "examples/Tables/DataTable";
 import MDTypography from "components/MDTypography";
 
 //Service Name, Type, provider, charge, event date,event time,event type ordrerd date, notes, status,  ordered date
-
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 function MyServices(){
+
+  const [, dispatch] = useMaterialUIController();
+ // const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
 return (
     <DashboardLayout>
       <DashboardNavbar />

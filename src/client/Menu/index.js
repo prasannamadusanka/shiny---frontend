@@ -56,22 +56,24 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useParams, } from 'react-router-dom';
 
 // import urls
 import API from '../../services/baseURL';
-import options from '../../services/services';
+//import options from '../../services/services';
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 // function for getting data
 export const getItemList = async event => {
-  const response = await API.get(`client/view_items`, options);
+  const response = await API.get(`client/view_items`);
   // console.log(response.data[students])
   return response.data;
 };
 
 export const getTypeList = async event => {
-  const response = await API.get(`client/view_types`, options);
+  const response = await API.get(`client/view_types`);
   // console.log(response.data[students])
   return response.data;
 };
@@ -82,6 +84,15 @@ const styles = {
   }
 };
 function Menu() {
+
+  const [, dispatch] = useMaterialUIController();
+  //const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "client");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+
 
   // const {palette} = useTheme();
   const { id } = useParams();
@@ -99,6 +110,7 @@ function Menu() {
     })
   }, []);
 
+
   useEffect(async () => {
     console.log("set");
     console.log(itemList);
@@ -109,6 +121,18 @@ function Menu() {
   const inputObject = {
     "foodList":
       [{
+        "name": "Tropican Nasi Goreang 1",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      }, {
+        "name": "Tropican Nasi Goreang 2",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      },{
+        "name": "Tropican Nasi Goreang 1",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      }, {
+        "name": "Tropican Nasi Goreang 2",
+        "age": "It is a best delicious food in our menu. it vcan be av"
+      },{
         "name": "Tropican Nasi Goreang 1",
         "age": "It is a best delicious food in our menu. it vcan be av"
       }, {
@@ -146,7 +170,7 @@ function Menu() {
       <div>
         {/* map the object */}
         {
-          itemList ? itemList.menus.map((item, index) => {
+          itemList ? itemList.food1.map((item, index) => {
 
             return (
               <>
@@ -160,56 +184,32 @@ function Menu() {
                     </MDTypography>
 
                   </MDBox>
-                  {
+                  <Grid container spacing={6}>
+                    {
 
-                    inputObject.foodList.map((i, index) => {
-                      return (
-                        <div>
-                          <Grid container spacing={6}>
-                            <Grid item xs={12} md={6} xl={3}>
-                              <ItemCard
-                                image='/images/item-4.jpg'
-                                availability={i.name}
-                                title="Chicken Biriyani"
-                                description={i.age}
+                      inputObject.foodList.map((i, index) => {
+                        return (
 
-                              />
-                            </Grid>
-                            {/* <Grid item xs={12} md={6} xl={3}>
-                              <ItemCard
-                                image='/images/item-4.jpg'
-                                availability="Tropican Nasi Goreang"
-                                title="Chicken Biriyani"
-                                description="It is a best delicious food in our menu. it vcan be av"
 
-                              />
-                            </Grid>
-                            <Grid item xs={12} md={6} xl={3}>
-                              <ItemCard
-                                image='/images/item-4.jpg'
-                                availability="Tropican Nasi Goreang"
-                                title="Chicken Biriyani"
-                                description="It is a best delicious food in our menu. it vcan be av"
+                          <Grid item xs={12} md={6} xl={3}>
+                            <ItemCard
+                              image='/images/item-4.jpg'
+                              availability={i.name}
+                              title="Chicken Biriyani"
+                              description={i.age}
 
-                              />
-                            </Grid>
-                            <Grid item xs={12} md={6} xl={3}>
-                              <ItemCard
-                                image='/images/item-4.jpg'
-                                availability="Tropican Nasi Goreang"
-                                title="Chicken Biriyani"
-                                description="It is a best delicious food in our menu. it vcan be av"
-                              />
-                            </Grid> */}
+                            />
                           </Grid>
-                        </div>
-                      )
-                    })
 
-                  }
+
+                        )
+                      })
+
+                    }
+                  </Grid>
 
                 </MDBox>
-                {/*<img key={"2" + index} src={mother.url} width={"100px"}/>*/}
+
               </>)
           }) : <h1> Data 1 Loading</h1>
         }

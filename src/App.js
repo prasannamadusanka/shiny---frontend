@@ -48,13 +48,19 @@ import createCache from "@emotion/cache";
 // Shiny Hotels React routes
 import clientRoutes from "clientRoutes";
 import routes from "routes";
+import ManagerRoutes from "manager_routes"
+import chefroutes from "chefRouts";
+import eventplannerroutes from "eveneplannerRouts";
+import routesserviceprovider from "serviceproviderRoutes";
 
+import ownerroutes from "ownerroute"
 // Shiny Hotels React contexts
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
 import brandWhite from "./assets/images/logo-shiny.png";
 import brandDark from "assets/images/logo-shiny.png";
+import LandingRoutes from "./LandingRoutes";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -170,7 +176,7 @@ export default function App() {
   ) : (
     <ThemeProvider theme={darkMode ? themeDark : theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
+      {direction === "client" && (
         <>
           <Sidenav
             color={sidenavColor}
@@ -184,16 +190,79 @@ export default function App() {
            {configsButton}  
         </>
       )}
-          {layout === "client" && (
+       {direction === "chef" && (
         <>
           <Sidenav
             color={sidenavColor}
             brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
             brandName="Shiny Hotels Hikkaduwa"
-            routes={clientRoutes}
+            routes={chefroutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
+           <Configurator /> 
+           {configsButton}  
+        </>
+      )}
+       {direction === "manager" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brandName="Shiny Hotel Hikkaduwa"
+            routes={ManagerRoutes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
+       {direction === "eventPlanner" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brandName="Shiny Hotel Hikkaduwa"
+            routes={eventplannerroutes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
+       {direction === "ServiceProvider" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brandName="Shiny Hotel Hikkaduwa"
+            routes={routesserviceprovider}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
+      {direction === "owner" && (
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
+            brandName="Shiny Hotel Hikkaduwa"
+            routes={ownerroutes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+          <Configurator />
+          {configsButton}
+        </>
+      )}
+          {direction === "rtl" && (
+        <>
+
         {/*   <Configurator /> */}
          {/*  {configsButton} */}
         </>
