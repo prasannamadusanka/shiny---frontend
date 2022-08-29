@@ -9,10 +9,13 @@ import MDInput from "components/MDInput";
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
 import { Grid, Typography } from "@mui/material";
-
+const axios = require("axios");
 import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
 
+
+import API from '../../services/baseURL';
+import options from '../../services/functions';
 
 const EventForm = () => {
 
@@ -45,7 +48,22 @@ const EventForm = () => {
     
     let handleSubmit = (event) => {
         event.preventDefault();
-        alert(JSON.stringify(formValues));
+        console.log(JSON.stringify(formValues))
+      // alert(JSON.stringify(formValues[0].name));
+        const formValues2 = JSON.stringify(formValues)
+        console.log(formValues2)
+        
+      for(var i=0;i<JSON.stringify(formValues).length;i++){
+          var params = {event_id:JSON.stringify(formValues[i].event),startTime :JSON.stringify(formValues[i].startTime), endTime: JSON.stringify(formValues[i].endTime),description:JSON.stringify(formValues[i].name)}
+          console.log(params)
+          axios
+          .post("http://localhost:3000/client/addSchedule",params)
+          .then(res=>{
+            console.log("sucess")
+          })
+         }
+
+
     }
 
     return (
@@ -67,7 +85,8 @@ const EventForm = () => {
              <MDTypography variant="subtitle1">Activity</MDTypography>
               <MDInput type="text" name="name" label="Text" value={element.name || ""} onChange={e => handleChange(index, e)} />
               <label>Time</label>
-              
+              {element.event="2022.10.12"}
+              <MDInput style={{visibility:'hidden'}} name="event" value = {element.event}onChange={e => handleChange(index, e)}/>
               <MDInput type="time" name="startTime" label="Start Time" value={element.startTime || "10:30:00"} onChange={e => handleChange(index, e)} />
               <MDInput type="time" name="endTime" label="End Time" value={element.endTime || "10:30:00"} onChange={e => handleChange(index, e)} />
              

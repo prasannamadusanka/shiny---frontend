@@ -54,6 +54,7 @@ import Imashi from "layouts/imashi"
 import MyBill from "layouts/mybill";
 import Landing from "landing/landing"
 import MyEvents from "client/myevents";
+import AddEvent from "./client/addEvent";
 // @mui icons
 import Icon from "@mui/material/Icon";
 //import FastfoodIcon from '@mui/material/Fastfood';
@@ -153,6 +154,14 @@ const routes = [
     icon: <Icon fontSize="small">local_shipping</Icon>,
     route: "client/services",
     component: <Services />,
+  },
+  {
+    type: "collapse",
+    name: "Services",
+    key: "add_event",
+    icon: <Icon fontSize="small">local_shipping</Icon>,
+    route: "client/addevent",
+    component: <AddEvent />,
   },
   {
     type: "collapse",
