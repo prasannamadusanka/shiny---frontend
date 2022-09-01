@@ -68,6 +68,26 @@ function CreateRecepes() {
     { value: 'porkdish', label: 'pork dish' },
   ]
 
+  const ingredients = [
+    { value: '', label: '' },
+    { value: '', label: 'vegetables' },
+    { value: 'beans', label: 'beans' },
+    { value: 'carrot', label: 'carrot' },
+    { value: '', label: 'fruits' },
+    { value: 'apple', label: 'apple' },
+    { value: 'orange', label: 'orange' },
+    { value: '', label: 'oil' },
+    { value: 'coconut', label: 'coconut oil' },
+    { value: 'vegetable', label: 'vegetable oil' },
+  ]
+
+  const measurements = [
+    { value: '', label: '' },
+    { value: 'kg', label: 'kg' },
+    { value: 'L', label: 'L' },
+    { value: '0.00010kg', label: 'spoons' },
+  ]
+
 
   const [formValues, setFormValues] = useState([{ name: "", quantity  : ""}])
 
@@ -120,7 +140,11 @@ function CreateRecepes() {
                         Category&nbsp;&nbsp;
                       </MDTypography>
                       <MDBox sx={{ width: "89%" }}>
-                        <Select options={categoryies} style={{width: "auto"}}/>
+                        <Select 
+                          isSearchable={true}
+                          options={categoryies} 
+                          style={{width: "auto"}}
+                        />
                         {/* <MDInput type="text" label="Category" sx={{ width: "89%" }} ></MDInput> */}
                       </MDBox>
                     </MDBox>
@@ -140,11 +164,25 @@ function CreateRecepes() {
                   </MDBox>
                   {formValues.map((element, index) => (
                   <Grid item xs={12} display='flex'mt={2}>
-                    <MDBox sx={{ width: "50%" }}>
-                      <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput>
+                    <MDBox sx={{ width: "45%" }}>
+                    <Select 
+                        isSearchable={true} 
+                        defaultValue={ingredients[0]} 
+                        options={ingredients} 
+                        style={{width: "auto"}}
+                      />
+                      {/* <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput> */}
                     </MDBox>
-                    <MDBox sx={{ width: "40%" }}>
-                      <MDInput type="number" name="quantity" value={element.quantity || ""} label="Kg / L" sx={{ width: "90%" }}></MDInput>
+                    <MDBox sx={{ width: "25%" }} ml={3}>
+                      <MDInput type="number" name="quantity" value={element.quantity || ""} label="quantity" sx={{ width: "90%" }}></MDInput>
+                    </MDBox>
+                    <MDBox sx={{ width: "15%" }} mr={3}>
+                      <Select 
+                        isSearchable={true} 
+                        defaultValue={measurements[0]} 
+                        options={measurements} 
+                        style={{width: "auto"}}
+                      />
                     </MDBox>
                     <MDButton variant="gradient" color="secondary" >
                       <Icon sx={{ fontWeight: "bold" }} onClick={() => removeFormFields(index)}>remove</Icon>

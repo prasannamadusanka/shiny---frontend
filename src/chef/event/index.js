@@ -35,7 +35,7 @@ import Header from "chef/event/components/Header";
 import Projects from "eventPlanner/event/components/Projects";
 
 // Data
-import Item from "eventPlanner/event/components/items";
+import Item from "chef/event/components/items";
 //calender
 import Calander from "eventPlanner/event/components/Calender";
 

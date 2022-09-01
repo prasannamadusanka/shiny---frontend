@@ -36,7 +36,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 // Images
 //import burceMars from "assets/images/bruce-mars.jpg";
-import backgroundImage from "assets/images/chef/bg-menues.jpg";
+import backgroundImage from "assets/images/chef/bg-dashboard.jpg";
 
 function Header({ children }) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
@@ -94,33 +94,23 @@ function Header({ children }) {
       >
         <Grid container spacing={3} alignItems="center">
           <Grid item>
-            <MDTypography variant="h5" fontWeight="medium">
-               {/* Menus */}
-            </MDTypography>
+           
           </Grid>
-          {/* <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
+          <Grid item>
+            <MDBox height="100%" mt={0.5} lineHeight={1}>
+              <MDTypography variant="h5" fontWeight="medium">
+               Wedding
+              </MDTypography>
+              <MDTypography variant="button" color="text" fontWeight="regular">
+                8th July
+              </MDTypography>
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={6} sx={{ ml: "auto" }}>
             <AppBar position="static">
-              <Tabs orientation={tabsOrientation} value={tabValue} onChange={handleSetTabValue}>
-              <Tab
-                  
-                  icon={
-                    <Icon fontSize="small" sx={{ mt: -0.25 }}>
-                      
-                    </Icon>
-                  }
-                />
-                <Tab
-                
-                  icon={
-                    <Icon fontSize="small" sx={{ mt: -0.25 }}>
-                      
-                    </Icon>
-                  }
-                />
-                
-              </Tabs>
+              
             </AppBar>
-          </Grid> */}
+          </Grid>
         </Grid>
         {children}
       </Card>

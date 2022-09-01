@@ -49,6 +49,7 @@ export default function data() {
     columns: [
       { Header: "name", accessor: "name", width: "45%", align: "left" },
       { Header: "action", accessor: "action", align: "center" },
+      { Header: "", accessor: "remove", align: "center" },
     ],
 
     rows: [
@@ -61,6 +62,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <WelcomeDrink image={Vintage_champagne_cocktails} name="Vintage champagne cocktails" description="" />,
@@ -70,6 +76,11 @@ export default function data() {
             View Recepe
           </MDTypography>
           </Link>
+        ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
         ),
       },
       {
@@ -81,6 +92,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <WelcomeDrink image={punch_bowl} name="punch bowl" description="" />,
@@ -90,6 +106,11 @@ export default function data() {
             View Recepe
           </MDTypography>
           </Link>
+        ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
         ),
       },
       {
@@ -101,6 +122,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <WelcomeDrink image={Mojitos} name="Mojitos" description="" />,
@@ -110,6 +136,11 @@ export default function data() {
             View Recepe
           </MDTypography>
           </Link>
+        ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
         ),
       },
     ],

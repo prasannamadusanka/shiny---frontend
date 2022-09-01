@@ -15,35 +15,33 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
+import Divider from "@mui/material/Divider";
+
+
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
-import Icon from "@mui/material/Icon";
 import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
+import ProfilesList from "examples/Lists/ProfilesList";
 
-// Dashboard components
-import Projects from "chef/menu/components/Projects";
-import Proj from "chef/menu/components/Proj";
-import Header from "chef/menu/components/Header";
-//import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-//import Calender from "layouts/dashboard/components/calender";
+// Overview page components
+import Header from "chef/incomplete ceased event/components/Header";
 
+// Data
+import Item from "chef/incomplete ceased event/components/items";
 
 //
 import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
 
 
-function Dashboard() {
+function event() {
   const [, dispatch] = useMaterialUIController();
   useEffect(() => {
     setDirection(dispatch, "chef");
@@ -51,34 +49,51 @@ function Dashboard() {
     return () => setDirection(dispatch, "ltr");
   }, []);
   
-  
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
-        
-        <Header>
-        <MDBox>
+        <MDBox mt={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={5}>
-              <Projects />
-            </Grid>
-            <Grid item xs={12} md={6} lg={5}>
-              <Proj />
-            </Grid><Grid item xs={12} md={6} lg={5}>
-              <Projects />
-            </Grid><Grid item xs={12} md={6} lg={5}>
-              <Projects />
-            </Grid>
-            
+            {/* <Grid item xs={12} md={6} lg={6}>
+              <Calander/>
+            </Grid> */}
           </Grid>
         </MDBox>
-        </Header>
-      </MDBox>
+        <Header>
+        <MDBox mt={5} mb={3}>
+          <Grid container spacing={1}>
+          <Grid display={"flex"} xs={12}>
+            <MDBox sx={{ width: "50%" }} ml={2} mr={5} >
+              <Item />
+            </MDBox>
+            <MDBox sx={{ width: "30%" }} mr={30} ml={2}>
+              <ProfileInfoCard
+                title="Event Description"
+                description=""
+                info={{
+                  Date: "2022-07-08",
+                  Client: "Kamal Perera",
+                  Pax:500,
+                  Menue:"Emarald"
+                }}
+                social={[
+                 
+                ]}
+                action={{ route: "", tooltip: "" }}
+                shadow={false}
+              />
+            </MDBox>
+            </Grid>
+            <Grid display={"flex"} xs={12}>
+              
+            </Grid>
+          </Grid>
+        </MDBox>
+      </Header>
+      
       <Footer />
     </DashboardLayout>
   );
 }
 
-export default Dashboard;
+export default event;
