@@ -57,8 +57,12 @@ const getItemList = async event => {
       password: password
     }
   }, options);
-  navigate(response.data.data)
-  return response.data
+  console.log("dataaaaaaa")
+  // console.log(response.data)
+  // alert(response.data.data2)
+  navigate(response.data.data1)
+  localStorage.setItem("id", response.data.data2)
+  return response.data.data1
 
 };
 
@@ -93,13 +97,13 @@ function navigate(resoponse) {
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
   const [itemList, setItemList] = useState(null);
-  const [email,setemail]= useState(null)
-  const [password,setpassword]= useState(null)
+  const [email, setemail] = useState(null)
+  const [password, setpassword] = useState(null)
 
   function handleChange(event) {
     setemail(event.target.value);
   }
-  
+
   function handleChanget(event) {
     setpassword(event.target.value);
   }

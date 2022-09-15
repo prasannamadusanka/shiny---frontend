@@ -14,12 +14,24 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
+import * as React from 'react';
 import Grid from "@mui/material/Grid";
 import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
+import { styled } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from 'react-select';
+import NativeSelect from '@mui/material/NativeSelect';
+import InputBase from '@mui/material/InputBase';
 
+//import StripeCheckout from "react-stripe-checkout";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
+import MDTypography from "components/MDTypography";
+import StripeCheckout from "react-stripe-checkout";
+import MDInput from 'components/MDInput';
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -38,14 +50,63 @@ import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import { setLayout } from "context";
 
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
+  },
+  '& .MuiInputBase-input': {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}));
+
 function Dashboard() {
   const [, dispatch] = useMaterialUIController();
   const { sales, tasks } = reportsLineChartData;
+  const options=[
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
   useEffect(() => {
     setLayout(dispatch, "client");
 
     return () => setDirection(dispatch, "dashboard");
   }, []);
+
+ 
+  const [age, setAge] = React.useState('');
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  async function handleToken(token, addresses) {
+    console.log(token)
+   }
+  const x=40000;
 
   return (
     <DashboardLayout>
@@ -113,51 +174,7 @@ function Dashboard() {
             </MDBox>
           </Grid>
         </Grid>
-        <MDBox mt={4.5}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-              <ReportsLineChart
-                  color="primary"
-                  title="Last Year"
-                  description={
-                    <>
-                      <strong>2</strong> events done in last year.
-                    </>
-                  }
-                  date="5 events succesfully completed"
-                  chart={sales}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="success"
-                  title="This Year"
-                  description={
-                    <>
-                      <strong>3</strong> Upcoming events in this year.
-                    </>
-                  }
-                  date="5 events succesfully completed"
-                  chart={sales}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={3}>
-                <ReportsLineChart
-                  color="dark"
-                  title="Next year"
-                  description="5 upcoming events in next year"
-                  date="3 events still not confirmed"
-                  chart={tasks}
-                />
-              </MDBox>
-            </Grid>
-          </Grid>
-        </MDBox>
+   
         <MDBox>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={8}>
@@ -169,6 +186,35 @@ function Dashboard() {
           </Grid>
         </MDBox>
       </MDBox>
+      <MDBox mt={4.5}>
+        <MDTypography>Add New Event</MDTypography>
+        <div>
+      <FormControl sx={{ m: 1 }} variant="standard">
+      <MDInput  htmlFor="demo-customized-textbox" type="date" label="Date" value="2018-11-23" />
+      <MDBox mt={3} mb={3}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6} lg={8}>
+            <Select options={options}/>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4}>
+            <Select options={options}/>
+            </Grid>
+          </Grid>
+        </MDBox>
+     
+        <MDInput  htmlFor="demo-customized-textbox" type="text" label="pax" value="100" />
+       
+        <StripeCheckout
+             stripeKey="pk_test_51LgXJdSDmFBknNFOqB2kq2HzScVWiF4IKKH8fNHQDPLbhwQbhgvfPCibmDR8tH0YlkZuZAkzb0wnboLGVIdPAOg600hRJpjBTp"
+            token={handleToken}
+            amount= {x}          
+             name="Payment details"
+          
+             />
+      
+      </FormControl>
+    </div>
+        </MDBox>
       <Footer />
     </DashboardLayout>
   );
