@@ -23,9 +23,10 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDProgress from "components/MDProgress";
 import MDButton from "components/MDButton";
+// import MDButton from "components/MDButton";
 
 // Billing page components
-import Transaction from "chef/event/components/Transaction";
+import Transaction from "chef/incomplete ceased event/components/Transaction";
 
 function Item() {
   return (
@@ -40,14 +41,11 @@ function Item() {
             </Icon>
           </MDBox>
           <MDTypography variant="button" color="text" fontWeight="regular">
-           Begin
+           Ceased
           </MDTypography>
         </MDBox>
-         </MDBox>
-      <MDBox ml={3} mt={3} sx={{ width: "90%" }}>
-          <MDProgress variant="gradient" color="success" value="0" />
-        </MDBox>
-      <MDBox pt={3} pb={2} px={2}>
+      </MDBox>
+       <MDBox pt={3} pb={2} px={2}>
         <MDBox
           component="ul"
           display="flex"
@@ -58,26 +56,15 @@ function Item() {
         >
           <Transaction
             name="Jelly"
-            description=""
-            value="500 kg"
+            orderedQty="100 kg"
           />
           <Transaction
-            name="Banana"
-            description=""
-            value="546 kg"
-          />
-          <Transaction
-            name="Ice Cream"
-            description=""
-            value="875 kg"
-          />
-          <Transaction
-            name="Tomato"
-            description=""
-            value="875 kg"
+            name="Jelly"
+            orderedQty="100 kg"
           />
         </MDBox>
       </MDBox>
+      {/* <MDBox sx={{ width: '35%',  justifyContent: 'flex-end'}}> */}
       <MDButton variant="contained" color="info" size="medium" fullwidth>
         Send
       </MDButton>

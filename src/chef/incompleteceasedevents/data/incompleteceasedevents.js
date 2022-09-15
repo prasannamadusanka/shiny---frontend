@@ -21,40 +21,24 @@ import Icon from "@mui/material/Icon";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
-import MDProgress from "components/MDProgress";
 
 import { Link } from "react-router-dom";
 
 export default function data() {
-  
-
-  const Progress = ({ color, value }) => (
-    <MDBox display="flex" alignItems="center">
-      <MDTypography variant="caption" color="text" fontWeight="medium">
-        {value}%
-      </MDTypography>
-      <MDBox ml={0.5} width="18rem">
-        <MDProgress variant="gradient" color={color} value={value} />
-      </MDBox>
-    </MDBox>
-  );
 
   return {
     columns: [
-      { Header: "Remaining Days", accessor: "Remaining_Days", align: "left" },
-      { Header: "completion", accessor: "completion", align: "left" },
+      { Header: "overdue Days", accessor: "overdue_Days", align: "left" },
       { Header: "action", accessor: "action", align: "center" },
     ],
 
     rows: [
       {
-        Remaining_Days: (
+        overdue_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/01
+            0000/00/10
           </MDTypography>
         ),
-        completion: <Progress color="success" value={95} />,
         action: (
           <Link to="/chef/eventchef">
           <MDTypography component="a" href="#" color="info">
@@ -64,12 +48,11 @@ export default function data() {
         ),
       },
       {
-        Remaining_Days: (
+        overdue_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/02
+            0000/00/09
           </MDTypography>
         ),
-        completion: <Progress color="success" value={90} />,
         action: (
           <Link to="/chef/eventchef">
           <MDTypography component="a" href="#" color="info">
@@ -79,12 +62,11 @@ export default function data() {
         ),
       },
       {
-        Remaining_Days: (
+        overdue_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/04
+            0000/00/08
           </MDTypography>
         ),
-        completion: <Progress color="success" value={60} />,
         action: (
           <Link to="/chef/eventchef">
           <MDTypography component="a" href="#" color="info">
@@ -94,98 +76,87 @@ export default function data() {
         ),
       },
       {
-        Remaining_Days: (
+        overdue_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/05
+            0000/00/08
           </MDTypography>
         ),
-        completion: <Progress color="success" value={65} />,
         action: (
+          <Link to="/chef/eventchef">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
+          </Link>
         ),
       },
       {
-        Remaining_Days: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/05
-          </MDTypography>
-        ),
-        completion: <Progress color="success" value={50} />,
-        action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
-          </MDTypography>
-        ),
-      },
-      {
-        Remaining_Days: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/06
-          </MDTypography>
-        ),
-        completion: <Progress color="success" value={50} />,
-        action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
-          </MDTypography>
-        ),
-      },
-      
-      {
-        Remaining_Days: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/06
-          </MDTypography>
-        ),
-        completion: <Progress color="success" value={52} />,
-        action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
-          </MDTypography>
-        ),
-      },
-      
-      {
-        Remaining_Days: (
+        overdue_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             0000/00/07
           </MDTypography>
         ),
-        completion: <Progress color="success" value={40} />,
         action: (
+          <Link to="/chef/eventchef">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
+          </Link>
         ),
       },
-      
       {
-        Remaining_Days: (
+        overdue_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/08
+            0000/00/07
           </MDTypography>
         ),
-        completion: <Progress color="success" value={35} />,
         action: (
+          <Link to="/chef/eventchef">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
+          </Link>
         ),
       },
-      
       {
-        Remaining_Days: (
+        overdue_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/08
+            0000/00/06
           </MDTypography>
         ),
-        completion: <Progress color="success" value={35} />,
         action: (
+          <Link to="/chef/eventchef">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
+          </Link>
+        ),
+      },
+      {
+        overdue_Days: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            0000/00/05
+          </MDTypography>
+        ),
+        action: (
+          <Link to="/chef/eventchef">
+          <MDTypography component="a" href="#" color="info">
+            <Icon>forward</Icon>
+          </MDTypography>
+          </Link>
+        ),
+      },
+      {
+        overdue_Days: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            0000/00/04
+          </MDTypography>
+        ),
+        action: (
+          <Link to="/chef/incomplete_ceased_event">
+          <MDTypography component="a" href="#" color="info">
+            <Icon>forward</Icon>
+          </MDTypography>
+          </Link>
         ),
       },
     ],

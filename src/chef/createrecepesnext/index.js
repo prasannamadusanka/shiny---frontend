@@ -129,7 +129,7 @@ function CreateRecepesNext() {
                             Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           </MDTypography>
                           <MDBox sx={{ width: "86%" }}>
-                            <Select options={categoryies} style={{width: "auto"}} name="type" value={element.type || ""}/>
+                            <Select isSearchable={true} options={categoryies} style={{width: "auto"}} name="type" value={element.type || ""}/>
                           </MDBox>
                         </MDBox>
                         <MDBox mt={2} display="flex">

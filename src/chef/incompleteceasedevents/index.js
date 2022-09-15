@@ -28,7 +28,7 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import pendingPredictionTableData from "chef/pendingpredictions/data/pendingPredictionTableData";
+import Incomplete_ceased_events from "chef/incompleteceasedevents/data/incompleteceasedevents";
 
 //
 import { useMaterialUIController, setDirection } from "context";
@@ -42,7 +42,7 @@ function Tables() {
     return () => setDirection(dispatch, "ltr");
   }, []);
   
-  const { columns: pColumns, rows: pRows } = pendingPredictionTableData();
+  const { columns: pColumns, rows: pRows } = Incomplete_ceased_events();
 
   return (
     <DashboardLayout>
@@ -71,8 +71,8 @@ function Tables() {
                 <DataTable
                   table={{ columns: pColumns, rows: pRows }}
                   isSorted={false}
-                  entriesPerPage={true}
-                  showTotalEntries={true}
+                  entriesPerPage={false}
+                  showTotalEntries={false}
                   noEndBorder
                 />
               </MDBox>
