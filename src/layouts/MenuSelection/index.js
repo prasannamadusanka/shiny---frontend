@@ -64,51 +64,67 @@ import API from '../../services/baseURL';
 //     );
 //   }
 // };
-export const getItemList = async event => {
+export const getItemList =async event => {
   const type1 = "WelcomeDrink"
   const response = await API.get(`client/welcomeitems`);
+  console.log("hi")
   console.log(response.data)
   return response.data;
 };
-const steps = ['Welcome drink', 'Soup', 'Salad', 'Rice Dishes', 'Noodles and Pasta', 'Fish dishes', 'Chicken Dishes', 'Desserts'];
+const steps = ['Welcome drink'];
 //const { formId, formField } = checkoutFormModel;
 
 function _renderStepContent(step) {
   let productss= []
 
+//  getItemList()
   const [itemList, setItemList] = useState([]);
+ // console.log(itemList)
+    useEffect(() => {
+    getItemList().then(data => {
+      console.log(data)
+      setItemList(data)
+      console.log(itemList)
+      // console.log(JSON.parse(data))
+     // const [ItemList, setItemList] = useState(data.menus);
+    }).catch(err => {
+      console.log(err.error)
+    })
+  }, []);
+  console.log("hi")
+  console.log(itemList)
   const {products} = data
   const { soups } = SoupData;
   const item = []
   //console.log(soups)
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    getItemList().then(data => {
-      console.log(data.menus)
-      productss.push(data.menus)
-      // console.log(JSON.parse(data))
-     // const [ItemList, setItemList] = useState(data.menus);
+//   useEffect(() => {
+//     getItemList().then(data => {
+//       console.log(data.menus)
+//       productss.push(data.menus)
+//       // console.log(JSON.parse(data))
+//      // const [ItemList, setItemList] = useState(data.menus);
    
-      console.log(productss[0][0].id)
-    }).catch(err => {
-      console.log(err.error)
-    })
-  }, []);
+//       console.log(productss[0][0].id)
+//     }).catch(err => {
+//       console.log(err.error)
+//     })
+//   }, []);
 
 
-  useEffect(async () => {
-    //console.log("set");
-   console.log(itemList);
-    item.push(itemList)
-    console.log('hi')
-  console.log(item[0])
-  //const  products  = item;
-  //console.log(products)
+//   useEffect(async () => {
+//     //console.log("set");
+//    console.log(itemList);
+//     item.push(itemList)
+//     console.log('hi')
+//   console.log(item[0])
+//   //const  products  = item;
+//   //console.log(products)
 
-  }, [itemList]);
- // console.log(item)
-  //const  products  = item;
+//   }, [itemList]);
+//  // console.log(item)
+//   //const  products  = item;
 
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
@@ -156,141 +172,141 @@ function _renderStepContent(step) {
           onRemove={onRemove}
         ></BasketOne>
       </React.Fragment>);
-    case 1:
-      return (<div>
-        <div style={{ float: 'right' }}>
-          <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-        </div>
-        <MDBox mt={5} p={2}>
+    // case 1:
+    //   return (<div>
+    //     <div style={{ float: 'right' }}>
+    //       <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+    //     </div>
+    //     <MDBox mt={5} p={2}>
 
-          <Grid container spacing={6}>
-            <Main products={products[1]} onAdd={onAdd}></Main>
-          </Grid>
-        </MDBox>
-
-
-
-        <BasketOne
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-        ></BasketOne>
-      </div>);
-    case 2:
-      return (<div>
-        <div style={{ float: 'right' }}>
-          <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-        </div>
-        <MDBox mt={5} p={2}>
-
-          <Grid container spacing={6}>
-            <Main products={products[2]} onAdd={onAdd}></Main>
-          </Grid>
-        </MDBox>
+    //       <Grid container spacing={6}>
+    //         <Main products={itemList} onAdd={onAdd}></Main>
+    //       </Grid>
+    //     </MDBox>
 
 
 
-        <BasketOne
-          cartItems={cartItems}
-          onAdd={onAdd}
-          onRemove={onRemove}
-        ></BasketOne>
-      </div>);
-    case 3: return (<div>
-      <div style={{ float: 'right' }}>
-        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-      </div>
-      <MDBox mt={5} p={2}>
+    //     <BasketOne
+    //       cartItems={cartItems}
+    //       onAdd={onAdd}
+    //       onRemove={onRemove}
+    //     ></BasketOne>
+    //   </div>);
+    // case 2:
+    //   return (<div>
+    //     <div style={{ float: 'right' }}>
+    //       <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+    //     </div>
+    //     <MDBox mt={5} p={2}>
 
-        <Grid container spacing={6}>
-          <Main products={products[0]} onAdd={onAdd}></Main>
-        </Grid>
-      </MDBox>
-
-
-
-      <BasketOne
-        cartItems={cartItems}
-        onAdd={onAdd}
-        onRemove={onRemove}
-      ></BasketOne>
-    </div>);
-    case 4: return (<div>
-      <div style={{ float: 'right' }}>
-        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-      </div>
-      <MDBox mt={5} p={2}>
-
-        <Grid container spacing={6}>
-          <Main products={products[1]} onAdd={onAdd}></Main>
-        </Grid>
-      </MDBox>
+    //       <Grid container spacing={6}>
+    //         <Main products={itemList} onAdd={onAdd}></Main>
+    //       </Grid>
+    //     </MDBox>
 
 
 
-      <BasketOne
-        cartItems={cartItems}
-        onAdd={onAdd}
-        onRemove={onRemove}
-      ></BasketOne>
-    </div>);
-    case 5: return (<div>
-      <div style={{ float: 'right' }}>
-        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-      </div>
-      <MDBox mt={5} p={2}>
+    //     <BasketOne
+    //       cartItems={cartItems}
+    //       onAdd={onAdd}
+    //       onRemove={onRemove}
+    //     ></BasketOne>
+    //   </div>);
+    // case 3: return (<div>
+    //   <div style={{ float: 'right' }}>
+    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+    //   </div>
+    //   <MDBox mt={5} p={2}>
 
-        <Grid container spacing={6}>
-          <Main products={products[0]} onAdd={onAdd}></Main>
-        </Grid>
-      </MDBox>
-
-
-
-      <BasketOne
-        cartItems={cartItems}
-        onAdd={onAdd}
-        onRemove={onRemove}
-      ></BasketOne>
-    </div>);
-    case 6: return (<div>
-      <div style={{ float: 'right' }}>
-        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-      </div>
-      <MDBox mt={5} p={2}>
-
-        <Grid container spacing={6}>
-          <Main products={products[2]} onAdd={onAdd}></Main>
-        </Grid>
-      </MDBox>
+    //     <Grid container spacing={6}>
+    //       <Main products={products[0]} onAdd={onAdd}></Main>
+    //     </Grid>
+    //   </MDBox>
 
 
 
-      <BasketOne
-        cartItems={cartItems}
-        onAdd={onAdd}
-        onRemove={onRemove}
-      ></BasketOne>
-    </div>);
-    case 7: return (<div>
-      <div style={{ float: 'right' }}>
-        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-      </div>
-      <MDBox mt={5} p={2}>
+    //   <BasketOne
+    //     cartItems={cartItems}
+    //     onAdd={onAdd}
+    //     onRemove={onRemove}
+    //   ></BasketOne>
+    // </div>);
+    // case 4: return (<div>
+    //   <div style={{ float: 'right' }}>
+    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+    //   </div>
+    //   <MDBox mt={5} p={2}>
 
-        <Grid container spacing={6}>
-          <Main products={products[0]} onAdd={onAdd}></Main>
-        </Grid>
-      </MDBox>
+    //     <Grid container spacing={6}>
+    //       <Main products={products[0]} onAdd={onAdd}></Main>
+    //     </Grid>
+    //   </MDBox>
 
 
 
-      <BasketOne
-        cartItems={cartItems}
-        onAdd={onAdd}
-        onRemove={onRemove}
-      ></BasketOne>
-    </div>);
+    //   <BasketOne
+    //     cartItems={cartItems}
+    //     onAdd={onAdd}
+    //     onRemove={onRemove}
+    //   ></BasketOne>
+    // </div>);
+    // case 5: return (<div>
+    //   <div style={{ float: 'right' }}>
+    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+    //   </div>
+    //   <MDBox mt={5} p={2}>
+
+    //     <Grid container spacing={6}>
+    //       <Main products={products[0]} onAdd={onAdd}></Main>
+    //     </Grid>
+    //   </MDBox>
+
+
+
+    //   <BasketOne
+    //     cartItems={cartItems}
+    //     onAdd={onAdd}
+    //     onRemove={onRemove}
+    //   ></BasketOne>
+    // </div>);
+    // case 6: return (<div>
+    //   <div style={{ float: 'right' }}>
+    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+    //   </div>
+    //   <MDBox mt={5} p={2}>
+
+    //     <Grid container spacing={6}>
+    //       <Main products={products[0]} onAdd={onAdd}></Main>
+    //     </Grid>
+    //   </MDBox>
+
+
+
+    //   <BasketOne
+    //     cartItems={cartItems}
+    //     onAdd={onAdd}
+    //     onRemove={onRemove}
+    //   ></BasketOne>
+    // </div>);
+    // case 7: return (<div>
+    //   <div style={{ float: 'right' }}>
+    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+    //   </div>
+    //   <MDBox mt={5} p={2}>
+
+    //     <Grid container spacing={6}>
+    //       <Main products={products[0]} onAdd={onAdd}></Main>
+    //     </Grid>
+    //   </MDBox>
+
+
+
+    //   <BasketOne
+    //     cartItems={cartItems}
+    //     onAdd={onAdd}
+    //     onRemove={onRemove}
+    //   ></BasketOne>
+    // </div>);
     default:
       return <div>Not Found</div>;
   }

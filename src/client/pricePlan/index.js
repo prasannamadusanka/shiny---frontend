@@ -47,9 +47,9 @@ import PlatformSettings from "layouts/profile/components/PlatformSettings";
 
 // Data
 import React from 'react';
+import { useState, useEffect} from "react";
 import {PricingTable, PricingSlot, PricingDetail} from 'react-pricing-table';
-import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+
 // Images
 import homeDecor1 from "assets/images/home-decor-1.jpg";
 import homeDecor2 from "assets/images/home-decor-2.jpg";
@@ -61,10 +61,7 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import Swal from 'sweetalert2'
-import MDInput from "components/MDInput";
-
-import Select from 'react-select'
+import API from '../../services/baseURL';
 
 
 const styles = {
@@ -72,61 +69,82 @@ const styles = {
       backgroundImage: `url(${homeDecor1})`
   }
 };
-
-const opensweetalert=()=>
-{
-  Swal.fire({
-    title: 'Are you sure to hoose menu?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, choose it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Completed',
-        'Your choosen has been selected',
-        'success'
-      )
-      window.location='/client/menu/menuselction'
-    }
-  })
-}
+export const getMenuList =async event => {
+  
+  const response = await API.get(`client/view_menus`);
+  console.log("hi")
+  console.log(response.data.menus)
+  return response.data.menus;
+};
 function PricePlan() {
-  const [, dispatch] = useMaterialUIController();
-  //const { sales, tasks } = reportsLineChartData;
-  useEffect(() => {
-    setDirection(dispatch, "client");
-
-    return () => setDirection(dispatch, "ltr");
-  }, []);
-
- 
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
+ const [menu, setmenu] = useState([]);
+ useEffect(() => {
+  getMenuList().then(data => {
+    console.log(data)
+   setmenu(data)
+    console.log(menu)
+    // console.log(JSON.parse(data))
+   // const [ItemList, setItemList] = useState(data.menus);
+  }).catch(err => {
+  //  console.log(err.error)
+  })
+}, []);
+//console.log(menu.menu_id)
+menu.map(
+  (item,index)=>{
+    console.log(item.menu_id)
+  }
+)
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} ml={2}md={6} lg={3}>
-        
-       <MDInput style={{backgroundColor:'white'}}type="number" label="Pax" value="100"   />
-       </Grid>
-       <Grid item xs={12} md={6} lg={3}>
-       <Select options={options} />
-       </Grid>
-       </Grid>
+      <Stack spacing={2}>
+     <Typography variant="h2" align="center">You can select your elegant menu items</Typography>
+     <Typography variant="h2" align="center">From Our desired collection</Typography>
+     <Typography variant="subtitle1" align="center">tthere are massive collection of menus</Typography>
+   <Box textAlign='center'>
+      <Button endIcon={<SendIcon />} style={{color:'white',marginLeft:'auto',marginRight:'auto'}}variant="contained" >
+      Getting Started
+    </Button>
+  </Box>
+  <MDBox mt={3}>
+   
+    <MDButton variant="contained" color="warning">
+            Food Items
+            &nbsp;
+  <Icon>store</Icon>
+          </MDButton>
+         
+       <MDButton variant="contained" color="warning" style={{float:'right'}}>
+   Price Plan&nbsp;
+  <Icon>add_shopping_cart</Icon></MDButton>
        </MDBox>
- 
+  </Stack>
+  <div>
+  {
+  menu.map(
+  (item,index)=>{
+    console.log("madhuni")
+    console.log(item.menu_id)
+    
+//     <PricingSlot   buttonText='Select as menu' title={item.name} priceText='Rs.3200/per person'>
+//     <PricingDetail> <b>Chose </b> Soup</PricingDetail>
+//     <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
+//     <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
+//     <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
+//     <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
+//     <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
+//     <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
+//     <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
+//     <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
+// </PricingSlot>
+  }
+)
+}
+  </div>
   <PricingTable  highlightColor='#1976D2'>
-    <PricingSlot   onClick={opensweetalert} buttonText='SET AS MENU' title='EMARALD' priceText='Rs.3200/per person'>
-        <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
+    {/* <PricingSlot   buttonText='Select as menu' title='EMARALD' priceText='Rs.3200/per person'>
+        <PricingDetail> <b>Chose </b> Soup</PricingDetail>
         <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
         <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
         <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
@@ -135,83 +153,29 @@ function PricePlan() {
         <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
         <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
         <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
-    <PricingSlot highlighted buttonText='SET AS MENU' title='RUBY(best seller)' priceText='Rs.3250/per person'>
-    <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
-        <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
-        <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
-        <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
-        <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
-    <PricingSlot   buttonText='SET AS MENU' title='SAPPHIRE' priceText='Rs.3550/per person'>
-    <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
-    <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
-        <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
-        <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
-        <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
-    <PricingSlot   buttonText='SET AS MENU' title='TOPAZ' priceText='Rs.3850/per person'>
-    <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
-    <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
-        <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
-        <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
-        <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
-    <PricingSlot   buttonText='SET AS MENU' title='JASPER' priceText='Rs.3250/per person'>
-    <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
-        <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
-        <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
-        <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
-        <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
-    <PricingSlot  buttonText='SET AS MENU' title='JASPER' priceText='Rs.3250/per person'>
-    <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
-        <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
-        <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
-        <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
-        <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
-    <PricingSlot  buttonText='SET AS MENU' title='JASPER' priceText='Rs.3250/per person'>
-    <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
-        <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
-        <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
-        <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
-        <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
-    <PricingSlot  buttonText='SET AS MENU' title='JASPER' priceText='Rs.3250/per person'>
-    <PricingDetail> <b>Chose one</b> Soup</PricingDetail>
-        <PricingDetail> <b>Chose two</b> Salad</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
-        <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
-        <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
-        <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
-        <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
-        <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
-    </PricingSlot>
+    </PricingSlot> */}
+    {
+      menu.map((item,index)=>{
+   //  let rate = item.rate;
+      return(
+       
+        // console.log(item.menu_id)
+        <PricingSlot highlighted buttonText='' title={item.name} priceText={item.rate}>
+        <PricingDetail> <b>Chose {item.welcome_drink_count}</b> Soup</PricingDetail>
+            <PricingDetail> <b>Chose {item.salad}</b> Salad</PricingDetail>
+            <PricingDetail> <b>Chose three</b>Rice Dishes</PricingDetail>
+            <PricingDetail> <b>Chose two</b>Noodles/Pasta dishes	</PricingDetail>
+            <PricingDetail> <b>Chose two</b>Vegetable dishes	</PricingDetail>
+            <PricingDetail> <b>Chose one</b>Chicken dishes	</PricingDetail>
+            <PricingDetail> <b>Chose three</b>Fish dishes	</PricingDetail>
+            <PricingDetail> <b>Chose four</b>Condiments	</PricingDetail>
+            <PricingDetail> <b>choose five</b>Desserts</PricingDetail>
+        </PricingSlot>
+      );
+  
+  }  )
+}
+  
 </PricingTable>
       <Footer />
     </DashboardLayout>

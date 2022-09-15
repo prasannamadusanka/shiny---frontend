@@ -21,7 +21,7 @@ export default function ProductOne(props) {
       </MDBox>
       <MDBox display="flex" flexDirection="column" alignItems="flex-start" justifyContent="center">
         <MDTypography variant="button" fontWeight="medium">
-          {product.price}
+          {/* {product.price} */}
         </MDTypography>
         <MDTypography variant="caption" color="text">
           {product.name}

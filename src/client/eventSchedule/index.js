@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import CssBaseline from '@mui/material/CssBaseline';
 import Card from '@mui/material/Card';
+import axios from 'axios';
 
 //import routes from "routes";
 import './index.css'
@@ -24,6 +25,7 @@ import PieChart from "examples/Charts/PieChart";
 import authorsTableData from "layouts/tables/data/authorsTableData";
 import eventTableData from "./eventTableData"
 import Select from "react-select";
+import API from '../../services/baseURL';
 
 import { NewsHeaderCard, ProductCard, UserCard } from 'react-ui-cards';
 import { useMaterialUIController, setDirection } from "context";
@@ -41,6 +43,7 @@ const EventSchedule = () => {
 
   const { columns, rows } = authorsTableData();
   const { columns: pColumns, rows: pRows } = eventTableData();
+  console.log(pRows)
   const options = [
     {value:'jdjd' , label:'select event'},
     { value: 'chocolate', label: 'Chocolate' },
@@ -70,11 +73,35 @@ const EventSchedule = () => {
     event.preventDefault();
     alert(JSON.stringify(formValues));
   }
+  
+  const [data, setdata] = useState()
+  //
+  useEffect(() => {
+    API.get(`client/view_menus`)
+      .then(res => {
+        setdata(res.data.menus.map((item) => {
+            return {
+              "event": <p>{item.name}</p>,
+              "start": item.name,
+              "end": item.name,
+              "status": item.name,
+              "completion": <p>{item.name}</p>,
+              "action": <p>{item.name}</p>,
+            }
+        
+        }
+        ))
+      console.log("Your new array of modified objects here", data)
+    })
+    .catch(err => { console.log('Google api calendar error', err) })
+  }, [])
+  console.log(data);
+  //
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-
+{console.log(data)}
       <MDBox py={3} >
         <Grid container spacing={3} >
           <Grid item xs={4} >
@@ -139,7 +166,7 @@ const EventSchedule = () => {
               </MDBox>
               <MDBox pt={3}>
                 <DataTable
-                  table={{ columns: pColumns, rows: pRows }}
+                  table={{ columns: pColumns, rows: data }}
                   isSorted={false}
                   entriesPerPage={false}
                   showTotalEntries={true}

@@ -47,6 +47,7 @@ import PlatformSettings from "layouts/profile/components/PlatformSettings";
 
 // Data
 import React from 'react';
+import { useState } from "react";
 import {PricingTable, PricingSlot, PricingDetail} from 'react-pricing-table';
 
 // Images
@@ -60,7 +61,7 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-
+import API from '../../services/baseURL';
 
 
 const styles = {
@@ -68,9 +69,27 @@ const styles = {
       backgroundImage: `url(${homeDecor1})`
   }
 };
+export const getMenuList =async event => {
+  
+  const response = await API.get(`client/view_menus`);
+  console.log("hi")
+  console.log(response.data)
+  return response.data;
+};
 function PricePlan() {
- 
-
+ const [menu, setmenu] = useState([]);
+ useEffect(() => {
+  getMenuList().then(data => {
+    console.log(data)
+    setmenu(data)
+    console.log(menu)
+    // console.log(JSON.parse(data))
+   // const [ItemList, setItemList] = useState(data.menus);
+  }).catch(err => {
+    console.log(err.error)
+  })
+}, []);
+console.log("jdfhr")
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -96,6 +115,9 @@ function PricePlan() {
   <Icon>add_shopping_cart</Icon></MDButton>
        </MDBox>
   </Stack>
+  {
+    menu.map
+  }
   <PricingTable  highlightColor='#1976D2'>
     <PricingSlot   buttonText='' title='EMARALD' priceText='Rs.3200/per person'>
         <PricingDetail> <b>Chose one</b> Soup</PricingDetail>

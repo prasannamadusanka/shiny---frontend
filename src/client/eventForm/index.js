@@ -46,6 +46,7 @@ const EventForm = () => {
         setFormValues(newFormValues)
     }
     
+    
     let handleSubmit = (event) => {
         event.preventDefault();
         console.log(JSON.stringify(formValues))
