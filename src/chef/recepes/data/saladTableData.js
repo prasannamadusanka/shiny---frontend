@@ -49,6 +49,7 @@ export default function data() {
     columns: [
       { Header: "name", accessor: "name", width: "45%", align: "left" },
       { Header: "action", accessor: "action", align: "center" },
+      { Header: "", accessor: "remove", align: "center" },
     ],
 
     rows: [
@@ -61,6 +62,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <Salad image={Cucumber_Salad} name="Cucumber Salad" description="" />,
@@ -70,6 +76,11 @@ export default function data() {
             View Recepe
           </MDTypography>
           </Link>
+        ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
         ),
       },
       {
@@ -81,6 +92,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <Salad image={Fruit_Salad} name="Fruit Salad" description="" />,
@@ -91,6 +107,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <Salad image={Berry_Salad} name="Berry Salad" description="" />,
@@ -100,6 +121,11 @@ export default function data() {
             View Recepe
           </MDTypography>
           </Link>
+        ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
         ),
       },
     ],

@@ -38,12 +38,12 @@ import { Link } from "react-router-dom";
 
 import Select from 'react-select';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
 
+import axios from 'axios';
 
 function CreateRecepesNext() {
   const [, dispatch] = useMaterialUIController();
@@ -68,9 +68,22 @@ function CreateRecepesNext() {
   let handleSubmit = (event) => {
     event.preventDefault();
     alert(JSON.stringify(formValues));
+    axios
+          .post("http://localhost:3000/chef/insert_create_recepe_next",formValues)
+          .then(res=>{
+            console.log("sucess")
+          })
   }
+
+  let handleChange = (i, e) => {
+    let newFormValues = [...formValues];
+    newFormValues[i][e.target.name] = e.target.value;
+    setFormValues(newFormValues);
+  }
+
   let addFormFields = () => {
-    setFormValues([...formValues, { name: "", type  : "", image:"", description:""}])
+    // setFormValues([...formValues, { name: "", type  : "", image:"", description:""}])
+    setFormValues([...formValues, { name: "",  image:"", description:""}])
   }
   let removeFormFields = (i) => {
     let newFormValues = [...formValues];
@@ -119,39 +132,39 @@ function CreateRecepesNext() {
                           <MDTypography variant="h6" fontWeight="medium" mb={2}>
                             Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           </MDTypography>
-                          <MDInput type="text" name="name" value={element.name || ""} label="Name"  sx={{ width: "78%" }}></MDInput>
+                          <MDInput type="text" name="name" value={element.name || ""} label="Name"  sx={{ width: "78%" }} onChange={e => handleChange(index, e)}></MDInput>
                           <MDButton variant="gradient" color="secondary" >
                             <Icon sx={{ fontWeight: "bold" }} onClick={() => removeFormFields()}>remove</Icon>
                           </MDButton>
                         </MDBox>
-                        <MDBox mt={2} display="flex">
+                        {/* <MDBox mt={2} display="flex">
                           <MDTypography variant="h6" fontWeight="medium" mb={2}>
                             Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           </MDTypography>
                           <MDBox sx={{ width: "86%" }}>
-                            <Select options={categoryies} style={{width: "auto"}} name="type" value={element.type || ""}/>
+                            <Select isSearchable={true} options={categoryies} style={{width: "auto"}} name="type" value={element.type} onChange={e => handleChange(index, e)}></Select>
                           </MDBox>
-                        </MDBox>
+                        </MDBox> */}
                         <MDBox mt={2} display="flex">
                           <MDTypography variant="h6" fontWeight="medium" mb={2}>
                             Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           </MDTypography>
-                          <MDInput type="url" name="image" value={element.image || ""} label="Image URL"  borderLeft={"2"} sx={{ width: "86%" }}></MDInput>
+                          <MDInput type="url" name="image" value={element.image || "no image"} label="Image URL"  borderLeft={"2"} sx={{ width: "86%" }} onChange={e => handleChange(index, e)} />
                         </MDBox>
                         <MDBox mt={2} mb={5} sx={{ width: "100%" }}>
                             <MDTypography variant="h6" fontWeight="medium" mb={2}>
                                 Description
                             </MDTypography>
-                            <MDInput type="text" name="description" value={element.description || ""} label="" multiline rows={5} sx={{ width: '95%' }}></MDInput>
+                            <MDInput type="text" name="description" value={element.description || ""} label="" multiline rows={5} sx={{ width: '95%' }} onChange={e => handleChange(index, e)}></MDInput>
                         </MDBox>
                       </MDBox>
                     </MDBox>
                     ))}
-                    <Link to="/createrecepesnext">
+                    {/* <Link to="/createrecepesnext"> */}
                       <MDButton type="submit" label= "create" variant="gradient" color="info">
                         &nbsp;Create
                       </MDButton>
-                    </Link>
+                    {/* </Link> */}
                   </Grid>
                   </form>
                   

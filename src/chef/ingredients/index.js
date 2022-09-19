@@ -21,7 +21,11 @@ import oilTableData from "chef/ingredients/data/oilTableData";
 
 //
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import axios from 'axios'
+import API from '../../services/baseURL';
+
 
 
 export default function Ingredients () {
@@ -30,9 +34,34 @@ export default function Ingredients () {
   const [, dispatch] = useMaterialUIController();
   useEffect(() => {
     setDirection(dispatch, "chef");
-
     return () => setDirection(dispatch, "ltr");
   }, []);
+
+
+  const [data, setdata] = useState()
+  //
+  useEffect(() => {
+    API.get('chef/view_ingredients')
+      .then(res => {
+        setdata(res.data.ingredients.map((item) => {
+            return {
+              "name": <h1>{item.name}</h1>,
+              "stock": item.name,
+              "status": item.name,
+              "ordered_date" : <p>{item.name}</p>,
+              "pending_qty" : <p>{item.name}</p>,
+              "action" : item.name,
+            }
+        
+        }
+        ))
+      console.log("Your new array of modified objects here", data)
+    })
+    .catch(err => { console.log('Google api calendar error', err) })
+  }, [])
+  console.log(data);
+  //
+
   
     const { columns, rows } = vegetableTableData();
     const { columns: pColumns, rows: pRows } = fruitTableData();

@@ -22,6 +22,10 @@ import MDAvatar from "components/MDAvatar";
 import MDBadge from "components/MDBadge";
 import MDButton from "components/MDButton";
 
+//
+import API from '../../../services/baseURL';
+import { useState, useEffect} from "react";
+
 // Images
 import orange from "assets/images/chef/orange.jpg";
 import avacado from "assets/images/chef/avacado.jpeg";
@@ -29,7 +33,33 @@ import mango from "assets/images/chef/mango.jpg";
 import apple from "assets/images/chef/apple.jpg";
 import banana from "assets/images/chef/banana.webp";
 
+
+
+export const getIngredients = async event => {
+  const response = await API.get('chef/view_ingredients');
+  console.log(response.data.ingredients)
+  return response.data.ingredients;
+};
+
+
 export default function data() {
+
+
+
+  const [ingredient, setingredient] = useState([]);
+  useEffect(() => {
+    getIngredients().then(data => {
+      console.log(data)
+      setingredient(data)
+        console.log(ingredient)
+    }).catch(err => {
+
+    })
+  }, []);
+
+  
+
+
   const Fruit = ({ image, name, description }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDAvatar src={image} name={name} size="sm" />
@@ -42,14 +72,7 @@ export default function data() {
     </MDBox>
   );
 
-  const Job = ({ title, description }) => (
-    <MDBox lineHeight={1} textAlign="left">
-      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-        {title}
-      </MDTypography>
-      <MDTypography variant="caption">{description}</MDTypography>
-    </MDBox>
-  );
+
 
   return {
     columns: [
@@ -58,7 +81,7 @@ export default function data() {
       { Header: "status", accessor: "status", align: "center" },
       { Header: "ordered date", accessor: "ordered_date", align: "center" },
       { Header: "pending Qty", accessor: "pending_qty", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "", accessor: "action", align: "center" },
     ],
 
     rows: [
@@ -86,8 +109,8 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info">
-              Order
-            </MDButton>
+              Remove
+          </MDButton>
         ),
       },
       {
@@ -114,7 +137,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info" disabled>
-            Order
+            Remove
           </MDButton>
         ),
       },
@@ -142,7 +165,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info">
-              Order
+              Remove
             </MDButton>
         ),
       },
@@ -170,7 +193,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info">
-              Order
+              Remove
             </MDButton>
         ),
       },
@@ -198,7 +221,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info" disabled>
-            Order
+            Remove
           </MDButton>
         ),
       },

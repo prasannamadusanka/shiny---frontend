@@ -39,11 +39,11 @@ import { Link } from "react-router-dom";
 
 import Select from 'react-select';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 //
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+const axios = require("axios");
 
 
 function CreateRecepes() {
@@ -68,13 +68,42 @@ function CreateRecepes() {
     { value: 'porkdish', label: 'pork dish' },
   ]
 
+  const ingredients = [
+    { value: '', label: '' },
+    { value: '', label: 'vegetables' },
+    { value: 'beans', label: 'beans' },
+    { value: 'carrot', label: 'carrot' },
+    { value: '', label: 'fruits' },
+    { value: 'apple', label: 'apple' },
+    { value: 'orange', label: 'orange' },
+    { value: '', label: 'oil' },
+    { value: 'coconut', label: 'coconut oil' },
+    { value: 'vegetable', label: 'vegetable oil' },
+  ]
+
+  const measurements = [
+    { value: '', label: '' },
+    { value: 'kg', label: 'kg' },
+    { value: 'L', label: 'L' },
+    { value: '0.00010kg', label: 'spoons' },
+  ]
+
 
   const [formValues, setFormValues] = useState([{ name: "", quantity  : ""}])
 
   let handleSubmit = (event) => {
     event.preventDefault();
-    alert(JSON.stringify(formValues));
+    //alert(JSON.stringify(formValues));
+    console.log(JSON.stringify(formValues))
+    const formValues2 = JSON.stringify(formValues)
+    console.log(formValues2)
   }
+  let handleChange = (i, e) => {
+    let newFormValues = [...formValues];
+    newFormValues[i][e.target.name] = e.target.value;
+    setFormValues(newFormValues);
+  }
+
   let addFormFields = () => {
     setFormValues([...formValues, { name: "", quantity: "" }])
   }
@@ -113,14 +142,20 @@ function CreateRecepes() {
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
-                      <MDInput type="text" label="Name"  sx={{ width: "89%" }}></MDInput>
+                      <MDInput name="name" type="text" label="Name"  sx={{ width: "89%" }} value={element.name || ""} onChange={e => handleChange(index, e)} ></MDInput>
                     </MDBox>
                     <MDBox mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Category&nbsp;&nbsp;
                       </MDTypography>
                       <MDBox sx={{ width: "89%" }}>
-                        <Select options={categoryies} style={{width: "auto"}}/>
+                        <Select 
+                          isSearchable={true}
+                          options={categoryies} 
+                          style={{width: "auto"}}
+                          name="category" 
+                          value={element.category || ""} onChange={e => handleChange(index, e)}
+                        />
                         {/* <MDInput type="text" label="Category" sx={{ width: "89%" }} ></MDInput> */}
                       </MDBox>
                     </MDBox>
@@ -128,7 +163,7 @@ function CreateRecepes() {
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
-                      <MDInput type="url" label="Image URL"  borderLeft={"2"} sx={{ width: "89%" }}></MDInput>
+                      <MDInput  name="image" type="url" label="Image URL"  borderLeft={"2"} sx={{ width: "89%" }} value={element.image || ""} onChange={e => handleChange(index, e)}></MDInput>
                     </MDBox>
                   <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84} pt={2} pl={0.25}>
@@ -140,11 +175,27 @@ function CreateRecepes() {
                   </MDBox>
                   {formValues.map((element, index) => (
                   <Grid item xs={12} display='flex'mt={2}>
-                    <MDBox sx={{ width: "50%" }}>
-                      <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput>
+                    <MDBox sx={{ width: "45%" }}>
+                    <Select 
+                        isSearchable={true} 
+                        defaultValue={ingredients[0]} 
+                        options={ingredients} 
+                        style={{width: "auto"}}
+                        name="ingredients"
+                        value={element.ingredients || ""} onChange={e => handleChange(index, e)}
+                      />
+                      {/* <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput> */}
                     </MDBox>
-                    <MDBox sx={{ width: "40%" }}>
-                      <MDInput type="number" name="quantity" value={element.quantity || ""} label="Kg / L" sx={{ width: "90%" }}></MDInput>
+                    <MDBox sx={{ width: "25%" }} ml={3}>
+                      <MDInput type="number" name="quantity" label="quantity" sx={{ width: "90%" }} value={element.quantity || ""} onChange={e => handleChange(index, e)}></MDInput>
+                    </MDBox>
+                    <MDBox sx={{ width: "15%" }} mr={3}>
+                      <Select 
+                        isSearchable={true} 
+                        defaultValue={measurements[0]} 
+                        options={measurements} 
+                        style={{width: "auto"}}
+                      />
                     </MDBox>
                     <MDButton variant="gradient" color="secondary" >
                       <Icon sx={{ fontWeight: "bold" }} onClick={() => removeFormFields(index)}>remove</Icon>
@@ -155,13 +206,13 @@ function CreateRecepes() {
                     <MDTypography variant="h6" fontWeight="medium" mb={2}>
                       Chef Tips
                     </MDTypography>
-                    <MDInput type="text" label="" multiline rows={5} sx={{ width: '97%' }}></MDInput>
+                    <MDInput name="cheftips" type="tyext" label="" multiline rows={5} sx={{ width: '97%' }} value={element.cheftips || ""} onChange={e => handleChange(index, e)}></MDInput>
                   </MDBox>
                   <MDBox mt={2} mb={5}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2}>
                       Description
                     </MDTypography>
-                    <MDInput type="text" label="" multiline rows={5} sx={{ width: '97%' }}></MDInput>
+                    <MDInput name="description" type="text" label="" multiline rows={5} sx={{ width: '97%' }} value={element.description || ""} onChange={e => handleChange(index, e)}></MDInput>
                   </MDBox>
                   <Link to="/chef/createrecepes/next">
                     <MDButton label= "next" variant="gradient" color="info">

@@ -28,19 +28,28 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import authorsTableData from "chef/tables/data/authorsTableData";
-import projectsTableData from "chef/tables/data/projectsTableData";
+import Incomplete_ceased_events from "chef/incompleteceasedevents/data/incompleteceasedevents";
+
+//
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 function Tables() {
-  const { columns, rows } = authorsTableData();
-  const { columns: pColumns, rows: pRows } = projectsTableData();
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "chef");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
+  const { columns: pColumns, rows: pRows } = Incomplete_ceased_events();
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
-          <Grid item xs={12}>
+          <Grid item xs={12} justifyContent='center'alignItems="center">
             <Card>
               <MDBox
                 mx={2}
@@ -53,37 +62,12 @@ function Tables() {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Authors Table
+                  Pending Predictions
                 </MDTypography>
               </MDBox>
-              <MDBox pt={3}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted={true}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
-              </MDBox>
-            </Card>
-          </Grid>
-          <Grid item xs={12}>
-            <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Projects Table
-                </MDTypography>
-              </MDBox>
-              <MDBox pt={3}>
+              <Grid container xs={12} justifyContent= 'center' alignItems="center">
+              <MDBox pt={3} width="70%">
+                
                 <DataTable
                   table={{ columns: pColumns, rows: pRows }}
                   isSorted={false}
@@ -92,6 +76,7 @@ function Tables() {
                   noEndBorder
                 />
               </MDBox>
+              </Grid>
             </Card>
           </Grid>
         </Grid>

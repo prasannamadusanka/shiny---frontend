@@ -61,7 +61,7 @@ export default function data() {
       { Header: "status", accessor: "status", align: "center" },
       { Header: "ordered date", accessor: "ordered_date", align: "center" },
       { Header: "pending Qty", accessor: "pending_qty", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "", accessor: "action", align: "center" },
     ],
 
     rows: [
@@ -89,7 +89,7 @@ export default function data() {
         ),
         action: (
             <MDButton href="/order" variant="text" color="info">
-              Order
+              Remove
             </MDButton>
         ),
       },
@@ -117,7 +117,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info" disabled>
-            Order
+            Remove
           </MDButton>
         ),
       },
@@ -145,7 +145,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info" >
-            Order
+            Remove
           </MDButton>
         ),
       },
@@ -173,7 +173,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info" >
-            Order
+            Remove
           </MDButton>
         ),
       },
@@ -201,7 +201,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info" disabled>
-            Order
+            Remove
           </MDButton>
         ),
       },
@@ -229,7 +229,7 @@ export default function data() {
         ),
         action: (
           <MDButton href="/order" variant="text" color="info" disabled>
-            Order
+            Remove
           </MDButton>
         ),
       },

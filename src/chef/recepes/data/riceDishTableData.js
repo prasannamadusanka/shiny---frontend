@@ -47,6 +47,7 @@ export default function data() {
     columns: [
       { Header: "name", accessor: "name", width: "45%", align: "left" },
       { Header: "action", accessor: "action", align: "center" },
+      { Header: "", accessor: "remove", align: "center" },
     ],
 
     rows: [
@@ -59,6 +60,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <RiceDish image={Persian_Jeweled_Rice} name="Persian Jeweled Rice" description="" />,
@@ -68,6 +74,11 @@ export default function data() {
             View Recepe
           </MDTypography>
           </Link>
+        ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
         ),
       },
       {
@@ -79,6 +90,11 @@ export default function data() {
           </MDTypography>
           </Link>
         ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
+        ),
       },
       {
         name: <RiceDish image={Lemon_Rice} name="Lemon Rice" description="" />,
@@ -88,6 +104,11 @@ export default function data() {
             View Recepe
           </MDTypography>
           </Link>
+        ),
+        remove: (
+          <MDTypography component="a" href="#" variant="caption" color="info" fontWeight="medium">
+            Remove
+          </MDTypography>
         ),
       },
     ],
