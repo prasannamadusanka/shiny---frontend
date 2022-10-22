@@ -27,8 +27,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import SendIcon from '@mui/icons-material/Send';
 import Icon from "@mui/material/Icon";
-import { Link } from "react-router-dom";
 
+import {Link, useNavigate} from "react-router-dom";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
@@ -99,7 +99,7 @@ export const getMenuList = async event => {
 
 //dialog box
 
-function PricePlan() {
+function PricePlanStart() {
   const [, dispatch] = useMaterialUIController();
   useEffect(() => {
     setDirection(dispatch,"client");
@@ -107,20 +107,16 @@ function PricePlan() {
     return () => setDirection(dispatch, "ltr");
   }, []);
   const [open, setOpen] = React.useState(false);
-  const [menu1,setMenu] = React.useState();
-  const handleClickOpen = (menu_id) => {
-    console.log(menu_id)
-    setMenu(menu_id)
+
+  const handleClickOpen = () => {
     setOpen(true);
    console.log("vxhsbcv") 
   };
   const handleClose = () => {
-    API.post(`client/updateEventMenu`,{params:{
-      event_id:localStorage.getItem('id'),
-      menu_id:menu1
-  }})
     setOpen(false);
   };
+
+  const handleOnClick = () => navigate('/client/menu/pricePlan');
 
 
   const [menu, setmenu] = useState([]);
@@ -168,7 +164,8 @@ function PricePlan() {
         </Box>
         <MDBox mt={3}>
 
-          <MDButton variant="contained" color="warning">
+          <MDButton onClick={()=>{handleOnClick()}}variant="contained" color="warning">
+
             Food Items
             &nbsp;
             <Icon>store</Icon>
@@ -188,7 +185,7 @@ function PricePlan() {
             return (
 
               // console.log(item.menu_id)
-              <PricingSlot highlighted buttonText='select as menu' title={item.name} priceText={item.rate} onClick={()=>{handleClickOpen(item.menu_id)}}>
+              <PricingSlot highlighted title={item.name} priceText={item.rate} >
                 <PricingDetail> <b>Choose {item.welcome_drink_count}</b> Welcome Drink</PricingDetail>
                 <PricingDetail> <b>Choose {item.salad}</b> Salad</PricingDetail>
                 <PricingDetail> <b>Choose {item.rice_dishes}</b> Rice Dishes</PricingDetail>
@@ -213,4 +210,4 @@ function PricePlan() {
 
 
 
-export default PricePlan;
+export default PricePlanStart;

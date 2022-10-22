@@ -64,14 +64,53 @@ import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Typography from '@mui/material/Typography';
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import API from '../../services/baseURL';
+import { useEffect, useState } from "react";
+import EventPayment from "./eventPayment";
 
 
-function Event() {
+
+function Event({ id }) {
+    console.log("id is", id)
+    const [data, setdata] = useState(profilesListData)
+    useEffect(async () => {
+        API.get(`client/getOrder`, {
+            params: {
+                event_id: id
+            }
+        })
+            .then(res => {
+                console.log("res is",res)
+                setdata(res.data.menus ? res.data.menus.map((item) => {
+                    return {
+                        "name" :`${item.name}`,
+                        "image": `${item.image}`,
+                        "description": `${item.description}`,
+                        "action": {
+                            type: "internal",
+                            route: "/pages/profile/profile-overview",
+                            color: "info",
+                            label: "remove",
+                          },
+    
+
+                        
+
+                    }
+
+                }
+                ) : setdata(profilesListData))
+                console.log("Your new array of modified objects here", data)
+            })
+            .catch(err => { console.log('Google api calendar error', err) })
+    }, [])
+    console.log(data)
+
     const { columns: pColumns, rows: pRows } = TasksData();
     return (
         <div>
-            <MDBox bgcolor="Secondary" mt={2} pt={2}  lineHeight={1.25}>
-                
+            {/* <MDBox bgcolor="Secondary" mt={2} pt={2} lineHeight={1.25}>
+
                 {<DataTable
                     table={{ columns: pColumns, rows: pRows }}
                     isSorted={false}
@@ -79,10 +118,13 @@ function Event() {
                     showTotalEntries={false}
                     noEndBorder
                 />}
-            </MDBox>
+            </MDBox> */}
+            {/* <eventPayment/> */}
 
 
             <MDBox mt={5} mb={3}>
+            <EventPayment id={id}/>
+
                 <Grid container spacing={1}>
 
                     <Grid item xs={12} >
@@ -120,7 +162,7 @@ function Event() {
                                 </Grid>
                             </Grid>
                         </MDBox>
-                        <ProfilesList title="Food and Beverages" profiles={profilesListData} shadow={false} />
+                        <ProfilesList title="My menu" profiles={data} shadow={false} />
                     </Grid>
                 </Grid>
             </MDBox>

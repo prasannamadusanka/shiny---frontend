@@ -56,11 +56,14 @@ export default function data() {
 
   return {
     columns: [
-        { Header: "Pyament id", accessor: "id", align: "left" },
-        { Header: "Amount", accessor: "amount", align: "left" },
-        { Header: "Paid date", accessor: "date", align: "center" },
-      { Header: "Payment type", accessor: "type", width: "50%", align: "left" },
-      { Header: "Descriptiopn", accessor: "description", align: "left" },
+        { Header: "Service Id", accessor: "id", align: "left" },
+        { Header: "Description", accessor: "description", align: "left" },
+        { Header: "Subscribed date", accessor: "date", align: "left" },
+
+        { Header: "Rate", accessor: "rate", align: "left" },
+      { Header: "Quantity", accessor: "quantity", width: "50%", align: "left" },
+      { Header: "Total amount", accessor: "amount", align: "left" },
+
      
     ],
 
@@ -79,7 +82,7 @@ export default function data() {
             Poruwa
           </MDTypography>
         ),
-        amount: (
+        description: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
           Selected
         </MDTypography>
@@ -89,17 +92,21 @@ export default function data() {
           Selected
         </MDTypography>
         ),
-        type: (
+        rate: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
           Selected
         </MDTypography>
         ),
-        description: (
+         quantity: (
           <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
           Selected
         </MDTypography>
         ),
-      
+        amount: (
+            <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+            Selected
+          </MDTypography>
+          ),
        
       },
      

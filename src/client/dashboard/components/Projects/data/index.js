@@ -81,11 +81,13 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "Tasks", accessor: "tasks", align: "left" },
+     
 /*       { Header: "members", accessor: "members", width: "10%", align: "left" },
- */      { Header: "Started", accessor: "start", align: "left" },
-      { Header: "completion", accessor: "completion", align: "center" },
-      { Header: "Go to task", accessor: "gotask", align: "center" },
+ */      { Header: "Type", accessor: "type", align: "left" },
+      { Header: "Pax", accessor: "pax", align: "center" },
+      { Header: "Date", accessor: "date", align: "center" },
+      { Header: "Banquet", accessor: "banquet", align: "center" },
+      { Header: "Go to event", accessor: "gotoevent", align: "center" },
     ],
 
     rows: [

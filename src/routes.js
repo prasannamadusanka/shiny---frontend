@@ -68,7 +68,7 @@ import Payments from "manager/payment";
 import Menus from "manager/menu";
 import Banquet from "manager/banquet";
 import MyKitchen from "manager/myKitchen";
-
+import PricePlanStart from "client/pricePlanStart"
 import Dashboardchef from "chef/dashboard";
 //import Tables from "chef/tables";
 // import Billing from "chef/billing";
@@ -130,6 +130,14 @@ const routes = [
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/Client/Dashboard",
     component: <Dashboard />,
+  },
+  {
+    type: "collapse",
+    name: "Dashboard",
+    key: "clinetDashboard",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/Client/menu/pricePlanStart",
+    component: <PricePlan />,
   },
   {
     type: "collapse",

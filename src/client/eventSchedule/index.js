@@ -15,7 +15,7 @@ import './index.css'
 import MDTypography from "components/MDTypography";
 import MDBox from "components/MDBox";
 import { Grid, Typography } from "@mui/material";
-import ProfilesList from "examples/Lists/ProfilesList";
+
 import DefaultInfoCard from "examples/Charts/MDevent";
 import DataTable from "examples/Tables/DataTable";
 
@@ -73,35 +73,71 @@ const EventSchedule = () => {
     event.preventDefault();
     alert(JSON.stringify(formValues));
   }
-  
-  const [data, setdata] = useState()
-  //
-  useEffect(() => {
-    API.get(`client/view_menus`)
+
+  const [events,setevents] = useState()
+  useEffect(async() => {
+    API.get(`client/viewevents`,{params:{
+      user_id:localStorage.getItem('id')
+  }})
       .then(res => {
-        setdata(res.data.menus.map((item) => {
+        setevents(res.data.menus?res.data.menus.map((item) => {
             return {
-              "event": <p>{item.name}</p>,
-              "start": item.name,
-              "end": item.name,
-              "status": item.name,
-              "completion": <p>{item.name}</p>,
-              "action": <p>{item.name}</p>,
+              'value' : item.event_id,
+              'label' : <p>{item.date.split('T')[0]} - {item.type}</p>
             }
         
         }
-        ))
+        ):console.log("sjjsj"))
       console.log("Your new array of modified objects here", data)
     })
     .catch(err => { console.log('Google api calendar error', err) })
   }, [])
-  console.log(data);
+
+
+  console.log("modi")
+ 
+  const [eventId, seteventId] = useState(101)
+
+  const changeeventId=(e)=>{
+    seteventId(e.value)
+  }
+  
+
+  
+  const [data, setdata] = useState()
+
+  //
+  useEffect(async() => {
+    API.get(`client/viewSchedule`,{
+      params:{
+        event_id:eventId
+      }
+    })
+      .then(res => {
+        setdata(res.data.menus?res.data.menus.map((item) => {
+            return {
+              "event": <p>{item.start_time}</p>,
+              "start": item.start_time,
+              "end": item.start_time,
+              "status": item.start_time,
+              "completion": <p>{item.start_time}</p>,
+              "action": <p>{item.start_time}</p>,
+            }
+        
+        }
+        ):console.log("sjjsj"))
+      console.log("Your new array of modified objects here", data)
+    })
+    .catch(err => { console.log('Google api calendar error', err) })
+  }, [])
+  
+  
   //
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
-{console.log(data)}
+
       <MDBox py={3} >
         <Grid container spacing={3} >
           <Grid item xs={4} >
@@ -160,13 +196,39 @@ const EventSchedule = () => {
                   </MDTypography>
                 </div>
                 <div style={{ float: 'right' }}>
-                <Select options={options}></Select>
+                <Select  onChange={(e)=>{
+                  seteventId(e.value)
+                  console.log("event",eventId)
+                     API.get(`client/viewSchedule`,{
+      params:{
+        event_id:eventId
+      }
+    })
+      .then(res => {
+        setdata(res.data.menus?res.data.menus.map((item) => {
+            return {
+              "event": <p>{item.start_time}</p>,
+              "start": item.start_time,
+              "end": item.start_time,
+              "status": item.start_time,
+              "completion": <p>{item.start_time}</p>,
+              "action": <p>{item.start_time}</p>,
+            }
+        
+        }
+        ):console.log("sjjsj"))
+      console.log("Your new array of modified objects here", data)
+    })
+    .catch(err => { console.log('Google api calendar error', err) })
+                }} options={events} ></Select>
                 </div>
 
+
               </MDBox>
-              <MDBox pt={3}>
+              <MDBox pt={3} >
+                
                 <DataTable
-                  table={{ columns: pColumns, rows: data }}
+                  table={{ columns: pColumns, rows: data?data:pRows }}
                   isSorted={false}
                   entriesPerPage={false}
                   showTotalEntries={true}

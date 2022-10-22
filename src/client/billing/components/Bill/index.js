@@ -24,14 +24,32 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 // Material Dashboard 2 React context
 import { useMaterialUIController } from "context";
+import MDInput from "components/MDInput";
+import StripeCheckout from "react-stripe-checkout";
 
-function Bill({ name, total,advance,remaining,dueDate,dueAmount, noGutter }) {
+
+function Bill({ name, total,advance,remaining,dueDate,dueAmount, noGutter,id }) {
   const [controller] = useMaterialUIController();
   const { darkMode } = controller;
-
+console.log("pissi",id)
+const [amount,setAmount] = useState()
+let handleValue=(e)=>{
+  console.log("dcvd",e.target.value)
+  if(e.target.value>1000){
+    alert("You cannot update")
+    
+    //alert("you cannot more than value")
+  }
+  else{
+    setAmount(e.target.value)
+  }
+}
+async function handleToken(token, addresses) {
+  console.log(token)
+ }
   return (
     <MDBox
       component="li"
@@ -58,14 +76,19 @@ function Bill({ name, total,advance,remaining,dueDate,dueAmount, noGutter }) {
 
           <MDBox display="flex" alignItems="center" mt={{ xs: 2, sm: 0 }} ml={{ xs: -1.5, sm: 0 }}>
             <MDBox mr={1}>
-              <MDButton variant="text"color={darkMode ? "white" : "dark"}>
-                <Icon>menu</Icon>&nbsp;See more
-              </MDButton>
+            <MDInput type="text" label="" onChange={e=>handleValue(e)} value={amount} placeholder="rs.20000.00" />
             </MDBox>
+            <StripeCheckout
+             stripeKey="pk_test_51LgXJdSDmFBknNFOqB2kq2HzScVWiF4IKKH8fNHQDPLbhwQbhgvfPCibmDR8tH0YlkZuZAkzb0wnboLGVIdPAOg600hRJpjBTp"
+            token={handleToken}
+            amount= {amount*100}          
+             name="Payment details"
           
+             />
+{/*           
             <MDButton component={Link} to="client/billing/mybill" variant="text" color="error" >
-              <Icon >payment</Icon>&nbsp;Pay now
-            </MDButton>
+              Pay now
+            </MDButton> */}
           
           </MDBox>
         </MDBox>

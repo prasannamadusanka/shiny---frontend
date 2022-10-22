@@ -21,9 +21,10 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 // Billing page components
-import Bill from "layouts/billing/components/Bill";
+import Bill from "client/billing/components/Bill";
 
-function BillingInformation() {
+function BillingInformation({trans}) {
+  console.log("my bills",trans)
   return (
     <Card id="delete-account">
       <MDBox pt={3} px={2}>
@@ -32,15 +33,48 @@ function BillingInformation() {
         </MDTypography>
       </MDBox>
       <MDBox pt={1} pb={2} px={2}>
-        <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-          <Bill
-          name ="Wedding event(2022.12.03)"
-            total="Rs.455.00k"
-            advance="Rs.234.00k"
-            remaining="Rs.120.00k"
-            dueDate="2022.10.12"
-            dueAmount ="Rs.145.00k"
-          />
+        <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>{
+           trans?trans.map((item, index) => {
+            //  let rate = item.rate;
+            return (
+              <Bill
+                    name ={item.type}
+                         total={item.total}
+                        advance={item.advance}
+                       remaining={item.remaining}
+                         dueDate={item.due}
+                        id={item.id}
+                       /> 
+              
+           
+            );
+
+          }):console.log("hshs")
+        }
+  {/* //         trans.map(
+  //           (item,index)=>(
+  //             return(
+  //  <Bill
+  //         name ="Wedding event(2022.12.03)"
+  //           total="Rs.455.00k"
+  //           advance="Rs.234.00k"
+  //           remaining="Rs.120.00k"
+  //           dueDate="2022.10.12"
+            
+  //         /> 
+  //             )
+          
+  //           )
+  //         )
+  //         {/* <Bill
+  //         name ="Wedding event(2022.12.03)"
+  //           total="Rs.455.00k"
+  //           advance="Rs.234.00k"
+  //           remaining="Rs.120.00k"
+  //           dueDate="2022.10.12"
+            
+  //         /> */}
+
           
         </MDBox>
       </MDBox>

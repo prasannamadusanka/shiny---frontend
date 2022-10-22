@@ -55,6 +55,8 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import TasksData from "./TasksData";
 
+import Payment from "./payment"
+
 import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
 
@@ -143,7 +145,8 @@ function Overview() {
               <Divider orientation="vertical" sx={{ mx: 0 }} />
             </Grid>
             <Grid item xs={12} xl={4}>
-              <ProfilesList title="conversations" profiles={profilesListData} shadow={false} />
+              {/* <ProfilesList title="conversations" profiles={profilesListData} shadow={false} /> */}
+              <Payment></Payment>
             </Grid>
           </Grid>
         </MDBox>

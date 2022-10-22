@@ -12,12 +12,43 @@ import { Grid, Typography } from "@mui/material";
 const axios = require("axios");
 import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
+import Select from 'react-select'
 
-
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import API from '../../services/baseURL';
 import options from '../../services/functions';
 
+const options1 = [
+  { value: 'Poruwa', label: 'Poruwa' },
+  { value: 'Flower Colours', label: 'Flower Colours' },
+  { value: 'Sitting Back', label: 'Sitting Back' },
+  { value: 'Table Decorations', label: 'Table Decorations' },
+  { value: 'Entrance Decorations', label: 'Entrance Decorations' }
+]
+
+
+
 const EventForm = () => {
+
+  const [events,setevents] = useState()
+useEffect(async() => {
+  API.get(`client/viewevents`,{params:{
+    user_id:localStorage.getItem('id')
+}})
+    .then(res => {
+      setevents(res.data.menus?res.data.menus.map((item) => {
+          return {
+            'value' : item.event_id,
+            'label' : <p>{item.date.split('T')[0]} - {item.type}</p>
+          }
+      
+      }
+      ):console.log("sjjsj"))
+    console.log("Your new array of modified objects here", data)
+  })
+  .catch(err => { console.log('Google api calendar error', err) })
+}, [])
 
   const [, dispatch] = useMaterialUIController();
 //  const { sales, tasks } = reportsLineChartData;
@@ -29,12 +60,17 @@ const EventForm = () => {
 
 
     const [formValues, setFormValues] = useState([{ name: "", email : ""}])
+    const [eventDate,setEventDate] = useState()
+console.log(eventDate)
 
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
       }
+    let handleSelect =  (e) =>{
+      console.log(e.target.value)
+    }
     
     let addFormFields = () => {
         setFormValues([...formValues, { name: "", email: "" }])
@@ -55,7 +91,7 @@ const EventForm = () => {
         console.log(formValues2)
         
       for(var i=0;i<JSON.stringify(formValues).length;i++){
-          var params = {event_id:JSON.stringify(formValues[i].event),startTime :JSON.stringify(formValues[i].startTime), endTime: JSON.stringify(formValues[i].endTime),description:JSON.stringify(formValues[i].name)}
+          var params = {event_id:eventDate ,startTime :JSON.stringify(formValues[i].startTime), endTime: JSON.stringify(formValues[i].endTime),description:JSON.stringify(formValues[i].name)}
           console.log(params)
           axios
           .post("http://localhost:3000/client/addSchedule",params)
@@ -81,6 +117,11 @@ const EventForm = () => {
           <MDTypography variant="h3">Schedule Request Form </MDTypography>
           <MDTypography variant="h6">Wedding event 2022.10.12 </MDTypography>
         <form  onSubmit={handleSubmit}>
+          <Select
+          options={events}  onChange={(e)=>{
+            setEventDate(e.value)}}>
+            </Select>
+                      
           {formValues.map((element, index) => (
             <div className="form-inline" key={index}>
              <MDTypography variant="subtitle1">Activity</MDTypography>

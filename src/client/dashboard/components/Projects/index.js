@@ -12,7 +12,7 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -23,20 +23,54 @@ import MenuItem from "@mui/material/MenuItem";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-
+import MDButton from "components/MDButton";
 // Material Dashboard 2 React examples
 import DataTable from "examples/Tables/DataTable";
 
+import API from '../../../../services/baseURL';
+
 // Data
-import data from "layouts/dashboard/components/Projects/data";
+import data from "client/dashboard/components/Projects/data";
 
 function Projects() {
+
+  const [data1, setdata] = useState()
+  useEffect(() => {
+    API.get(`client/viewevents`,{params:{
+      user_id:localStorage.getItem('id')
+  }})
+      .then(res => {
+        setdata(res.data.menus.map((item,index)=>{
+          console.log(item.type)
+            return {
+              
+              "type":item.type,
+              "pax":item.pax,
+              "date":item.date.split('T')[0],
+              "banquet":item.name,
+              "gotoevent":<MDButton variant="gradient" color="info">See more</MDButton>,
+              
+            }
+        
+        }
+        
+        )
+        )
+        console.log(res.data)
+      console.log("Your new array of modified objects here", data1)
+    })
+    .catch(err => { console.log('Google api calendar error', err) })
+  }, [])
+  console.log(data1)
+ 
+ 
   const { columns, rows } = data();
+  console.log(rows)
   const [menu, setMenu] = useState(null);
 
   const openMenu = ({ currentTarget }) => setMenu(currentTarget);
   const closeMenu = () => setMenu(null);
-
+  const x=data1?data1:rows;
   const renderMenu = (
     <Menu
       id="simple-menu"
@@ -88,8 +122,9 @@ function Projects() {
         {renderMenu}
       </MDBox>
       <MDBox>
-        <DataTable
-          table={{ columns, rows }}
+        
+                <DataTable
+          table={{columns:columns,rows:data1?data1:rows}}
           showTotalEntries={false}
           isSorted={false}
           noEndBorder

@@ -14,6 +14,7 @@ import SoupData from "./soupData";
 import BasketOne from './components/BasketOne';
 import Main from './components/Main';
 import { useMaterialUIController, setDirection } from "context";
+const axios = require("axios");
 //import { useEffect } from "react";
 import {
   Stepper,
@@ -71,7 +72,7 @@ export const getItemList =async event => {
   console.log(response.data)
   return response.data;
 };
-const steps = ['Welcome drink'];
+const steps = ['Welcome drink','last'];
 //const { formId, formField } = checkoutFormModel;
 
 function _renderStepContent(step) {
@@ -138,6 +139,10 @@ function _renderStepContent(step) {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
   };
+
+  const addToDb = ()=>{
+
+  };
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist.qty === 1) {
@@ -150,6 +155,23 @@ function _renderStepContent(step) {
       );
     }
   };
+
+  const handleSubmit = ()=>{
+    const event_id = 101
+    console.log(cartItems)
+    cartItems.map((index,item)=>{
+      const params = {event_id:event_id,food_item_id:index.id}
+      axios
+      .post("http://localhost:3000/client/addFoodItem",params)
+      .then(res=>{
+        console.log("sucess")
+      })
+    })
+    // // cartItems.map((index,item)=>{
+    // console.log(cartItems)
+    //   console.log(item.id)
+    //  } )
+  }
   switch (step) {
    // console.log(productss[0][0].id)
     case 0:
@@ -172,26 +194,30 @@ function _renderStepContent(step) {
           onRemove={onRemove}
         ></BasketOne>
       </React.Fragment>);
-    // case 1:
-    //   return (<div>
-    //     <div style={{ float: 'right' }}>
-    //       <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-    //     </div>
-    //     <MDBox mt={5} p={2}>
+    case 1:
+      return (<div>
+        <div style={{ float: 'right' }}>
+          <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+        </div>
+       
 
-    //       <Grid container spacing={6}>
-    //         <Main products={itemList} onAdd={onAdd}></Main>
-    //       </Grid>
-    //     </MDBox>
+        <BasketOne
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+        ></BasketOne>
+         <Button
+                         onClick={handleSubmit}
 
 
+                        variant="contained"
+                        color="primary"
+                      /*     className={classes.button} */
+                      >
+                     Complete order
 
-    //     <BasketOne
-    //       cartItems={cartItems}
-    //       onAdd={onAdd}
-    //       onRemove={onRemove}
-    //     ></BasketOne>
-    //   </div>);
+                      </Button>
+      </div>);
     // case 2:
     //   return (<div>
     //     <div style={{ float: 'right' }}>
@@ -340,6 +366,9 @@ export default function CheckoutPage() {
   function _handleSubmit() {
     if (isLastStep) {
       setActiveStep(activeStep + 1);
+      console.log("madu")
+
+      console.log(cart)
     } else {
       setActiveStep(activeStep + 1);
       console.log(activeStep);

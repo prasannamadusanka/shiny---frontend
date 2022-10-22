@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
+import * as React from 'react';
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 
@@ -47,17 +48,23 @@ import profilesListData from "layouts/profile/data/profilesListData";
 
 // Images
 import homeDecor1 from "assets/images/home-decor-1.jpg";
-import homeDecor2 from "assets/images/home-decor-2.jpg";
-import homeDecor3 from "assets/images/home-decor-3.jpg";
-import homeDecor4 from "assets/images/home-decor-4.jpeg";
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+import Dialog from '@mui/material/Dialog';
+ import DialogTitle from '@mui/material/DialogTitle';
+ import DialogContent from '@mui/material/DialogContent';
+ import DialogActions from '@mui/material/DialogActions';
+ import IconButton from '@mui/material/IconButton';
+ import CloseIcon from '@mui/icons-material/Close';
+ import DialogContentText from "@mui/material/DialogContentText";
+ import TextField from "@mui/material/TextField";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import { Fragment, useState } from 'react';
-import { useParams, } from 'react-router-dom';
+import { Fragment, useState, } from 'react';
+import { useParams,useNavigate } from 'react-router-dom';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 // import urls
 import API from '../../services/baseURL';
@@ -65,6 +72,7 @@ import API from '../../services/baseURL';
 import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
 
+//const navigate = useNavigate()
 // function for getting data
 export const getItemList = async event => {
   const response = await API.get(`client/view_items`);
@@ -116,6 +124,25 @@ function Menu() {
     console.log(itemList);
 
   }, [itemList]);
+  const [events,setevents] = useState()
+  useEffect(async() => {
+    API.get(`client/viewevents`,{params:{
+      user_id:localStorage.getItem('id')
+  }})
+      .then(res => {
+        setevents(res.data.menus?res.data.menus.map((item) => {
+            return {
+              'value' : item.event_id,
+              'label' : <p>{item.date.split('T')[0]} - {item.type}</p>
+            }
+
+        }
+        ):console.log("sjjsj"))
+      console.log("Your new array of modified objects here", data)
+    })
+    .catch(err => { console.log('Google api calendar error', err) })
+  }, [])
+  console.log(events)
 
 
   const inputObject = {
@@ -141,20 +168,88 @@ function Menu() {
       }]
   };
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+   console.log("vxhsbcv") 
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  
+  const [event,setEvent] = useState()
+  const selectEvent = (e)=>{
+   // e.preventdefault()
+   console.log(e.target.value)
+   setEvent(e.target.value)
+  // localStorage.setItem("id", response.data.data2)
+
+  }
+  const myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port).split("/s/")[0];
+
+  const handleCloseOne = ()=>{
+
+  // const navigate =useNavigate()
+  // const handleOnClick = () => navigate('/Client/menu/pricePlan', {replace: false});
+  //handleOnClick()
+    localStorage.setItem("event_selected_food", event)
+    window.location.href = myUrl + '/' + 'Client' + '/' + 'menu'+'/'+'pricePlan';
+
+    handleClose()
+  }
+
+
+
 
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Reason for this action</DialogTitle>
+                {/* <DialogContent>
+                    <DialogContentText>
+                        This message will show on this users window
+                    </DialogContentText>
+                    hhhhhhh
+                </DialogContent> */}
+                <FormControl>
+      <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-radio-buttons-group-label"
+        defaultValue="female"
+        name="radio-buttons-group"
+      >
+      {
+        
+        events?events.map(
+          (item,index)=>{
+            return(
+            <FormControlLabel value={item['value']} control={<Radio />} label={item['label']}   onChange={selectEvent}/>
+            )
+          }
+        ):console.log("djjd")
+      }
+
+        
+  
+      </RadioGroup>
+    </FormControl>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleCloseOne}>Save changes</Button>
+                </DialogActions>
+            </Dialog>
       <Typography variant="h2" align="center">You can select your elegant menu items</Typography>
       <Typography variant="h2" align="center">From Our desired collection</Typography>
       <Typography variant="subtitle1" align="center">tthere are massive collection of menus</Typography>
       <Box textAlign='center'></Box>
 
-      <Link to='/client/menu/pricePlan'>
-        <Button endIcon={<SendIcon />} style={{ color: 'white', marginLeft: 'auto', marginRight: 'auto' }} variant="contained" >
+      
+        <Button onClick={handleClickOpen} endIcon={<SendIcon />} style={{ color: 'white', marginLeft: 'auto', marginRight: 'auto' }} variant="contained" >
           Getting Started
         </Button>
-      </Link>
+      
       {/* </Box>
       </Stack>  */}
       <MDButton variant="contained" color="warning">
@@ -162,9 +257,11 @@ function Menu() {
         &nbsp;
         <Icon>store</Icon>
       </MDButton>
+      <Link to="/Client/menu/pricePlan">
       <MDButton variant="contained" color="warning" style={{ float: 'right' }}>
         Price Plan&nbsp;
         <Icon>add_shopping_cart</Icon></MDButton>
+        </Link>
 
       {/* <Stack spacing={2}> */}
       <div>
