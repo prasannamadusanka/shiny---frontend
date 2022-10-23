@@ -37,6 +37,8 @@ function Bill({ name, total,advance,remaining,dueDate,dueAmount, noGutter,id }) 
   const { darkMode } = controller;
 console.log("pissi",id)
 const [amount,setAmount] = useState()
+
+
 function DateReturn(){
   const today = new Date();
   const yyyy = today.getFullYear();

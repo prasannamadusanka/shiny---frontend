@@ -57,23 +57,24 @@ import homeDecor1 from "assets/images/home-decor-1.jpg";
 import MDButton from "components/MDButton";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import API from '../../services/baseURL';
- //dialog box
+//dialog box
 
- import PropTypes from 'prop-types';
- 
- 
- import { styled } from '@mui/material/styles';
- import Dialog from '@mui/material/Dialog';
- import DialogTitle from '@mui/material/DialogTitle';
- import DialogContent from '@mui/material/DialogContent';
- import DialogActions from '@mui/material/DialogActions';
- import IconButton from '@mui/material/IconButton';
- import CloseIcon from '@mui/icons-material/Close';
- import DialogContentText from "@mui/material/DialogContentText";
- import TextField from "@mui/material/TextField";
- 
+import PropTypes from 'prop-types';
+
+
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import DialogContentText from "@mui/material/DialogContentText";
+import TextField from "@mui/material/TextField";
+
 import { useMaterialUIController, setDirection } from "context";
 import { setLayout } from 'context';
+import MyEvents from 'client/events';
 
 
 const styles = {
@@ -102,24 +103,27 @@ export const getMenuList = async event => {
 function PricePlan() {
   const [, dispatch] = useMaterialUIController();
   useEffect(() => {
-    setDirection(dispatch,"client");
+    setDirection(dispatch, "client");
 
     return () => setDirection(dispatch, "ltr");
   }, []);
   const [open, setOpen] = React.useState(false);
-  const [menu1,setMenu] = React.useState();
+  const [menu1, setMenu] = React.useState();
   const handleClickOpen = (menu_id) => {
     console.log(menu_id)
     setMenu(menu_id)
     setOpen(true);
-   console.log("vxhsbcv") 
+    console.log("vxhsbcv")
   };
   const handleClose = () => {
-    API.post(`client/updateEventMenu`,{params:{
-      event_id:localStorage.getItem('id'),
-      menu_id:menu1
-  }})
+    API.post(`client/updateEventMenu`, {
+      params: {
+        event_id: localStorage.getItem('id'),
+        menu_id: menu1
+      }
+    })
     setOpen(false);
+    alert("you have selected menu as " + menu1)
   };
 
 
@@ -141,23 +145,66 @@ function PricePlan() {
       console.log(item.menu_id)
     }
   )
+  const x = {
+    type: "dhhjfd",
+    date: "gfheghf"
+  }
+  const [myEvent, setMyEvent] = useState([]);
+
+
+  useEffect(() => {
+    API.get(`client/getEvent`, {
+      params: {
+        event_id: localStorage.getItem('event_selected_food')
+      }
+    })
+      // .then(res => {
+      //   // setMyEvent(res.data.menus?res.data.menus:x)
+      //   console.log("fff")
+      //   console.log(myEvent)
+      //   res.data.menu ? setMyEvent(res.data.menu) : setMyEvent(x)
+      //   console.log("prafcfa", res.data.menus)
+      //   // console.log("Your new array of modified objects here", data1)
+      // })
+      .then(res => {
+        setMyEvent(res.data.menus ? res.data.menus.map((item) => {
+          return {
+            'type': item.type,
+            'date': item.date
+          }
+        }
+        ) : console.log("sjjsj"))
+        console.log(myEvent)
+      }).catch(err => {
+
+      })
+  }, []);
+
+  console.log("hjjdfjf", myEvent)
+  useEffect(async () => {
+    console.log("fa")
+    console.log(myEvent)
+  }, [myEvent]);
+  console.log(myEvent)
+  // const neMyEvent = myEvent[0].type + "event - " + myEvent[0].date
+  // console.log(neMyEvent)
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Reason for this action</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        This message will show on this users window
-                    </DialogContentText>
-                    hhhhhhh
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>Save changes</Button>
-                </DialogActions>
-            </Dialog>
-      <Stack spacing={2}>
+        <DialogTitle>Choose price plan</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure to change your price plan
+          </DialogContentText>
+
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>No</Button>
+          <Button onClick={handleClose}>Yes</Button>
+        </DialogActions>
+      </Dialog>
+      {/* <Stack spacing={2}>
         <Typography variant="h2" align="center">You can select your elegant menu items</Typography>
         <Typography variant="h2" align="center">From Our desired collection</Typography>
         <Typography variant="subtitle1" align="center">tthere are massive collection of menus</Typography>
@@ -179,16 +226,21 @@ function PricePlan() {
             <Icon>add_shopping_cart</Icon></MDButton>
         </MDBox>
       </Stack>
-    
+     */}
+      <Stack>
+        <MDTypography >First Step - Select your desired wedding plan</MDTypography>
+        <MDTypography >{}</MDTypography>
+
+      </Stack>
       <PricingTable highlightColor='#1976D2'>
-      
+
         {
           menu.map((item, index) => {
             //  let rate = item.rate;
             return (
 
               // console.log(item.menu_id)
-              <PricingSlot highlighted buttonText='select as menu' title={item.name} priceText={item.rate} onClick={()=>{handleClickOpen(item.menu_id)}}>
+              <PricingSlot highlighted buttonText='select as menu' title={item.name} priceText={item.rate} onClick={() => { handleClickOpen(item.menu_id) }}>
                 <PricingDetail> <b>Choose {item.welcome_drink_count}</b> Welcome Drink</PricingDetail>
                 <PricingDetail> <b>Choose {item.salad}</b> Salad</PricingDetail>
                 <PricingDetail> <b>Choose {item.rice_dishes}</b> Rice Dishes</PricingDetail>
