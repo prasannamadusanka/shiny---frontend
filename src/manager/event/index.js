@@ -31,31 +31,35 @@ import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 
 
 // Overview page components
-import Header from "layouts/event/components/Header";
-import Projects from "layouts/dashboard/components/Projects";
+import Header from "manager/event/components/Header";
+import Projects from "manager/dashboard/components/Projects";
 
 // Data
-import Item from "layouts/event/components/items";
-import Pay from "layouts/event/components/Pay";
+import Item from "manager/event/components/items";
+import Pay from "manager/event/components/Pay";
 //calender
-import OrdersOverview from "layouts/event/components/Calender";
+import OrdersOverview from "manager/event/components/Calender";
+import OrdersOverview1 from "manager/event/components/Calender1";
 import { Payment } from "@mui/icons-material";
 
-
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 
 function Overview() {
+  const [, dispatch] = useMaterialUIController();
+
+  useEffect(() => {
+    setDirection(dispatch, "manager");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox>
           <Grid container spacing={3}>
-            
-            <Grid item xs={12} md={6} lg={6}>
-              <OrdersOverview/>
-            
-            </Grid>
-            
+              <OrdersOverview1/>
           </Grid>
         </MDBox>
         <Header>
