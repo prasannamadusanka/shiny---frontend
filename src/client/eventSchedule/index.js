@@ -32,6 +32,7 @@ import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
 
 const EventSchedule = () => {
+  console.log(__dirname)
 
   const [, dispatch] = useMaterialUIController();
   //const { sales, tasks } = reportsLineChartData;

@@ -49,7 +49,7 @@ import API from '../../services/baseURL';
 
 // Dashboard components
 import Projects from "client/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
+import OrdersOverview from "client/dashboard/components/OrdersOverview";
 import { setLayout } from "context";
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
@@ -119,6 +119,54 @@ function Dashboard() {
    }
   const x=40000;
 
+  
+  const [eventCount,setEventCount] = useState()
+  const [billTotal,setbillTotal] = useState()
+  const [advanceTotal,setadvanceTotal] = useState()
+
+  var date = new Date();
+  console.log(date)
+  var curr_date = date.getDate();
+   useEffect(async() => {
+    API.get(`client/getEventCount`,{
+      params:{
+        user_id:localStorage.getItem('id')
+      }
+    })
+      .then(res => {
+        console.log("vdbv",res)
+        setEventCount(res.data.menus[0].eventCount)
+      console.log("Your new array vbjbvof modified objects here", data)
+    })
+
+  }, [])
+  useEffect(async() => {
+    API.get(`client/getBillTotal`,{
+      params:{
+        user_id:localStorage.getItem('id')
+      }
+    })
+      .then(res => {
+        console.log("vdbv",res)
+        setbillTotal(res.data.menus[0].amount)
+      console.log("Your new array vbjbvof modified objects here", data)
+    })
+
+  }, [])
+  useEffect(async() => {
+    API.get(`client/getAdvanceotal`,{
+      params:{
+        user_id:localStorage.getItem('id')
+      }
+    })
+      .then(res => {
+        console.log("vdbv",res)
+        setadvanceTotal(res.data.menus[0].amount)
+      console.log("Your new array vbjbvof modified objects here", data)
+    })
+
+  }, [])
+console.log("chdj",advanceTotal)
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -131,7 +179,7 @@ function Dashboard() {
                 color="dark"
                 icon="weekend"
                 title="Upcoming Events"
-                count={13}
+                count={eventCount}
                 percentage={{
                   color: "success",
                   amount: "3",
@@ -145,7 +193,7 @@ function Dashboard() {
               <ComplexStatisticsCard
                 icon="leaderboard"
                 title="Events Still Pending"
-                count="8"
+                count={billTotal}
                 percentage={{
                   color: "success",
                   amount: "13k",
@@ -160,7 +208,7 @@ function Dashboard() {
                 color="success"
                 icon="store"
                 title="Total Bill Amount"
-                count="34k"
+                count={billTotal}
                 percentage={{
                   color: "success",
                   amount: "+4%",
@@ -175,7 +223,7 @@ function Dashboard() {
                 color="primary"
                 icon="person_add"
                 title="Total payments"
-                count="10k"
+                count={advanceTotal}
                 percentage={{
                   color: "success",
                   amount: "2022.10.12",
@@ -192,45 +240,11 @@ function Dashboard() {
               <Projects />
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
+              <OrdersOverview id={localStorage.getItem('id')} />
             </Grid>
           </Grid>
         </MDBox>
       </MDBox>
-      {/* <MDBox mt={4.5}>
-        <Grid container spacing={3}>
-        <Grid item xs={12} md={6} lg={12}>
-        <MDTypography>Add New Event</MDTypography>
-        
-      <FormControl sx={{ m: 1 }} variant="standard">
-      <MDInput  htmlFor="demo-customized-textbox" type="date" label="Date" value="2018-11-23" />
-      <MDBox mt={3} mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
-            <Select options={options}/>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-            <Select options={options}/>
-            </Grid>
-          </Grid>
-        </MDBox>
-     
-        <MDInput  htmlFor="demo-customized-textbox" type="text" label="pax" value="100" />
-       
-        <StripeCheckout
-             stripeKey="pk_test_51LgXJdSDmFBknNFOqB2kq2HzScVWiF4IKKH8fNHQDPLbhwQbhgvfPCibmDR8tH0YlkZuZAkzb0wnboLGVIdPAOg600hRJpjBTp"
-            token={handleToken}
-            amount= {x}          
-             name="Payment details"
-          
-             />
-      
-      </FormControl>
-    
-    </Grid>
-    </Grid>
-        </MDBox>
-      <Footer /> */}
     </DashboardLayout>
   );
  

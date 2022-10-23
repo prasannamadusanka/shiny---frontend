@@ -23,8 +23,27 @@ import MDTypography from "components/MDTypography";
 import Wedding from "assets/images/events/wedding.jpg"
 // Material Dashboard 2 React example components
 import TimelineItem from "examples/Timeline/TimelineItem";
+import { useState,useEffect } from "react";
+import API from '../../../../services/baseURL';
 
-function OrdersOverview() {
+function OrdersOverview({id}) {
+
+  const [events,setEvents] = useState()
+  useEffect(async() => {
+    API.get(`client/getEventLimit`,{
+      params:{
+        id:id
+      }
+    })
+      .then(res => {
+        console.log("vdbxcv",res)
+        setEvents(res.data.menus)
+      console.log("Your new array vbjbvof modified objects here")
+    })
+
+  }, [])
+  console.log(events)
+
   return (
     <Card sx={{ height: "100%" }}>
       <MDBox pt={3} px={3}>
@@ -45,7 +64,7 @@ function OrdersOverview() {
         </MDBox>
       </MDBox>
       <MDBox p={3}>
-        <TimelineItem
+        {/* <TimelineItem
           color="success"
           icon="restaurant_menu"
           title="Wedding function - Hotel sundream"
@@ -70,8 +89,45 @@ function OrdersOverview() {
           title="Home coming function - Shiny lakeside resort"
           dateTime="1 DEC 2023"
         />
-      
-         
+       */}
+       {
+         events?events.map(
+          (item,index)=>{
+            const title=item.type+" function - "+item.name
+            const date = item.date
+            const date1=date.split('T')[0]
+           const year=date1.split('-')[0]
+            const month=date1.split('-')[1]
+            const date2=date1.split('-')[2]
+            const dateTime = year +" "+month+" " +date2
+            let icon1="";
+            let color1=""
+            if(item.type=="Wedding"){
+              icon1="restaurant_menu"
+              color1="success"
+            }
+           else if(item.type=="Birthday party"){
+              icon1="cake"
+              color1="error"
+            }
+           else if(item.type=="Home coming"){
+              icon1="restaurant_menu"
+              color1="error"
+            }
+            console.log("hx",icon1)
+            return(
+              <TimelineItem
+              lastItem={true}
+                color={color1}
+                icon={icon1}
+                title={title}
+                dateTime={dateTime}
+              />
+            )
+            }
+          
+         ):console.log("fjvn")
+          }
       </MDBox>
     </Card>
   );

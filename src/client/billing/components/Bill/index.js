@@ -29,6 +29,7 @@ import { useEffect, useState } from "react";
 import { useMaterialUIController } from "context";
 import MDInput from "components/MDInput";
 import StripeCheckout from "react-stripe-checkout";
+import API from '../../../../services/baseURL';
 
 
 function Bill({ name, total,advance,remaining,dueDate,dueAmount, noGutter,id }) {
@@ -36,6 +37,18 @@ function Bill({ name, total,advance,remaining,dueDate,dueAmount, noGutter,id }) 
   const { darkMode } = controller;
 console.log("pissi",id)
 const [amount,setAmount] = useState()
+function DateReturn(){
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate();
+
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  const formattedToday = dd + '/' + mm + '/' + yyyy;
+  return formattedToday
+}
 let handleValue=(e)=>{
   console.log("dcvd",e.target.value)
   if(e.target.value>1000){
@@ -48,6 +61,17 @@ let handleValue=(e)=>{
   }
 }
 async function handleToken(token, addresses) {
+  
+  API.post(`client/initialAdvance`,{params:{
+    payment_id:token.id,
+    event_id:100,
+    paid_date:DateReturn(),
+    amount:amount,
+    pay_by:"Card payment",
+    pay_for:"Advance payment"
+
+    
+}})
   console.log(token)
  }
   return (

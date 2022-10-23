@@ -118,7 +118,9 @@ async function handleToken(token, addresses) {
       payment_id:token.id,
       event_id:100,
       paid_date:DateReturn(),
-      amount:25000.00
+      amount:25000.00,   
+      pay_by:"Card payment",
+      pay_for:"Event booking"
   }})
 
 
