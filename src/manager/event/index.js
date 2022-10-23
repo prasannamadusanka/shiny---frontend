@@ -39,6 +39,7 @@ import Item from "manager/event/components/items";
 import Pay from "manager/event/components/Pay";
 //calender
 import OrdersOverview from "manager/event/components/Calender";
+import OrdersOverview1 from "manager/event/components/Calender1";
 import { Payment } from "@mui/icons-material";
 
 import { useMaterialUIController, setDirection } from "context";
@@ -58,12 +59,7 @@ function Overview() {
       <DashboardNavbar />
       <MDBox>
           <Grid container spacing={3}>
-            
-            <Grid item xs={12} md={6} lg={6}>
-              <OrdersOverview/>
-            
-            </Grid>
-            
+              <OrdersOverview1/>
           </Grid>
         </MDBox>
         <Header>
