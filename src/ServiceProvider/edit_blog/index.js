@@ -37,6 +37,8 @@ import OrdersOverview from "layouts/edit_blog/components/OrdersOverview";
 import OrdersOverview1 from "layouts/edit_blog/components/OrdersOverview1";
 import OrdersOverviewA from "layouts/edit_blog/components/OrdersOverviewA";
 
+// import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+
 function Calendar() {
   // const { sales, tasks } = reportsLineChartData; // importing the charts with their values
 

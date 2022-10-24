@@ -15,6 +15,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+// import { useState, useEffect } from "react";
+
 // @mui material components
 // import Tooltip from "@mui/material/Tooltip";
 // import MDBox from "components/MDBox";
@@ -36,7 +38,38 @@ import MDButton from "components/MDButton";
 // import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
 
+// import { useMaterialUIController, setDirection } from "context";
+
+// import API from "../../../../services/baseURL";
+
+// export const getbookingslist = async (event) => {
+//   const response = await API.get(`ServiceProvider/view_bookings`);
+//   console.log(response); // response -> data -> menus -> 0 -> event_id
+//   console.log(response.data.menus);
+//   return response.data.menus;
+// };
+
 export default function data() {
+  // const [, dispatch] = useMaterialUIController();
+  // useEffect(() => {
+  //   setDirection(dispatch, "ServiceProvider");
+
+  //   return () => setDirection(dispatch, "ltr");
+  // }, []);
+
+  // const [bookings, setbookings] = useState([{ event_id: "", event_name: "" }]);
+  // useEffect(() => {
+  //   getbookingslist()
+  //     .then((data) => {
+  //       console.log(bookings);
+  //       console.log(data);
+  //       setbookings(data);
+  //       console.log(bookings);
+  //     })
+  //     .catch((err) => {
+  //       // console.log(err.error);
+  //     }); // Had to use ; here.
+  // }, []);
   /*
   const avatars = (members) =>
     members.map(([image, name]) => (

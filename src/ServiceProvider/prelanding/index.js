@@ -47,6 +47,8 @@ import homeDecor2 from "assets/images/service_provider/dance.jpg";
 import homeDecor3 from "assets/images/service_provider/ashtaka1.jpg";
 import homeDecor4 from "assets/images/service_provider/music1.jpg";
 
+// import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+
 /*
 import homeDecor1 from "assets/images/home-decor-1.jpg";
 import homeDecor2 from "assets/images/home-decor-2.jpg";

@@ -37,6 +37,8 @@ import OrdersOverview from "layouts/paym_prev_events/components/OrdersOverview";
 import OrdersOverview1 from "layouts/paym_prev_events/components/OrdersOverview1";
 import OrdersOverviewA from "layouts/paym_prev_events/components/OrdersOverviewA";
 
+// import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+
 function Calendar() {
   // const { sales, tasks } = reportsLineChartData; // importing the charts with their values
 

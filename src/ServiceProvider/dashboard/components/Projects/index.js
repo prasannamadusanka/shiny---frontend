@@ -13,57 +13,91 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
+// import { useState, useEffect } from "react";
 
 // @mui material components
 import Card from "@mui/material/Card";
-import Icon from "@mui/material/Icon";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+// import Icon from "@mui/material/Icon";
+// import Menu from "@mui/material/Menu";
+// import MenuItem from "@mui/material/MenuItem";
+// import Link from "@mui/material/Link";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+// import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React examples
-import DataTable from "examples/Tables/DataTable";
+// import DataTable from "examples/Tables/DataTable";
 
 // Data
-import data from "layouts/dashboard/components/Projects/data";
+// import data1 from "layouts/dashboard/components/Projects/data";
+import Bookings from "layouts/dashboard/components/Projects/bookingsdata";
+
+// import { useMaterialUIController, setDirection } from "context";
+
+// import API from "../../../../services/baseURL";
+
+// export const getbookingslist = async (event) => {
+//   const response = await API.get(`ServiceProvider/view_bookings`);
+//   console.log(response); // response -> data -> menus -> 0 -> event_id
+//   console.log(response.data.menus);
+//   return response.data.menus;
+// };
 
 function Projects() {
-  const { columns, rows } = data();
-  const [menu, setMenu] = useState(null);
+  // const [, dispatch] = useMaterialUIController();
+  // useEffect(() => {
+  //   setDirection(dispatch, "ServiceProvider");
 
-  const openMenu = ({ currentTarget }) => setMenu(currentTarget);
-  const closeMenu = () => setMenu(null);
+  //   return () => setDirection(dispatch, "ltr");
+  // }, []);
 
-  const renderMenu = (
-    <Menu
-      id="simple-menu"
-      anchorEl={menu}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={Boolean(menu)}
-      onClose={closeMenu}
-    >
-      <MenuItem onClick={closeMenu}>Action</MenuItem>
-      <MenuItem onClick={closeMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeMenu}>Something else</MenuItem>
-    </Menu>
-  );
+  // const [bookings, setbookings] = useState([{ event_id: "", event_name: "" }]);
+  // useEffect(() => {
+  //   getbookingslist()
+  //     .then((data) => {
+  //       console.log(bookings);
+  //       console.log(data);
+  //       setbookings(data);
+  //       console.log(bookings);
+  //     })
+  //     .catch((err) => {
+  //       // console.log(err.error);
+  //     }); // Had to use ; here.
+  // }, []);
+
+  // const { columns, rows } = data1();
+  // const [menu, setMenu] = useState(null);
+
+  // const openMenu = ({ currentTarget }) => setMenu(currentTarget);
+  // const closeMenu = () => setMenu(null);
+
+  // const renderMenu = (
+  //   <Menu
+  //     id="simple-menu"
+  //     anchorEl={menu}
+  //     anchorOrigin={{
+  //       vertical: "top",
+  //       horizontal: "left",
+  //     }}
+  //     transformOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     open={Boolean(menu)}
+  //     onClose={closeMenu}
+  //   >
+  //     <MenuItem onClick={closeMenu}>Action</MenuItem>
+  //     <MenuItem onClick={closeMenu}>Another action</MenuItem>
+  //     <MenuItem onClick={closeMenu}>Something else</MenuItem>
+  //   </Menu>
+  // );
 
   return (
     <Card>
-      <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+      {/* <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
-          <MDTypography variant="h2" fontWeight="large" gutterBottom>
+          <MDTypography variant="h2" fontWeight="bold" gutterBottom>
             Bookings
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>
@@ -87,8 +121,8 @@ function Projects() {
           </Icon>
         </MDBox>
         {renderMenu}
-      </MDBox>
-      <MDBox>
+      </MDBox> */}
+      {/* <MDBox>
         <DataTable
           table={{ columns, rows }}
           showTotalEntries={false}
@@ -96,6 +130,24 @@ function Projects() {
           noEndBorder
           entriesPerPage={false}
         />
+      </MDBox> */}
+      {/* <MDBox mb={1.5}>
+        {bookings?.map((item) => (
+          // The format when there is more than one returns - Eslint Rules
+          //  {getbookingslist.map((item, index) => {
+          //    return(
+          //      <Link to="/ServiceProvider/view_bookings">
+          //        value={item.event_id}
+          //      </Link>
+          //    );
+          //  })}
+          <Link to="/ServiceProvider/view_bookings">
+            <MDTypography key={item.event_id}>{item.event_name}</MDTypography>
+          </Link>
+        ))}
+      </MDBox> */}
+      <MDBox mb={0} pb={10}>
+        <Bookings />
       </MDBox>
     </Card>
   );

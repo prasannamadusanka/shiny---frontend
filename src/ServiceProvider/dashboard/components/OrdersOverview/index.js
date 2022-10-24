@@ -34,7 +34,7 @@ import MDTypography from "components/MDTypography";
 // import Paper from "@mui/material/Paper";
 
 // New components
-import MDBadge from "components/MDBadge";
+// import MDBadge from "components/MDBadge";
 
 import React, { useState } from "react";
 import Calendar from "react-calendar";
@@ -83,11 +83,11 @@ function OrdersOverview() {
     <Card sx={{ height: "100%" }}>
       <MDBox pt={3} px={3}>
         <MDBox>
-          &nbsp;&nbsp;
+          {/* &nbsp;&nbsp;
           <MDBadge badgeContent="New Chats" size="lg" color="info" container />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <MDBadge badgeContent="Newly Paid" size="lg" color="info" container />
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp; */}
         </MDBox>
         <MDTypography variant="h3" fontWeight="medium" pt={2} pb={2}>
           EVENTS CALENDAR

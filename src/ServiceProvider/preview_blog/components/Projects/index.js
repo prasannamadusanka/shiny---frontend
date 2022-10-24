@@ -63,7 +63,7 @@ function Projects() {
     <Card>
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
-          <MDTypography variant="h2" fontWeight="large" gutterBottom>
+          <MDTypography variant="h2" fontWeight="bold" gutterBottom>
             Bookings
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>

@@ -24,6 +24,8 @@ import MDBox from "components/MDBox";
 // import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 
+import { Link } from "react-router-dom";
+
 // Images
 // import masterCardLogo from "assets/images/logos/mastercard.png";
 // import visaLogo from "assets/images/logos/visa.png";
@@ -38,9 +40,11 @@ function PaymentMethod() {
   return (
     <Card>
       <MDBox pt={2} pb={2} pr={50} pl={50} display="box" alignItems="center">
-        <MDButton variant="gradient" color="dark" size="large" display="flex">
-          &nbsp;Previous Events
-        </MDButton>
+        <Link to="/paym_prev_events">
+          <MDButton variant="gradient" color="dark" size="large" display="flex">
+            &nbsp;Previous Events
+          </MDButton>
+        </Link>
       </MDBox>
       {/*
       <MDBox p={2}>

@@ -94,13 +94,13 @@ function OrdersOverview() {
               <MDTypography variant="body1" color="dark" fontWeight="medium">
                 Total Revenue
               </MDTypography>
-              <MDTypography variant="body1" color="warning" fontWeight="large">
+              <MDTypography variant="body1" color="warning" fontWeight="bold">
                 &nbsp;&nbsp;&nbsp;&nbsp;SLR&nbsp;4,678,000/=
               </MDTypography>
               <MDTypography variant="body1" color="dark" fontWeight="medium">
                 Total No. of Events
               </MDTypography>
-              <MDTypography variant="body1" color="warning" fontWeight="large">
+              <MDTypography variant="body1" color="warning" fontWeight="bold">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;143
               </MDTypography>
             </MDBox>
