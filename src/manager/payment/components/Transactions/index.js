@@ -17,7 +17,7 @@ Coded by www.creative-tim.com
 import Card from "@mui/material/Card";
 // import Divider from "@mui/material/Divider";
 import Icon from "@mui/material/Icon";
-
+import { useState, useEffect } from "react";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -25,8 +25,44 @@ import MDTypography from "components/MDTypography";
 
 // Billing page components
 import Transaction from "layouts/billing/components/Transaction";
+import { useMaterialUIController, setDirection } from "context";
+
+import API from "../../../../services/baseURL";
+
+export const getpayed = async pay => {
+  const paynow = await API.get('http://localhost:3001/manager/view_paid_invoice');
+  console.log(response.data.menus);
+  return response.data.menus;
+};
+
+
+
+
+
 
 function Transactions() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "manager");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
+
+  const [payed, setevent] = useState([{ event_id: "",total_amount: ""}]);
+  useEffect(() => {
+    getpayed().then(data => {
+      console.log(data)
+      setevent(data)
+        console.log(payed)
+    }).catch(err => {
+      
+    })
+  }, []);
+
+
+
+
   return (
     <Card sx={{ height: "100%" }}>
       <MDBox display="flex" justifyContent="space-between" alignItems="center" pt={3} px={2}>
@@ -49,20 +85,19 @@ function Transactions() {
           m={0}
           sx={{ listStyle: "none" }}
         >
+          {payed.map((item)=>{
+               
           <Transaction
             color="success"
             icon="star"
-            name="Lavan Music Band"
-            description="02 August 2022, at 12:30 PM"
+            name={item.event_id}
+            description={item.total_amount}
             value="LKR 2,500"
           />
-          <Transaction
-            color="success"
-            icon="star"
-            name="Swetha Jayamangala Gatha"
-            description="02 August 2022, at 04:30 AM"
-            value="LKR 2,000"
-          />
+          
+                
+              })}
+          
         </MDBox>
         <MDBox mt={1} mb={2}>
           <MDTypography variant="caption" color="text" fontWeight="bold" textTransform="uppercase">
@@ -77,34 +112,7 @@ function Transactions() {
           m={0}
           sx={{ listStyle: "none" }}
         >
-          <Transaction
-            color="success"
-            icon="star"
-            name="Nilkamal Dancing Group"
-            description="01 August 2022, at 04:30 AM"
-            value="LKR 750"
-          />
-          <Transaction
-            color="success"
-            icon="star"
-            name="Swarna Dancing Group"
-            description="01 August 2022, at 04:30 AM"
-            value="LKR 1,000"
-          />
-          <Transaction
-            color="success"
-            icon="star"
-            name="Creative Tim Music Band"
-            description="02 August 2022, at 04:30 AM"
-            value="LKR 2,500"
-          />
-          <Transaction
-            color="dark"
-            icon="priority_high"
-            name="Webflow Dancing Group"
-            description="02 August 2022, at 04:30 AM"
-            value="Pending"
-          />
+          
         </MDBox>
       </MDBox>
     </Card>
