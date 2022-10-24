@@ -39,150 +39,335 @@ import MDTypography from "components/MDTypography";
 import API from '../../services/baseURL';
 
 
-// const { products } = data;
-// const [cartItems, setCartItems] = useState([]);
-// const onAdd = (product) => {
-//   const exist = cartItems.find((x) => x.id === product.id);
-//   if (exist) {
-//     setCartItems(
-//       cartItems.map((x) =>
-//         x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
-//       )
-//     );
-//   } else {
-//     setCartItems([...cartItems, { ...product, qty: 1 }]);
-//   }
-// };
-// const onRemove = (product) => {
-//   const exist = cartItems.find((x) => x.id === product.id);
-//   if (exist.qty === 1) {
-//     setCartItems(cartItems.filter((x) => x.id !== product.id));
-//   } else {
-//     setCartItems(
-//       cartItems.map((x) =>
-//         x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
-//       )
-//     );
-//   }
-// };
-export const getItemList =async event => {
+
+export const getMenuList = async event => {
+  // const headers = {
+  //   'Content-Type': 'application/json',
+  //   'Authorization': accessToken
+  // }
+  const y = localStorage.getItem('event_selected_food')
+  console.log(y,"local")
+
+  console.log("scbn cas")
+  const response = await API.get(`/client/getclientmenu`,
+  {
+    params:{
+      "event_id":101
+    }
+  }
+
+  );
+  console.log("hi")
+  console.log(response.data.menus)
+  return response.data.menus;
+};
+
+
+
+
+export const getItemList = async event => {
   const type1 = "WelcomeDrink"
   const response = await API.get(`client/welcomeitems`);
   console.log("hi")
   console.log(response.data)
   return response.data;
 };
-const steps = ['Welcome drink','last'];
+const steps = ['Welcome drink','Soup','Rice dishes','Vegetable','Chicken','Fish','Dessert', 'last',];
 //const { formId, formField } = checkoutFormModel;
 
-function _renderStepContent(step) {
-  let productss= []
+function _renderStepContent(step,menu) {
+  let productss = []
 
-//  getItemList()
+
+  //  getItemList()
   const [itemList, setItemList] = useState([]);
- // console.log(itemList)
-    useEffect(() => {
+  const [y, sety] = useState(0)
+
+  // console.log(itemList)
+  useEffect(() => {
     getItemList().then(data => {
       console.log(data)
       setItemList(data)
       console.log(itemList)
       // console.log(JSON.parse(data))
-     // const [ItemList, setItemList] = useState(data.menus);
+      // const [ItemList, setItemList] = useState(data.menus);
     }).catch(err => {
       console.log(err.error)
     })
   }, []);
   console.log("hi")
   console.log(itemList)
-  const {products} = data
+  const { products } = data
   const { soups } = SoupData;
   const item = []
   //console.log(soups)
   const [cartItems, setCartItems] = useState([]);
 
-//   useEffect(() => {
-//     getItemList().then(data => {
-//       console.log(data.menus)
-//       productss.push(data.menus)
-//       // console.log(JSON.parse(data))
-//      // const [ItemList, setItemList] = useState(data.menus);
-   
-//       console.log(productss[0][0].id)
-//     }).catch(err => {
-//       console.log(err.error)
-//     })
-//   }, []);
+  const onAddWelcome = (product) => {
+    console.log("welcome has come")
 
-
-//   useEffect(async () => {
-//     //console.log("set");
-//    console.log(itemList);
-//     item.push(itemList)
-//     console.log('hi')
-//   console.log(item[0])
-//   //const  products  = item;
-//   //console.log(products)
-
-//   }, [itemList]);
-//  // console.log(item)
-//   //const  products  = item;
-
-  const onAdd = (product) => {
+    console.log(menu[0])
+   const welcome = menu[0].welcome_drink_count
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
-        )
-      );
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
     } else {
-      setCartItems([...cartItems, { ...product, qty: 1 }]);
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        console.log("bfhrbf")
+      }
+    }
+  };
+  
+  const onAddSoup = (product) => {
+    console.log("soup has cone")
+   const welcome = menu[0].soup
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
+    } else {
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        console.log("bfhrbf")
+      }
+    }
+  };
+  
+  const onAddRice = (product) => {
+    console.log("soup has cone")
+   const welcome = menu[0].rice_dishes
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
+    } else {
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        console.log("bfhrbf")
+      }
+    }
+  };
+  
+  const onAddVegetable = (product) => {
+    console.log("soup has cone")
+   const welcome = menu[0].vegetable_dishes
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
+    } else {
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        console.log("bfhrbf")
+      }
+    }
+  };
+  
+  const onAddChicken = (product) => {
+    console.log("soup has cone")
+   const welcome = menu[0].chicken_dishes
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
+    } else {
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        console.log("bfhrbf")
+      }
+    }
+  };
+  
+  const onAddFish = (product) => {
+    console.log("soup has cone")
+   const welcome = menu[0].fish_dishes
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
+    } else {
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        console.log("bfhrbf")
+      }
     }
   };
 
-  const addToDb = ()=>{
+  
+  const onAddDesserte = (product) => {
+    console.log("soup has cone")
+   const welcome = menu[0].desserts
+  
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
+    } else {
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        console.log("bfhrbf")
+      }
+    }
+  };
+  
+  const onAdd = (product) => {
+    console.log("soup has cone")
+   const welcome = menu[0].welcome_drink_count
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist) {
+
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+      //   )
+      // );
+      console.log("dhbd")
+    } else {
+      //  console.log("fhhf")
+      if (y < welcome) {
+        console.log("fhhfhhgh")
+
+        sety(y + 1)
+        console.log(y)
+        setCartItems([...cartItems, { ...product, qty: 1 }]);
+      }
+      else {
+        alert("fhhfh")
+      }
+    }
+  };
+
+  const addToDb = () => {
 
   };
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
+
     if (exist.qty === 1) {
       setCartItems(cartItems.filter((x) => x.id !== product.id));
     } else {
       setCartItems(
+
         cartItems.map((x) =>
           x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
         )
       );
+
     }
   };
 
-  const handleSubmit = ()=>{
+  const handleSubmit = (x) => {
+    console.log("fhhghhgtnf nfbtgttttttttttttttttt")
     const event_id = 101
     console.log(cartItems)
-    cartItems.map((index,item)=>{
-      const params = {event_id:event_id,food_item_id:index.id}
+    cartItems.map((index, item) => {
+      const params = { event_id: event_id, food_item_id: index.id }
       axios
-      .post("http://localhost:3000/client/addFoodItem",params)
-      .then(res=>{
-        console.log("sucess")
-      })
+        .post("http://localhost:3000/client/addFoodItem", params)
+        .then(res => {
+          console.log("sucess")
+        })
     })
-    // // cartItems.map((index,item)=>{
-    // console.log(cartItems)
-    //   console.log(item.id)
-    //  } )
+
   }
   switch (step) {
-   // console.log(productss[0][0].id)
     case 0:
-       //console.log(item[0])
+    
       return (<React.Fragment>
         <div style={{ float: 'right' }}>
-          <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+          <MDTypography color="warning">{}</MDTypography>
+
+          <MDTypography color="warning"></MDTypography>
         </div>
         <MDBox mt={5} p={2}>
           <Grid container spacing={6}>
-            <Main  products={products[0]} onAdd={onAdd}></Main>
+            <Main products={products[0]} onAdd={onAddWelcome}></Main>
           </Grid>
         </MDBox>
 
@@ -194,154 +379,168 @@ function _renderStepContent(step) {
           onRemove={onRemove}
         ></BasketOne>
       </React.Fragment>);
+    
     case 1:
       return (<div>
         <div style={{ float: 'right' }}>
-          <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+          <MDTypography color="warning">You can select upto maximum </MDTypography>
         </div>
-       
+        <MDBox mt={5} p={2}>
+
+          <Grid container spacing={6}>
+            <Main products={products[1]} onAdd={onAddSoup}></Main>
+          </Grid>
+        </MDBox>
+
+
 
         <BasketOne
           cartItems={cartItems}
           onAdd={onAdd}
           onRemove={onRemove}
         ></BasketOne>
-         <Button
-                         onClick={handleSubmit}
-
-
-                        variant="contained"
-                        color="primary"
-                      /*     className={classes.button} */
-                      >
-                     Complete order
-
-                      </Button>
       </div>);
-    // case 2:
-    //   return (<div>
-    //     <div style={{ float: 'right' }}>
-    //       <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-    //     </div>
-    //     <MDBox mt={5} p={2}>
+    case 2: return (<div>
+      <div style={{ float: 'right' }}>
+        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+      </div>
+      <MDBox mt={5} p={2}>
 
-    //       <Grid container spacing={6}>
-    //         <Main products={itemList} onAdd={onAdd}></Main>
-    //       </Grid>
-    //     </MDBox>
-
-
-
-    //     <BasketOne
-    //       cartItems={cartItems}
-    //       onAdd={onAdd}
-    //       onRemove={onRemove}
-    //     ></BasketOne>
-    //   </div>);
-    // case 3: return (<div>
-    //   <div style={{ float: 'right' }}>
-    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-    //   </div>
-    //   <MDBox mt={5} p={2}>
-
-    //     <Grid container spacing={6}>
-    //       <Main products={products[0]} onAdd={onAdd}></Main>
-    //     </Grid>
-    //   </MDBox>
+        <Grid container spacing={6}>
+          <Main products={products[2]} onAdd={onAddRice}></Main>
+        </Grid>
+      </MDBox>
 
 
 
-    //   <BasketOne
-    //     cartItems={cartItems}
-    //     onAdd={onAdd}
-    //     onRemove={onRemove}
-    //   ></BasketOne>
-    // </div>);
-    // case 4: return (<div>
-    //   <div style={{ float: 'right' }}>
-    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-    //   </div>
-    //   <MDBox mt={5} p={2}>
+      <BasketOne
+        cartItems={cartItems}
+        onAdd={onAdd}
+        onRemove={onRemove}
+      ></BasketOne>
+    </div>);
+    case 3: return (<div>
+      <div style={{ float: 'right' }}>
+        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+      </div>
+      <MDBox mt={5} p={2}>
 
-    //     <Grid container spacing={6}>
-    //       <Main products={products[0]} onAdd={onAdd}></Main>
-    //     </Grid>
-    //   </MDBox>
-
-
-
-    //   <BasketOne
-    //     cartItems={cartItems}
-    //     onAdd={onAdd}
-    //     onRemove={onRemove}
-    //   ></BasketOne>
-    // </div>);
-    // case 5: return (<div>
-    //   <div style={{ float: 'right' }}>
-    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-    //   </div>
-    //   <MDBox mt={5} p={2}>
-
-    //     <Grid container spacing={6}>
-    //       <Main products={products[0]} onAdd={onAdd}></Main>
-    //     </Grid>
-    //   </MDBox>
+        <Grid container spacing={6}>
+          <Main products={products[3]} onAdd={onAddVegetable}></Main>
+        </Grid>
+      </MDBox>
 
 
 
-    //   <BasketOne
-    //     cartItems={cartItems}
-    //     onAdd={onAdd}
-    //     onRemove={onRemove}
-    //   ></BasketOne>
-    // </div>);
-    // case 6: return (<div>
-    //   <div style={{ float: 'right' }}>
-    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-    //   </div>
-    //   <MDBox mt={5} p={2}>
+      <BasketOne
+        cartItems={cartItems}
+        onAdd={onAdd}
+        onRemove={onRemove}
+      ></BasketOne>
+    </div>);
+    case 4: return (<div>
+      <div style={{ float: 'right' }}>
+        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+      </div>
+      <MDBox mt={5} p={2}>
 
-    //     <Grid container spacing={6}>
-    //       <Main products={products[0]} onAdd={onAdd}></Main>
-    //     </Grid>
-    //   </MDBox>
-
-
-
-    //   <BasketOne
-    //     cartItems={cartItems}
-    //     onAdd={onAdd}
-    //     onRemove={onRemove}
-    //   ></BasketOne>
-    // </div>);
-    // case 7: return (<div>
-    //   <div style={{ float: 'right' }}>
-    //     <MDTypography color="warning">You can select upto maximum 3</MDTypography>
-    //   </div>
-    //   <MDBox mt={5} p={2}>
-
-    //     <Grid container spacing={6}>
-    //       <Main products={products[0]} onAdd={onAdd}></Main>
-    //     </Grid>
-    //   </MDBox>
+        <Grid container spacing={6}>
+          <Main products={products[4]} onAdd={onAddChicken}></Main>
+        </Grid>
+      </MDBox>
 
 
 
-    //   <BasketOne
-    //     cartItems={cartItems}
-    //     onAdd={onAdd}
-    //     onRemove={onRemove}
-    //   ></BasketOne>
-    // </div>);
+      <BasketOne
+        cartItems={cartItems}
+        onAdd={onAdd}
+        onRemove={onRemove}
+      ></BasketOne>
+    </div>);
+    case 5: return (<div>
+      <div style={{ float: 'right' }}>
+        <MDTypography color="warning">You can select upto maximum 3</MDTypography>
+      </div>
+      <MDBox mt={5} p={2}>
+
+        <Grid container spacing={6}>
+          <Main products={products[5]} onAdd={onAddFish}></Main>
+        </Grid>
+      </MDBox>
+
+
+
+      <BasketOne
+        cartItems={cartItems}
+        onAdd={onAdd}
+        onRemove={onRemove}
+      ></BasketOne>
+    </div>);
+    case 6: return (<div>
+      <div style={{ float: 'right' }}>
+        <MDTypography color="warning">You can select upto maximum 7</MDTypography>
+      </div>
+      <MDBox mt={5} p={2}>
+
+        <Grid container spacing={6}>
+          {console.log(products[6])}
+          <Main products={products[6]} onAdd={onAddDesserte}></Main>
+        </Grid>
+      </MDBox>
+
+
+
+      <BasketOne
+        cartItems={cartItems}
+        onAdd={onAdd}
+        onRemove={onRemove}
+      ></BasketOne>
+    </div>);
+    case 7:
+      return (<div>
+        <BasketOne
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+        ></BasketOne>
+        <Button
+          onClick={handleSubmit}
+
+
+          variant="contained"
+          color="primary"
+        /*     className={classes.button} */
+        >
+          Complete order
+
+        </Button>
+      </div>);
     default:
       return <div>Not Found</div>;
   }
 }
 
 export default function CheckoutPage() {
+  const [menu, setMenu] = useState([]);
+//  const [welcome, setWelcome] = useState([]);
+
+  useEffect(() => {
+    console.log("hsdbhdc")
+    getMenuList().then(data => {
+      console.log("abzhz a")
+      console.log("dhchhd", data)
+      setMenu(data)
+      console.log(menu)
+      console.log("soupmhgh",menu[0].soup)
+      // console.log(JSON.parse(data))
+      // const [ItemList, setItemList] = useState(data.menus);
+    }).catch(err => {
+      //  console.log(err.error)
+    })
+  }, []);
 
   const [, dispatch] = useMaterialUIController();
-//  const { sales, tasks } = reportsLineChartData;
+  //  const { sales, tasks } = reportsLineChartData;
   useEffect(() => {
     setDirection(dispatch, "client");
 
@@ -380,13 +579,24 @@ export default function CheckoutPage() {
   function _handleBack() {
     setActiveStep(activeStep - 1);
   }
+  const x = [
+    {
+      type: 'shhhd',
+      date: "hdcbh"
+    }
+  ]
 
+  // console.log(myEvent)
+  //console.log("fjnjf",myEvent[0].type)
+  //const zh = localStorage.getItem("myitem")+" - "+localStorage.getItem("date1").split("T")[0] 
+
+  //console.log(zh)
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <React.Fragment>
-        <Typography component="h1" variant="h4" align="center">
-          Checkout
+        <Typography mb={3} component="h1" variant="h4" align="left">
+          Choose your Desired food items for your event
         </Typography>
         <Stepper activeStep={activeStep} /* className={classes.stepper} */>
           {steps.map(label => (
@@ -421,7 +631,7 @@ export default function CheckoutPage() {
             >
               {({ isSubmitting }) => (
                 <Form >
-                  {_renderStepContent(activeStep)}
+                  {_renderStepContent(activeStep,menu)}
 
                   <div /* className={classes.buttons} */>
                     {activeStep !== 0 && (

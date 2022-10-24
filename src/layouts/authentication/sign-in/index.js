@@ -62,6 +62,8 @@ const getItemList = async event => {
   // alert(response.data.data2)
   navigate(response.data.data1)
   localStorage.setItem("id", response.data.data2)
+  localStorage.setItem("id1", response.data.data2)
+
   return response.data.data1
 
 };

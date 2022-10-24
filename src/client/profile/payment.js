@@ -21,6 +21,8 @@ import API from '../../services/baseURL';
 
 function Payment() {
     const [banquets,setBanquets] = useState()
+    
+
   useEffect(async() => {
     API.get(`client/getbanquets`)
       .then(res => {
@@ -66,12 +68,37 @@ let type
 let pax
 
 
-const changeDate = (event)=>{
+const ChangeDate = (event)=>{
   event.preventDefault()
   console.log(event.target.value)
   date=event.target.value
  // setDate(event.target.value)
     console.log("date",date)
+
+    
+    //const [banquets,setBanquets] = useState()
+  
+    API.get(`client/getbanquetsDate`,{
+      params:{
+        date:date
+      }
+    })
+      .then(res => {
+        console.log("dcnjf",res.data.menus)
+        setBanquets(res.data.menus?res.data.menus.map((item) => {
+            return {
+              'value' : item.banquet_id,
+              'label' : <p> {item.name}</p>
+            }
+        
+        }
+        ):console.log("sjjsj"))
+      console.log("Your new array of modified objects here")
+    })
+    .catch(err => { console.log('Google api calendar error', err) })
+
+    console.log("jejjd")
+
   
 }
 
@@ -84,7 +111,30 @@ const changeBanquets = (event)=>{
     console.log(event.value)
     banquet=event.value
     console.log(banquet)
+
+  //   const [banquets,setBanquets] = useState()
+  // useEffect(async() => {
+  //   API.get(`client/getbanquetsDate`,{
+  //     params:{
+
+  //     }
+  //   })
+  //     .then(res => {
+  //       console.log("dcnjf",res.data.menus)
+  //       setBanquets(res.data.menus?res.data.menus.map((item) => {
+  //           return {
+  //             'value' : item.banquet_id,
+  //             'label' : <p> {item.name}</p>
+  //           }
+        
+  //       }
+  //       ):console.log("sjjsj"))
+  //     console.log("Your new array of modified objects here")
+  //   })
+  //   .catch(err => { console.log('Google api calendar error', err) })
+  // }, [])
 }
+const [isDisabled, setIsDisabled] = useState(false);
 
 const changeType = (event)=>{
  // event.preventDefault()
@@ -94,10 +144,19 @@ const changeType = (event)=>{
 }
 
 const changePax = (event)=>{
-  //event.preventDefault()
+  event.preventDefault()
+
+  if(event.target.value<500){
     console.log(event)
     pax=event.target.value
     console.log("pax",pax)
+  }
+  else{
+   // event.preventDefault()
+setIsDisabled(!isDisabled)
+    //event.stopPropagation()
+    console.log("hfbvfv")
+  }
 }
 //const [] = useState()
 
@@ -128,6 +187,7 @@ async function handleToken(token, addresses) {
     
    }
 
+   const [xh,setx]=useState("")
   return (
 <MDBox mt={4.5}>
         <Grid container spacing={3}>
@@ -135,7 +195,7 @@ async function handleToken(token, addresses) {
         <MDTypography>Add New Event</MDTypography>
         
       <FormControl sx={{ m: 1 }} variant="standard">
-      <MDInput  onChange={changeDate} htmlFor="demo-customized-textbox" type="date" label="" value={date} />
+      <MDInput  onChange={ChangeDate} htmlFor="demo-customized-textbox" type="date" label="" value={date} />
       <MDBox mt={3} mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={12}>
@@ -147,7 +207,8 @@ async function handleToken(token, addresses) {
           </Grid>
         </MDBox >
      
-        <MDInput onChange={changePax} htmlFor="demo-customized-textbox" type="text" label="pax" value={pax} />
+        <MDInput required disabled={isDisabled} onChange={changePax} htmlFor="demo-customized-textbox" type="text" label="pax" value={pax} />
+        <MDTypography></MDTypography>
        
         <StripeCheckout
              stripeKey="pk_test_51LgXJdSDmFBknNFOqB2kq2HzScVWiF4IKKH8fNHQDPLbhwQbhgvfPCibmDR8tH0YlkZuZAkzb0wnboLGVIdPAOg600hRJpjBTp"

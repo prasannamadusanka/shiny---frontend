@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Dashboard 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
 import * as React from 'react';
 import Grid from "@mui/material/Grid";
@@ -122,8 +107,10 @@ function PricePlan() {
         menu_id: menu1
       }
     })
+    const myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port).split("/s/")[0];
+
     setOpen(false);
-    alert("you have selected menu as " + menu1)
+    window.location.href = myUrl + '/' + 'client' + '/' + 'menu'+ '/' + 'menuselction';
   };
 
 
@@ -140,52 +127,45 @@ function PricePlan() {
     })
   }, []);
   //console.log(menu.menu_id)
-  menu.map(
-    (item, index) => {
-      console.log(item.menu_id)
-    }
-  )
-  const x = {
-    type: "dhhjfd",
-    date: "gfheghf"
-  }
+  
+
   const [myEvent, setMyEvent] = useState([]);
 
 
-  useEffect(() => {
-    API.get(`client/getEvent`, {
-      params: {
-        event_id: localStorage.getItem('event_selected_food')
-      }
-    })
-      // .then(res => {
-      //   // setMyEvent(res.data.menus?res.data.menus:x)
-      //   console.log("fff")
-      //   console.log(myEvent)
-      //   res.data.menu ? setMyEvent(res.data.menu) : setMyEvent(x)
-      //   console.log("prafcfa", res.data.menus)
-      //   // console.log("Your new array of modified objects here", data1)
-      // })
-      .then(res => {
-        setMyEvent(res.data.menus ? res.data.menus.map((item) => {
-          return {
-            'type': item.type,
-            'date': item.date
-          }
-        }
-        ) : console.log("sjjsj"))
-        console.log(myEvent)
-      }).catch(err => {
+  // useEffect(() => {
+  //   API.get(`client/getEvent`, {
+  //     params: {
+  //       event_id: localStorage.getItem('event_selected_food')
+  //     }
+  //   })
+  //     // .then(res => {
+  //     //   // setMyEvent(res.data.menus?res.data.menus:x)
+  //     //   console.log("fff")
+  //     //   console.log(myEvent)
+  //     //   res.data.menu ? setMyEvent(res.data.menu) : setMyEvent(x)
+  //     //   console.log("prafcfa", res.data.menus)
+  //     //   // console.log("Your new array of modified objects here", data1)
+  //     // })
+  //     .then(res => {
+  //       setMyEvent(res.data.menus ? res.data.menus.map((item) => {
+  //         return {
+  //           'type': item.type,
+  //           'date': item.date
+  //         }
+  //       }
+  //       ) : console.log("sjjsj"))
+  //       console.log(myEvent)
+  //     }).catch(err => {
 
-      })
-  }, []);
+  //     })
+  // // }, []);
 
-  console.log("hjjdfjf", myEvent)
-  useEffect(async () => {
-    console.log("fa")
-    console.log(myEvent)
-  }, [myEvent]);
-  console.log(myEvent)
+  // console.log("hjjdfjf", myEvent)
+  // useEffect(async () => {
+  //   console.log("fa")
+  //   console.log(myEvent)
+  // }, [myEvent]);
+  // console.log(myEvent)
   // const neMyEvent = myEvent[0].type + "event - " + myEvent[0].date
   // console.log(neMyEvent)
   return (
@@ -214,13 +194,11 @@ function PricePlan() {
           </Button>
         </Box>
         <MDBox mt={3}>
-
           <MDButton variant="contained" color="warning">
             Food Items
             &nbsp;
             <Icon>store</Icon>
           </MDButton>
-
           <MDButton variant="contained" color="warning" style={{ float: 'right' }}>
             Price Plan&nbsp;
             <Icon>add_shopping_cart</Icon></MDButton>
@@ -229,7 +207,7 @@ function PricePlan() {
      */}
       <Stack>
         <MDTypography >First Step - Select your desired wedding plan</MDTypography>
-        <MDTypography >{}</MDTypography>
+        <MDTypography ></MDTypography>
 
       </Stack>
       <PricingTable highlightColor='#1976D2'>
@@ -240,16 +218,16 @@ function PricePlan() {
             return (
 
               // console.log(item.menu_id)
-              <PricingSlot highlighted buttonText='select as menu' title={item.name} priceText={item.rate} onClick={() => { handleClickOpen(item.menu_id) }}>
-                <PricingDetail> <b>Choose {item.welcome_drink_count}</b> Welcome Drink</PricingDetail>
-                <PricingDetail> <b>Choose {item.salad}</b> Salad</PricingDetail>
-                <PricingDetail> <b>Choose {item.rice_dishes}</b> Rice Dishes</PricingDetail>
-                <PricingDetail> <b>Choose {item.noodles_pasta}</b> Noodles/Pasta dishes	</PricingDetail>
-                <PricingDetail> <b>Choose {item.vegetable_dishes}</b> Vegetable dishes	</PricingDetail>
-                <PricingDetail> <b>Choose {item.chicken_dishes}</b> Chicken dishes	</PricingDetail>
-                <PricingDetail> <b>Choose {item.fish_dishes}</b> Fish dishes	</PricingDetail>
-                <PricingDetail> <b>Choose {item.pork_dishes}</b> Pork dishes	</PricingDetail>
-                <PricingDetail> <b>choose {item.desserts}</b> Desserts</PricingDetail>
+              <PricingSlot highlighted buttonText='select as menu' title={item.name} priceText={item.rate.toString()} onClick={() => { handleClickOpen(item.menu_id) }}>
+                <PricingDetail> <b>Choose </b> Welcome Drink</PricingDetail>
+                <PricingDetail> <b>Choose {item.salad.toString()}</b> Salad</PricingDetail>
+                <PricingDetail> <b>Choose {item.rice_dishes.toString()}</b> Rice Dishes</PricingDetail>
+                <PricingDetail> <b>Choose {item.noodles_pasta.toString()}</b> Noodles/Pasta dishes	</PricingDetail>
+                <PricingDetail> <b>Choose {item.vegetable_dishes.toString()}</b> Vegetable dishes	</PricingDetail>
+                <PricingDetail> <b>Choose {item.chicken_dishes.toString()}</b> Chicken dishes	</PricingDetail>
+                <PricingDetail> <b>Choose {item.fish_dishes.toString()}</b> Fish dishes	</PricingDetail>
+                <PricingDetail> <b>Choose {item.pork_dishes.toString()}</b> Pork dishes	</PricingDetail>
+                <PricingDetail> <b>choose {item.desserts.toString()}</b> Desserts</PricingDetail>
               </PricingSlot>
             );
 

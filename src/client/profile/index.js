@@ -56,20 +56,76 @@ import team4 from "assets/images/team-4.jpg";
 import TasksData from "./TasksData";
 
 import Payment from "./payment"
+import API from '../../services/baseURL';
 
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+
+
+export const getMenuList = async event => {
+  console.log("dnb")
+  const id = localStorage.getItem('id')
+  console.log(id, "local")
+
+  console.log("scbn cas")
+  const response = await API.get(`client/getuser`,
+    {
+      params: {
+        "user_id": id
+      }
+    }
+
+
+  );
+  console.log("hdvhdv", response)
+  return response.data;
+};
+
+
 
 function Overview() {
   const { columns: pColumns, rows: pRows } = TasksData();
+  const [itemList, setItemList] = useState([]);
+
 
   const [, dispatch] = useMaterialUIController();
- // const { sales, tasks } = reportsLineChartData;
+  // const { sales, tasks } = reportsLineChartData;
   useEffect(() => {
     setDirection(dispatch, "client");
 
     return () => setDirection(dispatch, "ltr");
   }, []);
+
+
+  useEffect(() => {
+    console.log("dhdbf---------------------------")
+    getMenuList().then(data => {
+      console.log(data)
+      setItemList(data.menus[0])
+      console.log("nnssdjnd", itemList)
+      // console.log(JSON.parse(data))
+      // const [ItemList, setItemList] = useState(data.menus);
+    }).catch(err => {
+      console.log(err.error)
+    })
+
+  }, []);
+  console.log("hi")
+  console.log("jnjv", itemList.user_id)
+  //const { products } = data
+  // const { soups } = SoupData;
+  const item = []
+  //console.log(soups)
+  const [cartItems, setCartItems] = useState([]);
+  const [y, setY] = useState(itemList.name)
+  console.log("djbfdj", y)
+  const yf={
+    'fullN':itemList.name,
+    'mobile':itemList.contact_number,
+    'email': itemList.email,
+    'location': "Hikkaduwa",
+  }
 
   return (
     <DashboardLayout>
@@ -78,17 +134,20 @@ function Overview() {
       <Header>
         <MDBox mt={5} mb={3}>
           <Grid container spacing={1}>
-          <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
+            <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
               <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
               <ProfileInfoCard
                 title="profile information"
                 description=""
-                info={{
-                  fullN: "Sumanasiri Fernado",
-                  mobile: "(44) 123 1234 123",
-                  email: "alecthompson@mail.com",
-                  location: "Hikkaduwa",
-                }}
+                info={
+                  yf
+                }
+                // info={{
+                //   fullN: `Maadhuni Tharukshi`,
+                //   mobile: "0768867295",
+                //   email: "alecthompson@mail.com",
+                //   location: "Hikkaduwa",
+                // }}
                 social={[
                   {
                     link: "https://www.facebook.com/CreativeTim/",
@@ -120,7 +179,7 @@ function Overview() {
                   TotalAmount: "Rs.350000.00",
                   ToatalAdvance: "Rs.50000.00",
                   RemainingAmount: "Rs.60000.00",
-                  
+
                 }}
                 social={[
                   {
@@ -150,15 +209,15 @@ function Overview() {
             </Grid>
           </Grid>
         </MDBox>
-        <MDBox mt={2}pt={2} px={2} lineHeight={1.25}>
+        <MDBox mt={2} pt={2} px={2} lineHeight={1.25}>
           <MDTypography variant="h4">Decorate Your Event</MDTypography>
-      {  <DataTable
-                  table={{ columns: pColumns, rows: pRows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={true}
-                  noEndBorder
-                />  }
+          {<DataTable
+            table={{ columns: pColumns, rows: pRows }}
+            isSorted={false}
+            entriesPerPage={false}
+            showTotalEntries={true}
+            noEndBorder
+          />}
         </MDBox>
       </Header>
       <Footer />
