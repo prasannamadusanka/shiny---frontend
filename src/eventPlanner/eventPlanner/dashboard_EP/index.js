@@ -35,50 +35,31 @@ import { Card, ImageList, ImageListItem } from "@mui/material";
 //calendar
 import { Calendar } from "react-calendar";
 
-//images
-import dashboard1 from "assets/images/eventplanner/dashboard1.jpg";
-import dashboard2 from "assets/images/eventplanner/dashboard2.jpg";
-import dashboard3 from "assets/images/eventplanner/dashboard3.jpg";
+//
+import Header from "eventPlanner/dashboard_EP/components/Header";
+
+//
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 
 function Dashboard() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "eventPlanner");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
   
   //for calendar
   const [date, setDate] = useState(new Date());
 
-  const images = [
-
-    {
-       img: dashboard1,
-       title: 'Tomato basil',
-     },
-     {
-       img: dashboard2,
-       title: 'Sea star',
-     },
-     {
-       img: dashboard3,
-       title: 'Bike',
-     },
-  ];
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox py={3}>
-      <MDBox mb={3}>
-        <ImageList sx={{ width: 1140, height: 160 }} cols={3} rowHeight={164}>
-          {images.map((item) => (
-            <ImageListItem key={item.img}>
-              <img
-                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                alt={item.title}
-                loading="lazy"
-              />
-            </ImageListItem>
-          ))}
-        </ImageList>
-        </MDBox>
+      <Header>
+      <MDBox py={3} mt={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
             <MDBox mb={1.5}>
@@ -203,6 +184,7 @@ function Dashboard() {
           </Grid>
         </MDBox>
       </MDBox>
+      </Header>
       <Footer />
     </DashboardLayout>
   );

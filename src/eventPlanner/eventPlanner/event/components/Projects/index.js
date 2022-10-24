@@ -24,6 +24,8 @@ import MenuItem from "@mui/material/MenuItem";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+import MDProgress from "components/MDProgress";
+import MDButton from "components/MDButton";
 
 // Material Dashboard 2 React examples
 import DataTable from "examples/Tables/DataTable";
@@ -64,28 +66,12 @@ function Projects() {
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
           <MDTypography variant="h6"  gutterBottom>
-            Tuesday 8th July
+            Event Schedule
           </MDTypography>
-          <MDBox display="flex" alignItems="center" lineHeight={0}>
-            <Icon
-              sx={{
-                fontWeight: "bold",
-                color: ({ palette: { info } }) => info.main,
-                mt: -0.5,
-              }}
-            >
-            </Icon>
-            <MDTypography variant="button" fontWeight="regular" color="text">
-              
-            </MDTypography>
+          <MDBox ml={0.5} width="32rem">
+            <MDProgress variant="gradient" color="success" value="50" />
           </MDBox>
         </MDBox>
-        <MDBox color="text" px={2}>
-          <Icon sx={{ cursor: "pointer", fontWeight: "bold" }} fontSize="small" onClick={openMenu}>
-            more_vert
-          </Icon>
-        </MDBox>
-        {renderMenu}
       </MDBox>
       <MDBox>
         <DataTable
@@ -95,6 +81,9 @@ function Projects() {
           noEndBorder
           entriesPerPage={false}
         />
+        <MDButton variant="contained" color="info" size="medium" fullwidth>
+          Send
+        </MDButton>
       </MDBox>
     </Card>
   );

@@ -31,22 +31,35 @@ import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import ProfilesList from "examples/Lists/ProfilesList";
 
 // Overview page components
-import Header from "chef/event/components/Header";
-import Projects from "chef/event/components/Projects";
+import Header from "eventPlanner/event/components/Header";
+import EventSchedule from "eventPlanner/event/components/Projects";
 
 // Data
-import Item from "chef/event/components/items";
+import Item from "eventPlanner/event/components/items";
 //calender
-import OrdersOverview from "chef/event/components/Calender";
+import OrdersOverview from "eventPlanner/event/components/Calender";
 
 // Data
-import profilesListData from "chef/event/components/serviceproviders";
+import profilesListData from "eventPlanner/event/components/serviceproviders";
+
+//
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 function event() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "eventPlanner");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
+
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
-        <MDBox mt={5}>
+        <MDBox mt={3}>
           <Grid container spacing={3}>
             {/* <Grid item xs={12} md={6} lg={6}>
               <OrdersOverview/>
@@ -85,8 +98,8 @@ function event() {
               {/* <MDBox sx={{ width: "50%" }} ml={2} mr={5} >
                 <Item />
               </MDBox>  */}
-              <MDBox sx={{ width: "50%" }}> 
-                <Projects />
+              <MDBox sx={{ width: "70%" }} fullwidth> 
+                <EventSchedule />
               </MDBox>
             </Grid>
           </Grid>

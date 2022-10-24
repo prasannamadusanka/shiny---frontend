@@ -21,9 +21,13 @@ import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
 import MDProgress from "components/MDProgress";
+import MDButton from "components/MDButton";
 
-// Images
+import Icon from "@mui/material/Icon";
 
+import Checkbox from '@mui/material/Checkbox';
+
+import React, { useState } from 'react';
 
 
 
@@ -53,87 +57,49 @@ export default function data() {
       </Tooltip>
     ));
 
-  const Company = ({ image, name }) => (
-    <MDBox display="flex" alignItems="left" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
-      <MDTypography variant="button" fontWeight="medium" ml={1} lineHeight={1}>
-        {name}
-      </MDTypography>
-    </MDBox>
-  );
 
   return {
     columns: [
-      { Header: "Time", accessor: "companies", width: "45%", align: "center" },
-      { Header: "description", accessor: "budget", align: "center" },
+      { Header: "completion", accessor: "completion", align: "center" },
+      { Header: "description", accessor: "description", align: "center" },
+      { Header: "start", accessor: "start", align: "center" },
+      { Header: "end", accessor: "end", align: "center" },
+      { Header: "", accessor: "minus", align: "center" },
+      { Header: "", accessor: "add", align: "center" },
       
     ],
 
     rows: [
       {
-        companies: <Company  name="8.00 a.m. - 9.00 a.m." />,
-        
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
+        completion: (
+          <Checkbox />
+        ),
+        description: (
+          <MDTypography variant="caption" color="text" fontWeight="medium" >
             Welcome
           </MDTypography>
         ),
-        
-      },
-      {
-        companies: <Company  name="9.00 a.m. - 10.00 a.m." />,
-        
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Poruwa Ceremony
+        start: (
+          <MDTypography variant="caption" color="text" fontWeight="medium" >
+            08.00AM
           </MDTypography>
         ),
-        completion: (
-          <MDBox width="8rem" textAlign="left">
-            <MDProgress value={10} color="info" variant="gradient" label={false} />
-          </MDBox>
-        ),
-      },
-      {
-        companies: <Company  name="10.00 a.m. - 11.00 a.m." />,
-        
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Dancing Item
+        end: (
+          <MDTypography variant="caption" color="text" fontWeight="medium" >
+            08.00AM
           </MDTypography>
         ),
-        
-      },
-      {
-        companies: <Company  name="11.00 a.m. - 12.30 p.m." />,
-       
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Welcome Invitors
-          </MDTypography>
+        minus: (
+          <MDButton variant="gradient" color="error" iconOnly >
+            <Icon>close</Icon>
+          </MDButton>
         ),
-       
-      },
-      {
-        companies: <Company  name="12.30 p.m. - 3.30 p.m." />,
-        
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Lunch
-          </MDTypography>
+        add: (
+          <MDButton variant="gradient" color="success" iconOnly >
+            <Icon>add</Icon>
+          </MDButton>
         ),
-        
-      },
-      {
-        companies: <Company  name="3.30 p.m. - 4.00 p.m." />,
-        
-        budget: (
-          <MDTypography variant="caption" color="text" fontWeight="medium">
-            Second Dance Item
-          </MDTypography>
-        ),
-        
-      },
+      }
     ],
   };
 }
