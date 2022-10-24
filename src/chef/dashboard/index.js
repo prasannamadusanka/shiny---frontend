@@ -35,6 +35,8 @@ import ProfileInfoCard2 from "examples/Cards/InfoCards/ProfileInfoCard2";
 import { Calendar } from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 
+// import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
@@ -50,15 +52,24 @@ import { useMaterialUIController, setDirection } from "context";
 
 //
 import API from '../../services/baseURL';
+import { id } from "date-fns/locale";
 
+function DateReturn(date){
+  const today = date;
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth()+1; // Months start at 0
+  let dd = today.getDate();
 
+  const formattedDay = yyyy + '-' + mm + '-' + dd;
+  return formattedDay
+}
 
 
 
 export const getevent = async event => {
   var passingdate = "2022-08-17";
   //var params={date:passingdate}
-  const response = await API.get('chef/view_event_general',{params:{"date":"2022-08-17"}});
+  const response = await API.get('chef/view_event_general',{params:{"date":"2022-10-23"}});
   //const response = await API.get('chef/view_event_general');
   console.log(response.data.general_event)
   return response.data.general_event;
@@ -140,10 +151,17 @@ function Dashboard() {
   }, []);
 
 
+  let passeventid = (event_id) => {
+    console.log("event id")
+    console.log(event_id)
+  }
+
+
 
 
   //for calendar
   const [date, setDate] = useState(new Date());
+  // console.log("vgfz",date)
 
   // console.log(generalevent.general_event)
 
@@ -242,9 +260,12 @@ function Dashboard() {
             <Grid item xs={12} md={6} lg={6}>
               <Card>
                 <p className='text-center'>
-                  <span className='bold'>Selected Date:</span>{' '} {date.toISOString()}
+                <span className='bold'>Selected Date:</span>{' '} {DateReturn(date)}
+                  {/* <span className='bold'>Selected Date:</span>{' '} {date.toISOString()} */}
                 </p>
                 <Calendar onChange={setDate} value={date}/>
+
+                {/* <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} /> */}
                 
               </Card>
             </Grid>
@@ -265,16 +286,17 @@ function Dashboard() {
                       startTime: item.start_time,
                       endTime: item.end_time,
                       date:item.date,
+                      id:item.event_id,
                     }}
-                    action={{ route: "/chef/eventchef", tooltip: "Goto Event" }}
+                    action={{ route: "/chef/eventchef", tooltip: "Goto Event", onClick:() => passeventid(item.event_id) }}
                     shadow={false}
                   />
                 </MDBox>
               </Grid>
                 );
-               
+              
               })}
-                
+
               {/* <Grid item xs={12}>
                 <MDBox mt={3.5} ml={2}>
                   <ProfileInfoCard

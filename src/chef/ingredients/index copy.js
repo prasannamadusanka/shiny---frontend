@@ -26,25 +26,6 @@ import { useEffect, useState } from "react";
 import axios from 'axios'
 import API from '../../services/baseURL';
 
-//table
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-
-
-//images
-import orange from "assets/images/chef/orange.jpg";
-
-export const getfruittable = async event => {
-  const response = await API.get('chef/view_ingredients');
-  console.log(response.data.ingredients)
-  return response.data.ingredients;
-};
-
 
 
 export default function Ingredients () {
@@ -79,40 +60,6 @@ export default function Ingredients () {
     .catch(err => { console.log('Google api calendar error', err) })
   }, [])
   console.log(data);
-
-  const [fruits, setfruits] = useState([
-    { name: "", type_id: "", stock: "", pending_qty: "", ordered_date: "", description: "", status: "", },
-  ]);
-  useEffect(() => {
-    getfruittable()
-      .then((data) => {
-        console.log(fruits);
-        console.log(data);
-        setfruits(data);
-        console.log(fruits);
-      })
-      .catch((err) => {
-        
-      }); 
-  }, []);
-
-
-
-
-
-  const Fruit = ({ image, name, descriptionn }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
-      <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
-        <MDTypography variant="caption">{description}</MDTypography>
-      </MDBox>
-    </MDBox>
-  );
-
-
   //
 
   
@@ -172,55 +119,14 @@ export default function Ingredients () {
                   </MDTypography>
                 </MDBox>
                 <MDBox pt={3}>
-                  {/* <DataTable
+                  <DataTable
                     canSearch
                     table={{ columns: pColumns, rows: pRows }}
                     isSorted={false}
                     entriesPerPage={true}
                     showTotalEntries={true}
                     noEndBorder
-                  /> */}
-                  <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 0 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="left">Name</TableCell>
-            <TableCell align="left">Stock</TableCell>
-            <TableCell align="left">Status</TableCell>
-            <TableCell align="left">Ordered date</TableCell>
-            <TableCell align="left">Pending qty</TableCell>
-            <TableCell align="left">.......</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {fruits?.map((item) => (
-            <TableRow
-              // key={item.event_id}
-              // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell align="left">
-                {item.name}
-              </TableCell>
-              <TableCell align="left" >
-                {item.stock}
-              </TableCell>
-              <TableCell align="left" >
-                {item.status}
-              </TableCell>
-              <TableCell align="left" >
-                {item.ordered_date}
-              </TableCell>
-              <TableCell align="left" >
-                {item.pending_qty}
-              </TableCell>
-              <TableCell align="left" >
-                remove
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                  />
                 </MDBox>
               </Card>
             </Grid>
@@ -251,64 +157,6 @@ export default function Ingredients () {
                     noEndBorder
                   />
                 </MDBox>
-
-
-
-
-
-
-
-                <MDBox>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 0 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="left">Name</TableCell>
-            <TableCell align="left">Stock</TableCell>
-            <TableCell align="left">Status</TableCell>
-            <TableCell align="left">Ordered date</TableCell>
-            <TableCell align="left">Pending qty</TableCell>
-            <TableCell align="left">.......</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {fruits?.map((item) => (
-            <TableRow
-              // key={item.event_id}
-              // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell align="left">
-                {item.name}
-              </TableCell>
-              <TableCell align="left" >
-                {item.stock}
-              </TableCell>
-              <TableCell align="left" >
-                {item.status}
-              </TableCell>
-              <TableCell align="left" >
-                {item.ordered_date}
-              </TableCell>
-              <TableCell align="left" >
-                {item.pending_qty}
-              </TableCell>
-              <TableCell align="left" >
-                remove
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-                </MDBox>
-
-
-
-
-
-
-
-
               </Card>
             </Grid>
           </Grid>

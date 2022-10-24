@@ -46,7 +46,9 @@ export default function data() {
 
 
 
-  const [ingredient, setingredient] = useState([]);
+  const [ingredient, setingredient] = useState([
+    { name: "", type_id: "", stock: "", pending_qty: "", ordered_date: "", description: "", status: "", },
+  ]);
   useEffect(() => {
     getIngredients().then(data => {
       console.log(data)

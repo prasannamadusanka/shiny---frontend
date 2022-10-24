@@ -106,6 +106,7 @@ function event() {
                   menu: item.menu_name,
                   startTime: item.start_time,
                   endTime: item.end_time,
+                  id:item.event_id,
                 }}
                 action={{ route: "", tooltip: "" }}
                 shadow={false}

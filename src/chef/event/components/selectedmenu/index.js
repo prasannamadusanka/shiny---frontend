@@ -41,7 +41,7 @@ export const getIngredientlist = async event => {
 
 
 
-function Item() {
+function Selectedmenu() {
 
 
   const [ingredient_list, setingredient_list] = useState([]);

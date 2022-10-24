@@ -68,6 +68,11 @@ function CreateRecepesNext() {
   let handleSubmit = (event) => {
     event.preventDefault();
     alert(JSON.stringify(formValues));
+    for(var i=0;i<JSON.stringify(formValues).length;i++){
+      //food item
+      var params={name:JSON.stringify(formValues[i].name), type:JSON.stringify(formValues[i].event)}
+    }
+
     axios
           .post("http://localhost:3000/chef/insert_create_recepe_next",formValues)
           .then(res=>{
@@ -149,7 +154,7 @@ function CreateRecepesNext() {
                           <MDTypography variant="h6" fontWeight="medium" mb={2}>
                             Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           </MDTypography>
-                          <MDInput type="url" name="image" value={element.image || "no image"} label="Image URL"  borderLeft={"2"} sx={{ width: "86%" }} onChange={e => handleChange(index, e)} />
+                          <MDInput type="url" name="image" value={element.image || ""} label="Image URL"  borderLeft={"2"} sx={{ width: "86%" }} onChange={e => handleChange(index, e)} />
                         </MDBox>
                         <MDBox mt={2} mb={5} sx={{ width: "100%" }}>
                             <MDTypography variant="h6" fontWeight="medium" mb={2}>
