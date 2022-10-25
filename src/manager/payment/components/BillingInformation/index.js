@@ -15,15 +15,49 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Card from "@mui/material/Card";
-
+import { useState, useEffect } from "react";
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
 // Billing page components
-import Bill from "layouts/payment/components/Bill";
+import Bill from "manager/payment/components/Bill";
+import { useMaterialUIController, setDirection } from "context";
+
+import API from "../../../../services/baseURL";
+
+
+export const getnewpay = async pay => {
+  const paynow = await API.get('manager/view_paid_invoice');
+  console.log(response.data.invoices);
+  return response.data.invoices;
+};
+
+
+
+
 
 function BillingInformation() {
+
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "manager");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
+
+  const [newpay, setevent] = useState([{ event_id: "", invoice_id: "", total_amount: ""},]);
+  useEffect(() => {
+    getnewpay().then(data => {
+      console.log(data)
+      setevent(data)
+        console.log(newpay)
+    }).catch(err => {
+      
+    })
+  }, []);
+
   return (
     <Card id="delete-account">
       <MDBox pt={3} px={2}>
@@ -33,24 +67,16 @@ function BillingInformation() {
       </MDBox>
       <MDBox pt={1} pb={2} px={2}>
         <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-          <Bill
-            name="Nilkamal Dancing Group"
-            amount="LKR 11,999"
-            event="12"
-            date="2022-07-11"
-          />
-          <Bill
-             name="Nilkamal Dancing Group"
-             amount="LKR 51,250"
-             event="45"
-             date="2022-07-10"
-          />
-          <Bill
-            name="Nilkamal Dancing Group"
-            amount="LKR 12,000"
-            event="47"
-            date="2022-07-05"
-          />
+        {newpay?.map(function (item) {
+          //return (
+            <Bill
+              name={item.event_id}
+              amount={item.total_amount}
+              event={item.invoice_id}
+              date="2022-07-11" />
+          //);
+        })}
+         
         </MDBox>
       </MDBox>
     </Card>

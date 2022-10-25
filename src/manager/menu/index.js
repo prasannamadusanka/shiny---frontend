@@ -41,9 +41,35 @@ import Proj from "manager/menu/components/Proj";
 import Header from "manager/menu/components/Header";
 //import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 //import Calender from "layouts/dashboard/components/calender";
+import { useState, useEffect } from "react";
+
+// Data
+import authorsTableData from "manager/expence/components/data";
 
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+//forms
+import FormControl from '@mui/material/FormControl';
+//import { Card, FormHelperText, Input, InputLabel } from "@mui/material";
+
+
+import { Link } from "react-router-dom";
+
+import Select from 'react-select';
+
+
+
+
+import axios from 'axios';
+
+
+
+export const getMenuList =async event => {
+  
+  const response = await API.get(`manager/view_menus`);
+  console.log("hi")
+  console.log(response.data.menu)
+  return response.data.menu;
+};
 
 function Dashboard() {
   const [, dispatch] = useMaterialUIController();
@@ -54,10 +80,26 @@ function Dashboard() {
     return () => setDirection(dispatch, "ltr");
   }, []);
 
+
+  const [formValues, setFormValues] = useState([{ name: "", quantity  : ""}])
+
+  let handleSubmit = (event) => {
+    event.preventDefault();
+    alert(JSON.stringify(formValues));
+  }
+  let addFormFields = () => {
+    setFormValues([...formValues, { name: "", quantity: "" }])
+  }
+  let removeFormFields = (i) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues)
+  }
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pt={6} pb={3}>
+      <MDBox pt={8} pb={5}>
       <Grid container spacing={6}>
       <Grid item xs={12}>
         <Card>
@@ -75,21 +117,58 @@ function Dashboard() {
                   Create New Menu
                 </MDTypography>
               </MDBox>
-      <MDBox pt={3}>
-      <MDInput type="text" label="Menu Name" value="" />
-      
-      </MDBox>
-      <MDBox pt={3}>
-      <MDInput type="text" label="Food" value="" />
-      <MDInput type="number" label="quantity" value="" />
-      <MDButton variant="gradient" color="dark"  iconOnly>
-      
-  <Icon>add</Icon>
-        </MDButton>
-      </MDBox>
-      <MDBox pt={3}>
-      <MDButton variant="gradient" color="dark" size="medium">Done</MDButton>
-      </MDBox>
+              <form  onSubmit={handleSubmit}>
+                <MDBox mt={5} ml={5}>
+                    
+                  
+                    
+                  <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
+                    <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84} pt={2} pl={0.25}>
+                      New Expense
+                    </MDTypography>
+                    <MDButton variant="gradient" color="dark" >
+                      <Icon sx={{ fontWeight: "bold" }} onClick={() => addFormFields()}>add</Icon>
+                    </MDButton>
+                  </MDBox>
+                  {formValues.map((element, index) => (
+                  <Grid item xs={12} display='flex'mt={2}>
+                    <MDBox sx={{ width: "75%" }}>
+                    <MDInput type="text" name="Description" value={element.name || ""} label="Description"  sx={{ width: "78%" }} onChange={e => handleChange(index, e)}></MDInput>
+                      {/* <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput> */}
+                    </MDBox>
+                    <MDBox sx={{ width: "45%" }}>
+                    <MDInput type="text" name="Description" value={element.name || ""} label="Description"  sx={{ width: "78%" }} onChange={e => handleChange(index, e)}></MDInput>
+                      {/* <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput> */}
+                    </MDBox>
+                    <MDBox sx={{ width: "25%" }} ml={3}>
+                      <MDInput type="number" name="quantity" value={element.quantity || ""} label="quantity" sx={{ width: "90%" }}></MDInput>
+                    </MDBox>
+                    <MDBox sx={{ width: "15%" }} mr={3}>
+                      
+                    </MDBox>
+                    <MDButton variant="gradient" color="secondary" >
+                      <Icon sx={{ fontWeight: "bold" }} onClick={() => removeFormFields(index)}>remove</Icon>
+                    </MDButton>
+                  </Grid>
+                  ))}
+                  
+                 
+                  <Link to="">
+                    <MDButton label= "submit" variant="gradient" color="info">
+                        &nbsp;submit
+                    </MDButton>
+                  </Link>
+                  {/* <MDBox mt={5} ml={5}>
+                  <FormControl size="medium">
+                    <InputLabel htmlFor="my-input">Name</InputLabel>
+                    <Input id="my-input" aria-describedby="my-helper-text" />
+                    <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+                  </FormControl>
+                  </MDBox> */}
+                </MDBox>
+                </form>
+    
+    
       </Card>
       </Grid>
       </Grid>

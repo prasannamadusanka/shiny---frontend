@@ -81,16 +81,37 @@ export const getMenuList = async event => {
   console.log("hdvhdv", response)
   return response.data;
 };
+export const getBalances = async event => {
+  console.log("dnb")
+  const id = localStorage.getItem('id')
+  console.log(id, "local")
+
+  console.log("scbn cas")
+  const response = await API.get(`client/total`,
+    {
+      params: {
+        "user_id": id
+      }
+    }
+
+
+  );
+  console.log("scbn cxxvchdccdcdcdcas")
+
+  console.log("hdvhdv", response)
+  return response.data;
+};
 
 
 
 function Overview() {
   const { columns: pColumns, rows: pRows } = TasksData();
   const [itemList, setItemList] = useState([]);
+  const [balances, setBalances] = useState([]);
 
 
   const [, dispatch] = useMaterialUIController();
-  // const { sales, tasks } = reportsLineChartData;
+  
   useEffect(() => {
     setDirection(dispatch, "client");
 
@@ -99,11 +120,11 @@ function Overview() {
 
 
   useEffect(() => {
-    console.log("dhdbf---------------------------")
+  
     getMenuList().then(data => {
-      console.log(data)
+
       setItemList(data.menus[0])
-      console.log("nnssdjnd", itemList)
+
       // console.log(JSON.parse(data))
       // const [ItemList, setItemList] = useState(data.menus);
     }).catch(err => {
@@ -111,10 +132,21 @@ function Overview() {
     })
 
   }, []);
-  console.log("hi")
-  console.log("jnjv", itemList.user_id)
-  //const { products } = data
-  // const { soups } = SoupData;
+
+  useEffect(() => {
+    getBalances().then(data => {
+      console.log("data has come",data)
+      setBalances(data.food1)
+      console.log("tharukshi",balances)
+      // console.log(JSON.parse(data))
+      // const [ItemList, setItemList] = useState(data.menus);
+    }).catch(err => {
+      console.log(err.error)
+    })
+
+  }, []);
+  console.log("eyguvhkvjf ", balances)
+  
   const item = []
   //console.log(soups)
   const [cartItems, setCartItems] = useState([]);
@@ -126,6 +158,16 @@ function Overview() {
     'email': itemList.email,
     'location': "Hikkaduwa",
   }
+  console.log("jjhfmadhuni",balances)
+  const balnce =
+    {
+      'TotalAmount': balances.subsciption,
+      'ToatalAdvance': balances.advance,
+      'RemainingAmount': balances.subsciption,
+
+    }
+    console.log("hadvhygdehfhvdbvjmgngh",balnce)
+  
 
   return (
     <DashboardLayout>
@@ -175,12 +217,7 @@ function Overview() {
               <ProfileInfoCard
                 title="My Payments"
                 description="To avoid the interuption you have to pay rs. 5000000.00 before the Mar 29 2022"
-                info={{
-                  TotalAmount: "Rs.350000.00",
-                  ToatalAdvance: "Rs.50000.00",
-                  RemainingAmount: "Rs.60000.00",
-
-                }}
+                info={balnce}
                 social={[
                   {
                     link: "https://www.facebook.com/CreativeTim/",

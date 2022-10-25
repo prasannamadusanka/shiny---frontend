@@ -66,7 +66,7 @@ async function handleToken(token, addresses) {
   
   API.post(`client/initialAdvance`,{params:{
     payment_id:token.id,
-    event_id:100,
+    event_id:id,
     paid_date:DateReturn(),
     amount:amount,
     pay_by:"Card payment",
@@ -123,6 +123,7 @@ async function handleToken(token, addresses) {
             Total amount:&nbsp;&nbsp;&nbsp;
             <MDTypography style={{float:'right'}} variant="caption" fontWeight="medium" textTransform="capitalize">
               {total}
+              {console.log(id)}
             </MDTypography>
           </MDTypography>
         </MDBox>

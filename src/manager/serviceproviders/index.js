@@ -26,7 +26,7 @@ import Footer from "examples/Footer";
 
 
 // Data
-
+//import { useState, useEffect } from "react";
 
 
 // Dashboard components
@@ -48,7 +48,7 @@ import MDTypography from "components/MDTypography";
 
 // Material Dashboard 2 React example components
 
-
+import { useState, useEffect } from "react";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 
@@ -70,16 +70,46 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+//import { useEffect } from "react";
+
+
+import API from "../../services/baseURL";
+
+export const getbookingslist = async (event) => {
+  const response = await API.get(`manager/view_serviceprovider`);
+  console.log(response); // response -> data -> menus -> 0 -> event_id
+  console.log(response.data.service_provider);
+  return response.data.service_provider;
+};
+
+
+
+
 
 function Serviceprovider() {
   const [, dispatch] = useMaterialUIController();
-
   useEffect(() => {
     setDirection(dispatch, "manager");
 
     return () => setDirection(dispatch, "ltr");
   }, []);
+
+  const [s_provider, set_s_provider] = useState([
+    { date: "", event_id: ""},
+  ]);
+  useEffect(() => {
+    getbookingslist()
+      .then((data) => {
+        console.log(s_provider);
+        console.log(data);
+        setevents(data);
+        console.log(s_provider);
+      })
+      .catch((err) => {
+        // console.log(err.error);
+      }); // Had to use ; here.
+  }, []);
+
 
   return (
     <DashboardLayout>
@@ -104,6 +134,7 @@ function Serviceprovider() {
               />
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
+           
               <DefaultProjectCard
                 image={homeDecor2}
                 label=""
@@ -116,6 +147,7 @@ function Serviceprovider() {
                 }}
                
               />
+              
             </Grid>
             <Grid item xs={12} md={6} xl={3}>
               <DefaultProjectCard

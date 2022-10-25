@@ -29,6 +29,8 @@ import DataTable from "examples/Tables/DataTable";
 
 import API from '../../../../services/baseURL';
 
+import { Link } from "react-router-dom";
+
 // Data
 import data from "client/dashboard/components/Projects/data";
 
@@ -48,7 +50,7 @@ function Projects() {
               "pax":item.pax,
               "date":item.date.split('T')[0],
               "banquet":item.name,
-              "gotoevent":<MDButton variant="gradient" color="info">See more</MDButton>,
+              "gotoevent":<Link to="/client/myevents"><MDButton variant="gradient" color="info">See more</MDButton></Link>,
               
             }
         

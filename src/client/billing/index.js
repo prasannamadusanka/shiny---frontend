@@ -85,7 +85,7 @@ function Billing() {
               'type': x,
               'total': `${item.subsciption}`,
               'advance': `${item.advance}`,
-              'remaining': `${item.remaining}`,
+              'remaining': `${remaining}`,
               'due': dt,
 
 
@@ -94,7 +94,7 @@ function Billing() {
             }
           }
           else {
-            const x = item.type + " event(" + `${item.date}` + ")"
+            const x = item.type + " event(" + `${item.date.split('T')[0]}` + ")"
             const remaining = `${item.subsciption}` - `${item.advance}`
             console.log("x", x)
             return {
@@ -102,7 +102,7 @@ function Billing() {
               'type': x,
               'total': `${item.subsciption}`,
               'advance': `${item.advance}`,
-              'remaining': `${item.remaining}`,
+              'remaining': `${remaining}`,
               'due': "-",
 
 

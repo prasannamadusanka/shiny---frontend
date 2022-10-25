@@ -33,6 +33,7 @@
     "date-fns": "^2.29.1",
     "formik": "^2.2.9",
     "html-react-parser": "^3.0.1",
+    "material-table": "^2.0.3",
     "moment": "^2.29.4",
     "payhere-embed-sdk": "^0.7.1",
     "prop-types": "15.8.1",

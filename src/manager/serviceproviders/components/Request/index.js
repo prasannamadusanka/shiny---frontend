@@ -23,20 +23,53 @@ import MDTypography from "components/MDTypography";
 // Billing page components
 import Bill from "layouts/serviceproviders/components/Details";
 
+export const newservicepro = async pay => {
+  const paynow = await API.get('manager/view_req_serviceprovider');
+  console.log(response.data.Requests);
+  return response.data.Requests;
+};
+
+
+
+
 function Request() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "manager");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  
+
+  const [newrequest, setevent] = useState([]);
+  useEffect(() => {
+    newservicepro().then(data => {
+      console.log(data)
+      setevent(data)
+        console.log(newrequest)
+    }).catch(err => {
+      
+    })
+  }, []);
+
   return (
     <Card id="delete-account">
      
       <MDBox pt={1} pb={2} px={2}>
         <MDBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
+        {newrequest.map((item,index)=>{
+                return(
           <Bill
-            name="Swetha Dancing Team"
+            name={item.name}
             person="Nimal Perera"
-            email="oliver@burrito.com"
+            email={item.email}
             vat="07458645621"
             service="Ashtaka"
             account="xxxxxxxxxxxx"
           />
+          );
+                
+              })}
           <Bill
             name="lucas Dancing Group"
             person="Janani Amani"

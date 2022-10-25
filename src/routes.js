@@ -55,6 +55,7 @@ import MyBill from "layouts/mybill";
 import Landing from "landing/landing"
 import MyEvents from "client/myevents";
 import AddEvent from "./client/addEvent";
+import PreviousSchedule from "client/eventForm/previousSchedule";
 // @mui icons
 import Icon from "@mui/material/Icon";
 //import FastfoodIcon from '@mui/material/Fastfood';
@@ -99,6 +100,7 @@ import PB from "ServiceProvider/preview_blog";
 import Prelanding from "layouts/prelanding";
 import Register from "layouts/authentication/service-provider-reg-req";
 import PPE from "layouts/paym_prev_events";
+
 
 import Dashboardowner from "owner/dashboard";
 // import Tables from "layouts/tables";
@@ -186,6 +188,14 @@ const routes = [
     icon: <Icon fontSize="small">timeline</Icon>,
     route: "client/eventSchedule",
     component: <EventSchedule />,
+  },
+  {
+    type: "collapse",
+    name: "Event Schedule",
+    key: "evenetForm",
+    icon: <Icon fontSize="small">timeline</Icon>,
+    route: "client/eventSchedule/previousschedule",
+    component: <PreviousSchedule />,
   },
   {
     type: "collapse",

@@ -33,14 +33,32 @@ import MDButton from "components/MDButton";
 
 // Billing page components
 import PaymentMethod from "layouts/billing/components/PaymentMethod";
-import Invoices from "layouts/billing/components/Invoices";
-import BillingInformation from "layouts/payment/components/BillingInformation";
-import Transactions from "layouts/payment/components/Transactions";
+
+import BillingInformation from "manager/payment/components/BillingInformation";
+import Transactions from "manager/payment/components/Transactions";
+import { useState, useEffect } from "react";
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 //import BasicLayout from "layouts/authentication/components/BasicLayout";
-
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+
+import API from "../../services/baseURL";
+export const getbookingslist = async (event) => {
+  const response = await API.get(`http://localhost:3001/manager/view_invoices`);
+  console.log(response); // response -> data -> menus -> 0 -> event_id
+  console.log(response.data.invoices);
+  return response.data.invoices;
+};
+
+
+
 
 
 function Billing() {
@@ -51,6 +69,23 @@ function Billing() {
 
     return () => setDirection(dispatch, "ltr");
   }, []);
+
+  const [bookings, setbookings] = useState([
+    { event_id: "", serviceprovider_id: "", total_amount: "" },
+  ]);
+  useEffect(() => {
+    getbookingslist()
+      .then((data) => {
+        console.log(bookings);
+        console.log(data);
+        setbookings(data);
+        console.log(bookings);
+      })
+      .catch((err) => {
+        // console.log(err.error);
+      }); // Had to use ; here.
+  }, []);
+
   return (
     <DashboardLayout>
       <DashboardNavbar absolute isMini />
@@ -58,48 +93,46 @@ function Billing() {
       <MDBox mb={3}>
           <Grid container spacing={3}>
            
-            <Grid item xs={12} lg={8}>
-      <Card>
-        <MDBox
-          variant="gradient"
-          bgColor="info"
-          borderRadius="lg"
-          coloredShadow="info"
-          mx={2}
-          mt={-3}
-          p={2}
-          mb={1}
-          textAlign="center"
-        >
-          <MDTypography variant="h4" fontWeight="medium" color="white" mt={5}>
-           Pay Online
-          </MDTypography>
-         
-        </MDBox>
-        <MDBox pt={4} pb={3} px={3}>
-          <MDBox component="form" role="form">
-            <MDBox mb={2}>
-              <MDInput type="date" label="Date" fullWidth />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput type="number" label="Invoice No" fullWidth />
-            </MDBox>
-            <MDBox mb={2}>
-              <MDInput type="number" label="Amount" fullWidth />
-            </MDBox>
-           
-            <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="dark" fullWidth>
-                Continue With Payhere
-              </MDButton>
-            </MDBox>
-           
-          </MDBox>
-        </MDBox>
-      </Card>
-      </Grid>
-      <Grid item xs={12} lg={4}>
-              <Invoices />
+            
+      <Grid item xs={12} lg={8}>
+  <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 0 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="left">Service Provider Id</TableCell>
+            <TableCell align="left">Event Id</TableCell>
+            <TableCell align="left">Total Amount</TableCell>
+            
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {bookings?.map((item) => (
+            <TableRow
+              key={"3"}
+              // sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell align="left" key={item.event_id}>
+                {item.event_id}
+              </TableCell>
+              <TableCell align="left" key={item.serviceprovider_id}>
+                {item.serviceprovider_id}
+              </TableCell>
+              <TableCell align="left" key={item.total_amount}>
+                {item.total_amount}
+              </TableCell>
+              <TableCell align="left">
+              <MDButton variant="gradient" color="dark" halfWidth type="submit">
+                 Pay
+               </MDButton>
+              </TableCell>
+             
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  
+
             </Grid>
           </Grid>
         </MDBox>
@@ -109,9 +142,7 @@ function Billing() {
     
         <MDBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={7}>
-              <BillingInformation />
-            </Grid>
+           
             <Grid item xs={12} md={5}>
               <Transactions />
             </Grid>

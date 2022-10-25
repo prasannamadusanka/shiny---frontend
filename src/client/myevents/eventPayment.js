@@ -50,10 +50,11 @@ function EventPayment({ id }) {
         console.log("dhvdhfg", res)
 
         setdata(res.data.food1 ? res.data.food1.map((item, index) => {
+          const date=item.paid_date.split('T')[0]
           return {
             "id": `${item.payment_id}`,
             "amount": `${item.amount}`,
-            "date": `${item.paid_date}`,
+            "date": date,
             "type": `${item.pay_by}`,
             "description": `${item.pay_for}`,
           }
@@ -76,13 +77,14 @@ function EventPayment({ id }) {
         console.log("dhvdhfgklmn", res)
 
         setsubscriptions(res.data.food1 ? res.data.food1.map((item, index) => {
+         // const date=item.date.split('T')
           return {
              "id": `${item.subscription_id}`,
             "description": `${item.description}`,
              "date": `${item.date}`,
            "rate": `${item.rate}`,
              "quantity": `${item.quantity}`,
-            "amount": `${item.quantity}*${item.rate}`,
+            "amount": `${item.total_amount}`,
           
           }
 
@@ -102,8 +104,8 @@ function EventPayment({ id }) {
           <MDBox mb={1.5}>
             <SimpleBlogCard
 
-              title="Shedule your event"
-              description="Still not send you event details to us! hurry up"
+              title="Mange your payments"
+              description="pay your payments with one tap"
               action={{
                 type: "internal",
                 route: "/client/eventSchedule/eventForm",
@@ -117,8 +119,8 @@ function EventPayment({ id }) {
           <MDBox mb={1.5}>
             <DefaultInfoCard
               icon="ArrowBack"
-              title="Completed"
-              description="Home coming event 2022.10.12"
+              title="Total advance payment"
+              description=""
               value="10 Tasks"
             />
           </MDBox>
@@ -127,8 +129,8 @@ function EventPayment({ id }) {
           <MDBox mb={1.5}>
             <DefaultInfoCard
               icon="forward"
-              title="Remaining"
-              description="Home coming event 2022.10.12"
+              title="Total Due"
+              description=""
               value="5 Tasks"
             />
           </MDBox>

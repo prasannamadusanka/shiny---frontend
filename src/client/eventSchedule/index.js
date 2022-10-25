@@ -8,7 +8,8 @@ import Paper from '@mui/material/Paper';
 import CssBaseline from '@mui/material/CssBaseline';
 import Card from '@mui/material/Card';
 import axios from 'axios';
-
+import MDProgress from "components/MDProgress";
+import Icon from "@mui/material/Icon";
 //import routes from "routes";
 import './index.css'
 
@@ -27,12 +28,25 @@ import eventTableData from "./eventTableData"
 import Select from "react-select";
 import API from '../../services/baseURL';
 
+
+
 import { NewsHeaderCard, ProductCard, UserCard } from 'react-ui-cards';
 import { useMaterialUIController, setDirection } from "context";
 import { useEffect } from "react";
 
 const EventSchedule = () => {
   console.log(__dirname)
+  const Progress = ({ color, value }) => (
+    <MDBox display="flex" alignItems="center">
+      <MDTypography variant="caption" color="text" fontWeight="medium">
+        {value}%
+      </MDTypography>
+      <MDBox ml={0.5} width="9rem">
+        <MDProgress variant="gradient" color={color} value={value} />
+      </MDBox>
+    </MDBox>
+  );
+
 
   const [, dispatch] = useMaterialUIController();
   //const { sales, tasks } = reportsLineChartData;
@@ -81,6 +95,7 @@ const EventSchedule = () => {
       user_id:localStorage.getItem('id')
   }})
       .then(res => {
+        console.log("fbhebhv",res)
         setevents(res.data.menus?res.data.menus.map((item) => {
             return {
               'value' : item.event_id,
@@ -89,7 +104,7 @@ const EventSchedule = () => {
         
         }
         ):console.log("sjjsj"))
-      console.log("Your new array of modified objects here", data)
+      console.log("Your new array of modified objects here-events", data)
     })
     .catch(err => { console.log('Google api calendar error', err) })
   }, [])
@@ -97,9 +112,10 @@ const EventSchedule = () => {
 
   console.log("modi")
  
-  const [eventId, seteventId] = useState(101)
+  const [eventId, seteventId] = useState()
 
   const changeeventId=(e)=>{
+    console.log("dbvhfb",e)
     seteventId(e.value)
   }
   
@@ -115,19 +131,22 @@ const EventSchedule = () => {
       }
     })
       .then(res => {
+        console.log(res.data.menus)
         setdata(res.data.menus?res.data.menus.map((item) => {
             return {
-              "event": <p>{item.start_time}</p>,
+              "event": item.description,
               "start": item.start_time,
-              "end": item.start_time,
-              "status": item.start_time,
-              "completion": <p>{item.start_time}</p>,
-              "action": <p>{item.start_time}</p>,
+              "end": item.end_time,
+              "status": <p>Pending</p>,
+              "completion": <Progress color="success" value={0} />,
+              "action":<MDTypography component="a" href="#" color="text">
+              jjjj
+            </MDTypography>,
             }
         
         }
         ):console.log("sjjsj"))
-      console.log("Your new array of modified objects here", data)
+      console.log("Your new arevents", data)
     })
     .catch(err => { console.log('Google api calendar error', err) })
   }, [])
@@ -198,7 +217,7 @@ const EventSchedule = () => {
                 </div>
                 <div style={{ float: 'right' }}>
                 <Select  onChange={(e)=>{
-                  seteventId(e.value)
+                  changeeventId(e)
                   console.log("event",eventId)
                      API.get(`client/viewSchedule`,{
       params:{
@@ -206,21 +225,24 @@ const EventSchedule = () => {
       }
     })
       .then(res => {
+        console.log("ne whfbrh",res)
         setdata(res.data.menus?res.data.menus.map((item) => {
             return {
-              "event": <p>{item.start_time}</p>,
+              "event": <p>{item.description}</p>,
               "start": item.start_time,
-              "end": item.start_time,
-              "status": item.start_time,
-              "completion": <p>{item.start_time}</p>,
-              "action": <p>{item.start_time}</p>,
+              "end": item.end_time,
+              "status":<p>Pending</p>,
+              "completion":<Progress color="success" value={0} />,
+              "action": <MDTypography component="a" href="#" color="text">
+              <Icon>more_vert</Icon>
+            </MDTypography>,
             }
         
         }
         ):console.log("sjjsj"))
-      console.log("Your new array of modified objects here", data)
+      console.log("Your new array of schedule", data)
     })
-    .catch(err => { console.log('Google api calendar error', err) })
+    .catch(err => { console.log('Google api caledfdfffffffff', err) })
                 }} options={events} ></Select>
                 </div>
 

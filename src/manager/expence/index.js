@@ -15,12 +15,12 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
+//import Card from "@mui/material/Card";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
+//import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 import Icon from "@mui/material/Icon";
 
@@ -29,128 +29,143 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
-
+import { useState, useEffect } from "react";
 
 // Data
 import authorsTableData from "manager/expence/components/data";
 
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+//forms
+import FormControl from '@mui/material/FormControl';
+import { Card, FormHelperText, Input, InputLabel } from "@mui/material";
+import MDInput from "components/MDInput";
+
+import { Link } from "react-router-dom";
+
+import Select from 'react-select';
 
 
+
+
+import axios from 'axios';
+
+
+export const getMenuList =async event => {
+  
+  const response = await API.get(`manager/view_menus`);
+  console.log("hi")
+  console.log(response.data.menu)
+  return response.data.menu;
+};
+  
+  
 function Tables() {
-  const { columns, rows } = authorsTableData();
   const [, dispatch] = useMaterialUIController();
-
   useEffect(() => {
     setDirection(dispatch, "manager");
 
     return () => setDirection(dispatch, "ltr");
   }, []);
 
+
+
+  
+
+  const [formValues, setFormValues] = useState([{ name: "", quantity  : ""}])
+
+  let handleSubmit = (event) => {
+    event.preventDefault();
+    alert(JSON.stringify(formValues));
+  }
+  let addFormFields = () => {
+    setFormValues([...formValues, { name: "", quantity: "" }])
+  }
+  let removeFormFields = (i) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues)
+  }
+  
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox pt={6} pb={3}>
-      <Grid container spacing={6}>
-      <Grid item xs={12}>
-        <Card>
-        <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h6" color="white">
-                  Add Expenses
-                </MDTypography>
-              </MDBox>
-      <MDBox pt={3}>
-      <MDInput type="date" label="" value="" />
-      
-      </MDBox>
-      <MDBox pt={3}>
-      <MDInput type="text" label="Description" value="" />
-      <MDInput type="number" label="Expense" value="" />
-      <MDButton variant="gradient" color="dark"  iconOnly>
-      
-  <Icon>add</Icon>
-        </MDButton>
-      </MDBox>
-      <MDBox pt={3}>
-      <MDButton variant="gradient" color="dark" size="medium">Done</MDButton>
-      </MDBox>
-      </Card>
-      </Grid>
-      </Grid>
-      </MDBox>
-      <MDBox pt={6} pb={3}>
-        <Grid container spacing={6}>
-          <Grid item xs={12}>
+        <Grid container spacing={6} justifyContent="center" alignItems="center">
+          <Grid item xs={10}>
             <Card>
-              <MDBox
-                mx={2}
-                mt={-3}
-                py={3}
-                px={2}
-                variant="gradient"
-                bgColor="info"
-                borderRadius="lg"
-                coloredShadow="info"
-              >
-                <MDTypography variant="h5" color="white">
-                Income & Expense Report
-                </MDTypography>
-                <MDBox pt={3}>
-                <MDInput type="month" label="Select Month" value="" />
-                <MDButton variant="gradient" color="dark" size="medium">Generate Report</MDButton>
+              <MDBox mb={1.5} component="form" role="form">
+                <MDBox
+                  mx={2}
+                  mt={-3}
+                  py={3}
+                  px={2}
+                  variant="gradient"
+                  bgColor="info"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                >
+                  <MDTypography variant="h6" color="white">
+                    Add Expences
+                  </MDTypography>
                 </MDBox>
-                <MDBox pt={3}>
+
+                <form  onSubmit={handleSubmit}>
+                <MDBox mt={5} ml={5}>
+                    
+                  
+                    
+                  <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
+                    <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84} pt={2} pl={0.25}>
+                      New Expense
+                    </MDTypography>
+                    <MDButton variant="gradient" color="dark" >
+                      <Icon sx={{ fontWeight: "bold" }} onClick={() => addFormFields()}>add</Icon>
+                    </MDButton>
+                  </MDBox>
+                  {formValues.map((element, index) => (
+                  <Grid item xs={12} display='flex'mt={2}>
+                    <MDBox sx={{ width: "45%" }}>
+                    <MDInput type="text" name="Description"  label="Description"  sx={{ width: "78%" }} ></MDInput>
+                      {/* <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput> */}
+                    </MDBox>
+                    <MDBox sx={{ width: "25%" }} ml={3}>
+                      <MDInput type="number" name="quantity"  label="quantity" ></MDInput>
+                    </MDBox>
+                    <MDBox sx={{ width: "15%" }} mr={3}>
+                      
+                    </MDBox>
+                    <MDButton variant="gradient" color="secondary" >
+                      <Icon sx={{ fontWeight: "bold" }} onClick={() => removeFormFields(index)}>remove</Icon>
+                    </MDButton>
+                  </Grid>
+                  ))}
+                  
+                 
+                  <Link to="">
+                    <MDButton label= "submit" variant="gradient" color="info">
+                        &nbsp;submit
+                    </MDButton>
+                  </Link>
+                  {/* <MDBox mt={5} ml={5}>
+                  <FormControl size="medium">
+                    <InputLabel htmlFor="my-input">Name</InputLabel>
+                    <Input id="my-input" aria-describedby="my-helper-text" />
+                    <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+                  </FormControl>
+                  </MDBox> */}
                 </MDBox>
-                <MDTypography variant="h6" color="white">
-                  Income & Expense Report For July
-                </MDTypography>
-              </MDBox>
-              <MDBox pt={3}>
-                <DataTable
-                  table={{ columns, rows }}
-                  isSorted={false}
-                  entriesPerPage={false}
-                  showTotalEntries={false}
-                  noEndBorder
-                />
+                </form>
+
+
               </MDBox>
             </Card>
           </Grid>
-         
         </Grid>
       </MDBox>
-      <MDBox mb={3}>
-          <Grid container spacing={1} mt={4} mb={3}>
-          <Grid item xs={12} lg={5}>
-            <Card>
-            <MDTypography variant="h6" color="black">
-                  Total Income : LKR 145,256,000
-                </MDTypography>
-                <MDTypography variant="h6" color="error">
-                  Total Expense : LKR 974,000
-                </MDTypography>
-            </Card>
-          </Grid>
-          <Grid item xs={12} lg={5}>
-            <Card>
-            <MDTypography variant="h6" color="black">
-                  Profit : LKR 144,282,000
-                </MDTypography>
-                
-            </Card>
-          </Grid>
-          </Grid>
-          </MDBox>
+
+      
+     
       <Footer />
     </DashboardLayout>
   );
