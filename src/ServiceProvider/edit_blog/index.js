@@ -33,13 +33,20 @@ import Footer from "examples/Footer";
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/edit_blog/components/OrdersOverview";
-import OrdersOverview1 from "layouts/edit_blog/components/OrdersOverview1";
-import OrdersOverviewA from "layouts/edit_blog/components/OrdersOverviewA";
+import OrdersOverview from "ServiceProvider/edit_blog/components/OrdersOverview";
+import OrdersOverview1 from "ServiceProvider/edit_blog/components/OrdersOverview1";
+import OrdersOverviewA from "ServiceProvider/edit_blog/components/OrdersOverviewA";
 
-// import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 function Calendar() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "ServiceProvider");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   // const { sales, tasks } = reportsLineChartData; // importing the charts with their values
 
   return (

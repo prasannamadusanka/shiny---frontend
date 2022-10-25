@@ -29,7 +29,7 @@ import MDTypography from "components/MDTypography";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import data from "layouts/dashboard/components/Projects/data";
+import data from "ServiceProvider/dashboard/components/Projects/data";
 
 function Projects() {
   const { columns, rows } = data();
@@ -63,7 +63,7 @@ function Projects() {
     <Card>
       <MDBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
         <MDBox>
-          <MDTypography variant="h2" fontWeight="bold" gutterBottom>
+          <MDTypography variant="h2" fontWeight="large" gutterBottom>
             Bookings
           </MDTypography>
           <MDBox display="flex" alignItems="center" lineHeight={0}>

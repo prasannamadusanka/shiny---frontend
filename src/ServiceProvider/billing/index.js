@@ -27,12 +27,21 @@ import Footer from "examples/Footer";
 // import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
-import PaymentMethod from "layouts/billing/components/PaymentMethod";
-import Invoices from "layouts/billing/components/Invoices";
-import BillingInformation from "layouts/billing/components/BillingInformation";
+import PaymentMethod from "ServiceProvider/billing/components/PaymentMethod";
+import Invoices from "ServiceProvider/billing/components/Invoices";
+import BillingInformation from "ServiceProvider/billing/components/BillingInformation";
 // import Transactions from "layouts/billing/components/Transactions";
 
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 function Billing() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "ServiceProvider");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   return (
     <DashboardLayout>
       <DashboardNavbar absolute isMini />

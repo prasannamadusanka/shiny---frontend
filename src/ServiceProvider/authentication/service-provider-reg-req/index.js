@@ -50,19 +50,21 @@ const EventForm = () => {
   // const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
   const id = 777;
 
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `ServiceProvider/authentication/service-provider-reg-req-nxt`; 
-    navigate(path);
-  }
+  // let navigate = useNavigate(); 
+  // const routeChange = () =>{ 
+  //   let path = `ServiceProvider/authentication/service-provider-reg-req-nxt`; 
+  //   navigate(path);
+  // }
 
   const [, dispatch] = useMaterialUIController();
-  // const { sales, tasks } = reportsLineChartData;
+  
   useEffect(() => {
     setDirection(dispatch, "ServiceProvider");
 
     return () => setDirection(dispatch, "ltr");
   }, []);
+
+  // const { sales, tasks } = reportsLineChartData;
 
   const [formValues, setFormValues] = useState([
     {

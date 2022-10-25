@@ -35,7 +35,7 @@ import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 
 // Overview page components
-import Header from "layouts/prelanding/components/Header";
+import Header from "ServiceProvider/prelanding/components/Header";
 // import PlatformSettings from "layouts/prelanding/components/PlatformSettings";
 
 // Data
@@ -46,8 +46,6 @@ import homeDecor1 from "assets/images/service_provider/beachjg.jpg";
 import homeDecor2 from "assets/images/service_provider/dance.jpg";
 import homeDecor3 from "assets/images/service_provider/ashtaka1.jpg";
 import homeDecor4 from "assets/images/service_provider/music1.jpg";
-
-// import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 /*
 import homeDecor1 from "assets/images/home-decor-1.jpg";
@@ -62,7 +60,16 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 */
 
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
+
 function Overview() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "ServiceProvider");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   return (
     <DashboardLayout>
       {/* <DashboardNavbar /> */}

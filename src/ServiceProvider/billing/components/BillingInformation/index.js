@@ -32,7 +32,7 @@ import MDTypography from "components/MDTypography";
 // Billing page components
 import Bill from "ServiceProvider/billing/components/Bill";
 
-import { useMaterialUIController, setDirection } from "context";
+// import { useMaterialUIController, setDirection } from "context";
 
 import API from "../../../../services/baseURL";
 
@@ -44,12 +44,12 @@ export const getpaymentslist = async (event) => {
 };
 
 export default function BillingInformation() {
-  const [, dispatch] = useMaterialUIController();
-  useEffect(() => {
-    setDirection(dispatch, "ServiceProvider");
+  // const [, dispatch] = useMaterialUIController();
+  // useEffect(() => {
+  //   setDirection(dispatch, "ServiceProvider");
 
-    return () => setDirection(dispatch, "ltr");
-  }, []);
+  //   return () => setDirection(dispatch, "ltr");
+  // }, []);
 
   const [payments, setpayments] = useState([
     {

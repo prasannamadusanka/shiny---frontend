@@ -33,10 +33,19 @@ import Footer from "examples/Footer";
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/calendar/components/OrdersOverview";
-import OrdersOverview1 from "layouts/calendar/components/OrdersOverview1";
+import OrdersOverview from "ServiceProvider/calendar/components/OrdersOverview";
+import OrdersOverview1 from "ServiceProvider/calendar/components/OrdersOverview1";
+
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 function Calendar() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "ServiceProvider");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   // const { sales, tasks } = reportsLineChartData; // importing the charts with their values
 
   return (

@@ -31,7 +31,7 @@ import MDInput from "components/MDInput";
 import MDButton from "components/MDButton";
 
 // New components
-import MDBadge from "components/MDBadge";
+// import MDBadge from "components/MDBadge";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab'; //@material-ui/core/Tab
 // import Tabs from "@mui/material/Tabs";
@@ -106,17 +106,18 @@ const EventForm2 = () => {
 
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
-    let path = `layouts/dashboard`; 
+    let path = `SeviceProvider/dashboard`; 
     navigate(path);
   }
   
   const [, dispatch] = useMaterialUIController();
-  // const { sales, tasks } = reportsLineChartData;
   useEffect(() => {
     setDirection(dispatch, "ServiceProvider");
 
     return () => setDirection(dispatch, "ltr");
   }, []);
+  // const { sales, tasks } = reportsLineChartData;
+  
 
   const [formValues, setFormValues] = useState([
     {

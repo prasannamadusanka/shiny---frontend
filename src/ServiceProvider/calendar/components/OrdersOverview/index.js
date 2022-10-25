@@ -36,10 +36,6 @@ import MDTypography from "components/MDTypography";
 // New components
 import MDBadge from "components/MDBadge";
 
-import React, { useState } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-
 /*
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -78,20 +74,15 @@ const rows = [
 ]; */
 
 function OrdersOverview() {
-  const [value, onChange] = useState(new Date());
   return (
     <Card sx={{ height: "100%", width: "100%", borderRadius: "none" }}>
       <MDBox pt={3} px={3}>
-        <MDTypography variant="h3" textAlign="center" fontWeight="medium" pt={2} pb={2}>
-          My Calendar
+        <MDTypography variant="h3" fontWeight="medium" pt={2} pb={2}>
+          .
         </MDTypography>
-        <MDBox>
-          <div align="center">
-            <Calendar onChange={onChange} value={value} />
-          </div>
-        </MDBox>
+        <MDBox> . </MDBox>
         {/* <Calendar /> */}
-        <MDBox mt={4} textAlign="center">
+        <MDBox>
           &nbsp;&nbsp;
           <MDBadge badgeContent="My Event" size="lg" color="warning" container />
           &nbsp;&nbsp;&nbsp;&nbsp;

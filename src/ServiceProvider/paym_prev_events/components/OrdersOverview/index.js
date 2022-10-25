@@ -21,27 +21,17 @@ import Card from "@mui/material/Card";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-import React, { useState } from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-
 function OrdersOverview() {
-  const [value, onChange] = useState(new Date());
   return (
-    <Card sx={{ height: "100%", width: "100%", bgcolor: "#344767" }}>
+    <Card sx={{ height: "100%", width: "100%" }}>
       <MDBox pt={1} px={0} borderRadius="none">
         <MDBox>
           <MDTypography ml={12} mr={6} variant="title" fontWeight="medium">
-            &nbsp;
+            JANUARY&nbsp;2020
           </MDTypography>
         </MDBox>
-        <MDBox pt={3} mx={0}>
-          <div align="center">
-            <Calendar onChange={onChange} value={value} />
-          </div>
-        </MDBox>
         {/* <Calendar /> */}
-        <MDBox pl={2} mt={4} mb={0} bgColor="dark">
+        <MDBox pl={2} mt={47} mb={0} bgColor="dark">
           <MDTypography variant="caption" fontWeight="medium" color="light">
             Prev. Month: December 2019
           </MDTypography>

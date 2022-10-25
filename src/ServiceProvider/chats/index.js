@@ -33,13 +33,22 @@ import Footer from "examples/Footer";
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/chats/components/OrdersOverview";
+import OrdersOverview from "ServiceProvider/chats/components/OrdersOverview";
 // Components
 import ProfilesList from "examples/Lists/ProfilesList";
 // Data
-import profilesListData from "layouts/chats/data/profilesListData";
+import profilesListData from "ServiceProvider/chats/data/profilesListData";
+
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 function Chats() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "ServiceProvider");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   // const { sales, tasks } = reportsLineChartData; // importing the charts with their values
 
   return (

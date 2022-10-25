@@ -29,7 +29,7 @@ import Grid from "@mui/material/Grid";
 // Material Dashboard 2 React components
 // import MDButton from "components/MDButton";
 // import MDAlert from "components/MDAlert";
-// import MDButton from "components/MDButton";
+import MDButton from "components/MDButton";
 // import MDBadge from "components/MDBadge";
 
 function OrdersOverview() {
@@ -67,67 +67,73 @@ function OrdersOverview() {
           </MDTypography>
         </MDBox>
         <MDBox p={0}>
-          <MDBox textAlign="center" pl={0} pt={2} bgColor="info">
-            <MDTypography variant="h4" fontWeight="medium" color="light">
-              Shri Jaya Mangala Gatha Service
-            </MDTypography>
-          </MDBox>
-          <MDBox pl={5} pt={4} pr={3} bgColor="info">
-            <MDTypography variant="h6" color="light" fontWeight="small" pl={1}>
-              D R Vishaka Vimansi
-            </MDTypography>
-          </MDBox>
-          <MDBox pl={2} pt={2} pr={0} bgColor="info">
-            <MDTypography variant="h6" color="light">
-              073 567 8930 / 011 2 343 456
-            </MDTypography>
-          </MDBox>
-          <MDBox pl={2} pt={2} pr={2} bgColor="info">
-            <MDTypography variant="h6" color="light">
-              5/23, Ja-Ela Road, Gampaha
-            </MDTypography>
-          </MDBox>
-          <MDBox pl={7} pt={2} bgColor="info">
+          <MDBox pl={10} pt={2} bgColor="info">
             <MDTypography variant="body1" fontWeight="medium">
-              Chat with us...
+              Edit Name
             </MDTypography>
           </MDBox>
-          <MDBox pl={3} pt={2} pr={2} bgColor="info" pb={2}>
-            <Grid container spacing={1} borderColor="success">
-              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={1} pl={1} pb={2} pt={1}>
-                <MDTypography variant="caption" color="dark" fontWeight="medium" pl={0}>
-                  Basic
-                </MDTypography>
-                <MDTypography variant="body2" color="dark" pl={0}>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;Singers&nbsp;+&nbsp;Violin&nbsp;Player&nbsp;&nbsp;
-                </MDTypography>
-                <MDTypography variant="h4" fontWeight="medium" color="success" pl={0}>
-                  SLR 25,000/=
-                </MDTypography>
-              </MDBox>
-              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={3} pl={3} pb={2} pt={1}>
-                <MDTypography variant="caption" color="dark" fontWeight="medium" pl={0}>
-                  Special
-                </MDTypography>
-                <MDTypography variant="body2" color="dark" pl={0}>
-                  4 Singers + Violin Player + Welcome Song
-                </MDTypography>
-                <MDTypography variant="h4" fontWeight="medium" color="success" pl={0}>
-                  SLR 35,000/=
-                </MDTypography>
-              </MDBox>
-              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={3} pl={3} pb={2} pt={1}>
-                <MDTypography variant="caption" color="dark" fontWeight="medium" pl={0}>
-                  Best
-                </MDTypography>
-                <MDTypography variant="body2" color="dark" pl={0}>
-                  6 Singers + Violin Player + Theme-costumes
-                </MDTypography>
-                <MDTypography variant="h4" fontWeight="medium" color="success" pl={0}>
-                  SLR 50,000/=
+          <MDBox pl={6} pt={2} pr={6} bgColor="info">
+            <Grid container spacing={1} mb={0} borderColor="success">
+              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={4} pb={2} pt={1}>
+                <MDTypography variant="caption" pl={1}>
+                  Shri Jaya Mangala Gatha Service
                 </MDTypography>
               </MDBox>
             </Grid>
+          </MDBox>
+          <MDBox pl={10} pt={2} bgColor="info">
+            <MDTypography variant="body1" fontWeight="medium">
+              Edit About
+            </MDTypography>
+          </MDBox>
+          <MDBox pl={4} pt={2} pr={4} bgColor="info">
+            <Grid container spacing={1} mb={0} borderColor="success">
+              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={8} pb={1} pt={1}>
+                <MDTypography variant="caption" pl={1}>
+                  D R Vishaka Vimansi&nbsp;&nbsp;
+                </MDTypography>
+              </MDBox>
+            </Grid>
+          </MDBox>
+          <MDBox pl={4} pt={2} pr={4} bgColor="info">
+            <Grid container spacing={1} mb={0} borderColor="success">
+              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={4} pb={1} pt={1}>
+                <MDTypography variant="caption" pl={1}>
+                  073 567 8930 / 011 2 343 456
+                </MDTypography>
+              </MDBox>
+            </Grid>
+          </MDBox>
+          <MDBox pl={4} pt={2} pr={4} bgColor="info">
+            <Grid container spacing={1} mb={0} borderColor="success">
+              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={4} pb={1} pt={1}>
+                <MDTypography variant="caption" pl={1}>
+                  5/23, Ja-Ela Road, Gampaha
+                </MDTypography>
+              </MDBox>
+            </Grid>
+          </MDBox>
+          <MDBox pl={10} pt={2} bgColor="info">
+            <MDTypography variant="body1" fontWeight="medium">
+              Edit Prices
+            </MDTypography>
+          </MDBox>
+          <MDBox pl={8} pt={2} pr={6} bgColor="info" pb={6}>
+            <Grid container spacing={1} borderColor="success">
+              <MDBox bgColor="light" textAlign="center" mb={1} mt={0} pr={3} pl={3} pb={2} pt={1}>
+                <MDTypography variant="body1" color="dark" pl={0}>
+                  - Bronze -
+                </MDTypography>
+                <MDTypography variant="body2" fontWeight="medium" pl={0}>
+                  Rs. 35,000/=
+                </MDTypography>
+              </MDBox>
+            </Grid>
+          </MDBox>
+          <MDBox borderRadius="none" bgColor="info" pl={10} mt={0} pb={2} pt={4}>
+            <MDButton variant="contained" size="large">
+              save
+            </MDButton>
           </MDBox>
         </MDBox>
       </MDBox>

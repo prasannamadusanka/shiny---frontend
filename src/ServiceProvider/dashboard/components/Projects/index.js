@@ -31,7 +31,7 @@ import MDBox from "components/MDBox";
 
 // Data
 // import data1 from "layouts/dashboard/components/Projects/data";
-import Bookings from "layouts/dashboard/components/Projects/bookingsdata";
+import Bookings from "ServiceProvider/dashboard/components/Projects/bookingsdata";
 
 // import { useMaterialUIController, setDirection } from "context";
 

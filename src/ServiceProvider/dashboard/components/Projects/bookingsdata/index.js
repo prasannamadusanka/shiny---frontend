@@ -46,7 +46,7 @@ import Paper from "@mui/material/Paper";
 // import team3 from "assets/images/team-3.jpg";
 // import team4 from "assets/images/team-4.jpg";
 
-import { useMaterialUIController, setDirection } from "context";
+// import { useMaterialUIController, setDirection } from "context"; // important
 
 import API from "../../../../../services/baseURL";
 
@@ -69,12 +69,13 @@ export const getbookingslist = async (event) => {
 };
 
 export default function bookingsdata() {
-  const [, dispatch] = useMaterialUIController();
-  useEffect(() => {
-    setDirection(dispatch, "ServiceProvider");
+  // const [, dispatch] = useMaterialUIController();
+  // useEffect(() => {
+  //   setDirection(dispatch, "ServiceProvider");
 
-    return () => setDirection(dispatch, "ltr");
-  }, []);
+  //   return () => setDirection(dispatch, "ltr");
+  // }, []);
+
   // services.package_name, services.package_description, services.package_price,
   // services.service_type, services.service_provider_id,
   // banquet.name AS bname, client.name,

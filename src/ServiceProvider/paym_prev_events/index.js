@@ -33,13 +33,20 @@ import Footer from "examples/Footer";
 
 // Dashboard components
 // import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/paym_prev_events/components/OrdersOverview";
-import OrdersOverview1 from "layouts/paym_prev_events/components/OrdersOverview1";
-import OrdersOverviewA from "layouts/paym_prev_events/components/OrdersOverviewA";
+import OrdersOverview from "ServiceProvider/paym_prev_events/components/OrdersOverview";
+import OrdersOverview1 from "ServiceProvider/paym_prev_events/components/OrdersOverview1";
+import OrdersOverviewA from "ServiceProvider/paym_prev_events/components/OrdersOverviewA";
 
-// import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 function Calendar() {
+  const [, dispatch] = useMaterialUIController();
+  useEffect(() => {
+    setDirection(dispatch, "ServiceProvider");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
   // const { sales, tasks } = reportsLineChartData; // importing the charts with their values
 
   return (
