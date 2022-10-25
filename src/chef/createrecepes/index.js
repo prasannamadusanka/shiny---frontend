@@ -42,8 +42,18 @@ import Select from 'react-select';
 import React, { useState, useEffect } from 'react';
 
 //
+import API from '../../services/baseURL';
+
+//
 import { useMaterialUIController, setDirection } from "context";
 const axios = require("axios");
+
+
+export const getingredients = async event => {
+  const response = await API.get('chef/view_ingredients');
+  console.log(response.data.ingredients)
+  return response.data.ingredients;
+};
 
 
 function CreateRecepes() {
@@ -54,7 +64,25 @@ function CreateRecepes() {
 
     return () => setDirection(dispatch, "ltr");
   }, []);
+
+
+  const [ingredientss, setingredients] = useState([
+    { name: "", type_id: "", stock: "", pending_qty: "", ordered_date: "", description: "", status: "", },
+  ]);
+  useEffect(() => {
+    getingredients()
+      .then((data) => {
+        console.log(ingredientss);
+        console.log(data);
+        setingredients(data);
+        console.log(ingredientss);
+      })
+      .catch((err) => {
+        
+      }); 
+  }, []);
   
+  var uniquekey = 789
 
   const categoryies = [
     { value: 'welcomedrink', label: 'welcome drink' },
@@ -70,15 +98,30 @@ function CreateRecepes() {
 
   const ingredients = [
     { value: '', label: '' },
-    { value: '', label: 'vegetables' },
+    // ingredientss?.map((item) => (
+    //   { value: item.name, label: item.name }
+    // ))
+    
+    // { value: '', label: 'fruits' },
+    { value: 'mango', label: 'mango' },
+    { value: 'orange', label: 'orange' },
+    { value: 'apple', label: 'apple' },
+    { value: 'apple', label: 'apple' },
+    { value: 'avacado', label: 'avacado' },
+    { value: 'passion fruit', label: 'passion fruit' },
+    // { value: '', label: 'vegetables' },
     { value: 'beans', label: 'beans' },
     { value: 'carrot', label: 'carrot' },
-    { value: '', label: 'fruits' },
-    { value: 'apple', label: 'apple' },
-    { value: 'orange', label: 'orange' },
-    { value: '', label: 'oil' },
-    { value: 'coconut', label: 'coconut oil' },
-    { value: 'vegetable', label: 'vegetable oil' },
+    { value: 'pumkin', label: 'pumkin' },
+    { value: 'potato', label: 'potato' },
+    { value: 'cabbage', label: 'cabbage' },
+    { value: 'beet root', label: 'beet root' },
+    // { value: '', label: 'oil' },
+    { value: 'coconut oil', label: 'coconut oil' },
+    { value: 'vegetable oil', label: 'vegetable oil' },
+    { value: 'peanut oil', label: 'peanut oil' },
+    { value: 'olive oil', label: 'olive oil' },
+    { value: 'ghee', label: 'ghee' },
   ]
 
   const measurements = [
@@ -92,10 +135,10 @@ function CreateRecepes() {
   const [formValues, setFormValues] = useState([{ name: "", quantity  : ""}])
 
   const [url,setUrl] = useState()
-  const [category,setCategory] = useState()
+  const [category,setCategory] = useState("welcomedrink")
   const [name,setName] = useState()
-  const [cheftips,setCheftips] = useState()
-  const [description,setDescription] = useState()
+  const [cheftips,setCheftips] = useState("chef tips")
+  const [description,setDescription] = useState("description")
 
 
   let handleSubmit = (event) => {
@@ -118,7 +161,7 @@ function CreateRecepes() {
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
     newFormValues[i][e.target.name] = e.target.value;
-    console.log(e.target.value)
+    console.log("dynamic part",e.target.value)
     setFormValues(newFormValues);
   }
 
@@ -135,13 +178,14 @@ function CreateRecepes() {
   let handleUrl=(e)=>{
     console.log(e.target.value)
     setUrl(e.target.value)
-    console.log(url)
+    console.log("seturllll",url)
   }
 
   let handleCategory=(e)=>{
-    console.log(e.target.value)
-    setCategory(e.target.value)
-    console.log(category)
+    console.log(e.value)
+    setCategory(e.value)
+    // setCategory(e.target)
+    console.log("category",category)
   }
 
   let handleName=(e)=>{
@@ -187,7 +231,7 @@ function CreateRecepes() {
 
                 <form  onSubmit={handleSubmit}>
                 <MDBox mt={5} ml={5}>
-                    <MDBox mt={2} display="flex">
+                    <MDBox key={uniquekey++} mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
@@ -198,19 +242,19 @@ function CreateRecepes() {
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Category&nbsp;&nbsp;
                       </MDTypography>
-                      <MDBox sx={{ width: "89%" }}>
+                      <MDBox key={uniquekey++} sx={{ width: "89%" }}>
                         <Select 
                           isSearchable={true}
                           options={categoryies} 
                           style={{width: "auto"}}
                           name="category" 
                           // value={element.category || ""} onChange={e => handleChange(index, e)}
-                          onChange={e => handleCategory(e)}
+                          onChange={handleCategory}
                         />
                         {/* <MDInput type="text" label="Category" sx={{ width: "89%" }} ></MDInput> */}
                       </MDBox>
                     </MDBox>
-                    <MDBox mt={2} display="flex">
+                    <MDBox key={uniquekey++} mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
@@ -228,29 +272,31 @@ function CreateRecepes() {
                   
                   {formValues.map((element, index) => (
                   <Grid item xs={12} display='flex'mt={2}>
-                    <MDBox sx={{ width: "45%" }}>
-                    <Select 
+                    <MDBox key={uniquekey++} sx={{ width: "45%" }}>
+                    {/* <Select 
                         isSearchable={true} 
                         defaultValue={ingredients[0]} 
                         options={ingredients} 
                         style={{width: "auto"}}
                         // name="ingredients"
-                        value={element.ingredients || ""} onChange={e => handleChange(index, e)}
-                      />
-                      {/* <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }}></MDInput> */}
+                        // value={element.ingredients || ""} onChange={e => handleChange(index, e)}
+                        // onChange={handleChange}
+                      /> */}
+                      <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }} onChange={e => handleChange(index, e)}></MDInput>
                     </MDBox>
-                    <MDBox sx={{ width: "25%" }} ml={3}>
+                    <MDBox key={uniquekey++} sx={{ width: "25%" }} ml={3}>
                       <MDInput type="number" name="quantity" label="quantity" sx={{ width: "90%" }} value={element.quantity || ""} onChange={e => handleChange(index, e)}></MDInput>
                     </MDBox>
-                    <MDBox sx={{ width: "15%" }} mr={3}>
-                      <Select 
+                    <MDBox key={uniquekey++} sx={{ width: "15%" }} mr={3}>
+                      {/* <Select 
                         isSearchable={true} 
                         defaultValue={measurements[0]} 
                         options={measurements} 
                         style={{width: "auto"}}
                         name="measurements"
                         value={element.measurement || ""} onChange={e => handleChange(index, e)}
-                      />
+                      /> */}
+                      <MDInput type="text" name="measurements" value={element.measurements || ""} onChange={e => handleChange(index, e)} label="kg/l/spoons" sx={{ width: "90%" }}></MDInput>
                     </MDBox>
                     <MDButton variant="gradient" color="secondary" >
                       <Icon sx={{ fontWeight: "bold" }} onClick={() => removeFormFields(index)}>remove</Icon>
@@ -258,14 +304,14 @@ function CreateRecepes() {
                   </Grid>
                   ))}
                   
-                  <MDBox mt={2} mb={5}>
+                  <MDBox key={uniquekey++} mt={2} mb={5}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2}>
                       Chef Tips
                     </MDTypography>
                     <MDInput name="cheftips" type="tyext" label="" multiline rows={5} sx={{ width: '97%' }} onChange={e => handleCheftips(e)}></MDInput>
                     {/* <MDInput name="cheftips" type="tyext" label="" multiline rows={5} sx={{ width: '97%' }} value={element.cheftips || ""} onChange={e => handleChange(index, e)}></MDInput> */}
                   </MDBox>
-                  <MDBox mt={2} mb={5}>
+                  <MDBox key={uniquekey++} mt={2} mb={5}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2}>
                       Description
                     </MDTypography>

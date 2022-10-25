@@ -39,7 +39,14 @@ import ingredientList from "chef/recepe/components/Ingredients";
 
 //
 import { useMaterialUIController, setDirection } from "context";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import API from '../../services/baseURL';
+
+export const getrecepe = async event => {
+  const response = await API.get('chef/view_recepe');
+  console.log(response.data.recepe)
+  return response.data.recepe;
+};
 
 
 function Overview() {
@@ -49,7 +56,27 @@ function Overview() {
 
     return () => setDirection(dispatch, "ltr");
   }, []);
+
+
+  const [recepe, setrecepe] = useState([]);
+  useEffect(() => {
+    getrecepe().then(data => {
+      console.log(data)
+      setrecepe(data)
+      console.log(recepe)
+    }).catch(err => {
+
+    })
+  }, []);
+
+  var description = ""
+  var cheftips = ""
+  var ingredientList=new Array()
+  var qtyList=new Array()
   
+  {recepe.map((item,index)=>{
+    ingredientList.push({name:item.ingredient_name,quantity:item.quantity})
+  })}
 
   return (
     <DashboardLayout>
@@ -62,6 +89,10 @@ function Overview() {
                 <RecepeIngredientList title="Ingredients" profiles={ingredientList} shadow={false} />
             </MDBox>
           </MDBox>
+            {recepe.map((item,index)=>{
+              description = item.description;
+              cheftips = item.chef_tips
+            })}
           <MDBox display="flex" flexDirection="column" width="50%" mt={2}>
             <MDBox pt={2} px={2} lineHeight={1.25}>
               <MDTypography variant="h6" fontWeight="medium">
@@ -69,7 +100,7 @@ function Overview() {
               </MDTypography>
               <MDBox mb={1}>
                 <MDTypography variant="button" color="text">
-                  100% fruit juice can help provided needed nutrients any time of the day. Drinking them as a combination or as single fruit is fine – whatever you prefer. You might want to blend fruits only because they each have a unique range of nutrients and beneficial compounds. Or add vegetables for the same reason!
+                  {/* {item.description} */}{description}
                 </MDTypography>
               </MDBox>
             </MDBox>
@@ -79,9 +110,7 @@ function Overview() {
               </MDTypography>
               <MDBox mb={1}>
                 <MDTypography variant="button" color="text">
-                  Blend everything well.
-                  If juice is thick, then adjust the consistency by adding water.
-                  Garnish it with lemon slices, kiwi slices, and mint leaves.
+                  {/* {item.chef_tips} */}{cheftips}
                 </MDTypography>
               </MDBox>
             </MDBox>

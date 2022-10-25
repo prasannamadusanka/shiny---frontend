@@ -32,10 +32,10 @@ import API from '../../../../services/baseURL';
 import { useState, useEffect} from "react";
 import { Grid } from "@mui/material";
 
-export const getIngredientlist = async event => {
-  const response = await API.get('chef/event_ingredient_list',{params:{"event_id":1}});
-  console.log(response.data.event_ingredient_list)
-  return response.data.event_ingredient_list;
+export const getSelectedmenu = async event => {
+  const response = await API.get('chef/event_selected_food_item_list',{params:{"event_id":3}});
+  console.log(response.data.event_selected_menu)
+  return response.data.event_selected_menu;
 };
 
 
@@ -44,12 +44,12 @@ export const getIngredientlist = async event => {
 function Selectedmenu() {
 
 
-  const [ingredient_list, setingredient_list] = useState([]);
+  const [selectedmenu, setSelectedmenu] = useState([]);
   useEffect(() => {
-    getIngredientlist().then(data => {
+    getSelectedmenu().then(data => {
       console.log(data)
-      setingredient_list(data)
-      console.log(ingredient_list)
+      setSelectedmenu(data)
+      console.log(selectedmenu)
     }).catch(err => {
 
     })
@@ -64,42 +64,21 @@ function Selectedmenu() {
         <MDBox>
           <MDBox display="flex" justifyContent="space-between" alignItems="center" pt={3} px={2}>
             <MDTypography variant="h6" fontWeight="medium" textTransform="capitalize">
-              Kitchen Ingrediant List
+              Selected Menu
             </MDTypography>
             <MDBox display="flex" alignItems="flex-start">
               <MDBox color="text" mr={0.5} lineHeight={0}>
                 <Icon color="inherit" fontSize="small"></Icon>
               </MDBox>
-              {ingredient_list.map((item,index)=>{
+              {/* {selectedmenu.map((item,index)=>{
                 return(
                   (index === 0) ? <MDTypography variant="button" color="text" fontWeight="regular">{item.ingredient_list_completion_status}</MDTypography> : ''
                 );
-              })}
+              })} */}
             </MDBox>
           </MDBox>
           <MDBox ml={3} mt={3} sx={{ width: "90%" }}>
-          {ingredient_list.map((item,index)=>{
-            
-              if(index===0){
-                if(item.ingredient_list_completion_status =="begin"){
-                  document.getElementById("button").innerHTML = "save";
-                  return(
-                     <MDProgress variant="gradient" color="success" value="0" /> 
-                  );
-                }else if(item.ingredient_list_completion_status =="pending"){
-                  document.getElementById("button").innerHTML = "send";
-                  return(
-                    <MDProgress variant="gradient" color="success" value="50" /> 
-                 );
-                }
-                else if(item.ingredient_list_completion_status =="completed"){
-                  document.getElementById("button").innerHTML = "...";
-                  return(
-                    <MDProgress variant="gradient" color="success" value="100" /> 
-                 );
-                }
-              }
-          })}
+          
           </MDBox>
           <MDBox pt={3} pb={2} px={2}>
             <MDBox
@@ -110,32 +89,17 @@ function Selectedmenu() {
               m={0}
               sx={{ listStyle: "none" }}
             >
-              {ingredient_list.map((item,index)=>{
+              {selectedmenu.map((item,index)=>{
                 return(
               <Transaction
                 name={item.name}
-                description={item.measurement}
-                value={item.predicted_qty}
+                description=""
+                value=""
               />
                 );
               })}
-              {/* <Transaction
-                name="Banana"
-                description=""
-                value="546 kg"
-              />
-              <Transaction
-                name="Ice Cream"
-                description=""
-                value="875 kg"
-              />
-              <Transaction
-                name="Tomato"
-                description=""
-                value="875 kg"
-              /> */}
 
-              <MDButton id="button" variant="contained" color="info" size="medium" fullwidth></MDButton>
+              {/* <MDButton id="button" variant="contained" color="info" size="medium" fullwidth></MDButton> */}
             </MDBox>
           </MDBox>
         </MDBox>
@@ -144,4 +108,4 @@ function Selectedmenu() {
   );
 }
 
-export default Item;
+export default Selectedmenu;

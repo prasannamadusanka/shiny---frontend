@@ -38,6 +38,12 @@ import breakpoints from "assets/theme/base/breakpoints";
 import mixfruit from "assets/images/chef/mixfruitjuice.jpg";
 import backgroundImage from "assets/images/bg-profile.jpeg";
 
+export const getrecepe = async event => {
+  const response = await API.get('chef/view_recepe');
+  console.log(response.data.recepe)
+  return response.data.recepe;
+};
+
 function Header({ children }) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
@@ -64,6 +70,20 @@ function Header({ children }) {
 
   const handleSetTabValue = (event, newValue) => setTabValue(newValue);
 
+  var name = ""
+  var type = ""
+
+  const [recepe, setrecepe] = useState([]);
+  useEffect(() => {
+    getrecepe().then(data => {
+      console.log(data)
+      setrecepe(data)
+      console.log(recepe)
+    }).catch(err => {
+
+    })
+  }, []);
+
   return (
     <MDBox position="relative" mb={5} mt={8}>
       <Card
@@ -80,12 +100,16 @@ function Header({ children }) {
             <MDAvatar src={mixfruit} alt="profile-image" size="xxl" variant="rounded"/>
           </Grid>
           <Grid item>
+            {recepe.map((item,index)=>{
+              name = item.name;
+              type = item.type
+            })}
             <MDBox height="100%" mt={0.5} lineHeight={1}>
               <MDTypography variant="h5" fontWeight="medium">
-                Mix Fruit Juice
+                {/* {name} */}Mix Fruit Juice
               </MDTypography>
               <MDTypography variant="button" color="text" fontWeight="regular">
-                Welcome Drink
+                {/* {type} */}Welcome drink
               </MDTypography>
             </MDBox>
           </Grid>

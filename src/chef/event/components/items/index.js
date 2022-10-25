@@ -113,7 +113,7 @@ function Item() {
               {ingredient_list.map((item,index)=>{
                 return(
               <Transaction
-                name={item.name}
+                name={item.ingredient_name}
                 description={item.measurement}
                 value={item.predicted_qty}
               />

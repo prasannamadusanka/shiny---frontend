@@ -36,6 +36,7 @@ import Projects from "eventPlanner/event/components/Projects";
 
 // Data
 import Item from "chef/event/components/items";
+import Selectedmenu from "chef/event/components/selectedmenu";
 //calender
 import Calander from "eventPlanner/event/components/Calender";
 
@@ -115,7 +116,7 @@ function event() {
             );
           })}
             <MDBox sx={{ width: "45%" }}>
-              <ProfilesList title="Service Providers" profiles={profilesListData} shadow={false} />
+              {/* <ProfilesList title="Service Providers" profiles={profilesListData} shadow={false} /> */}
             </MDBox>
             </Grid>
 
@@ -123,9 +124,10 @@ function event() {
               <MDBox sx={{ width: "50%" }} ml={2} mr={5} >
                 <Item />
               </MDBox> 
-              {/* <MDBox sx={{ width: "50%" }}> 
-                <Projects />
-              </MDBox> */}
+              <MDBox sx={{ width: "50%" }}> 
+                <Selectedmenu/>
+                {/* <Projects /> */}
+              </MDBox>
             </Grid>
           </Grid>
         </MDBox>
