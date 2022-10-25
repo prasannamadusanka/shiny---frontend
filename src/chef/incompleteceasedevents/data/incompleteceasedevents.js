@@ -40,7 +40,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
@@ -54,7 +54,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
@@ -68,7 +68,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
@@ -82,7 +82,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
@@ -96,7 +96,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
@@ -110,7 +110,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
@@ -124,7 +124,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>
@@ -138,7 +138,7 @@ export default function data() {
           </MDTypography>
         ),
         action: (
-          <Link to="/chef/eventchef">
+          <Link to="/chef/incomplete_ceased_event">
           <MDTypography component="a" href="#" color="info">
             <Icon>forward</Icon>
           </MDTypography>

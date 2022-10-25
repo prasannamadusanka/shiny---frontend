@@ -27,6 +27,7 @@ import MDTypography from "components/MDTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
+import ProfileInfoCard2 from "examples/Cards/InfoCards/ProfileInfoCard2";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import ProfilesList from "examples/Lists/ProfilesList";
 
@@ -67,12 +68,14 @@ function event() {
               <Item />
             </MDBox>
             <MDBox sx={{ width: "30%" }} mr={30} ml={2}>
-              <ProfileInfoCard
+              <ProfileInfoCard2
                 title="Event Description"
-                description=""
                 info={{
-                  Date: "2022-07-08",
-                  Client: "Kamal Perera",
+                  event:"wedding",
+                  name: "Kamal Perera",
+                  mobile: "077586254",
+                  email:"kamal@gmail.com",
+                  Date: "2022-09-16",
                   Pax:500,
                   Menue:"Emarald"
                 }}

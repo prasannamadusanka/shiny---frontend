@@ -55,12 +55,44 @@ function Item() {
           sx={{ listStyle: "none" }}
         >
           <Transaction
-            name="Jelly"
-            orderedQty="100 kg"
+            name="pumkin"
+            description="kg"
+            orderedQty="10 kg"
           />
           <Transaction
-            name="Jelly"
-            orderedQty="100 kg"
+            name="potato"
+            description="kg"
+            orderedQty="15 kg"
+          />
+          <Transaction
+            name="beans"
+            description="kg"
+            orderedQty="5 kg"
+          />
+          <Transaction
+            name="carrot"
+            description="kg"
+            orderedQty="8 kg"
+          />
+          <Transaction
+            name="tomato"
+            description="kg"
+            orderedQty="1"
+          />
+          <Transaction
+            name="apple"
+            description="kg"
+            orderedQty="1 kg"
+          />
+          <Transaction
+            name="orange"
+            description="kg"
+            orderedQty="2 kg"
+          />
+          <Transaction
+            name="pinaple"
+            description="kg"
+            orderedQty="3 kg"
           />
         </MDBox>
       </MDBox>

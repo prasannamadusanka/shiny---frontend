@@ -32,6 +32,9 @@ import API from '../../../../services/baseURL';
 import { useState, useEffect} from "react";
 import { Grid } from "@mui/material";
 
+//const axios = require("axios");
+
+
 export const getIngredientlist = async event => {
   const response = await API.get('chef/event_ingredient_list',{params:{"event_id":1}});
   console.log(response.data.event_ingredient_list)
@@ -54,6 +57,18 @@ function Item() {
 
     })
   }, []);
+
+
+  let handleUpdate = () => {
+    //event.preventDefault();
+    console.log("whshwdvghwvxh")
+      API
+      .post("http://localhost:3001/chef/update_ingredient_list_status")
+      .then(res=>{
+        console.log("success")
+      })
+    
+  }
 
 
 
@@ -135,7 +150,7 @@ function Item() {
                 value="875 kg"
               /> */}
 
-              <MDButton id="button" variant="contained" color="info" size="medium" fullwidth></MDButton>
+              <MDButton onClick={handleUpdate} id="button" variant="contained" color="info" size="medium" fullwidth></MDButton>
             </MDBox>
           </MDBox>
         </MDBox>

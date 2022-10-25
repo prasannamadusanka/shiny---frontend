@@ -169,7 +169,7 @@ console.log("bcchdcvhd")
                         Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
                       {/* <MDInput  name="image" type="url" label="Image URL"  borderLeft={"2"} sx={{ width: "89%" }}></MDInput> */}
-                      <MDInput  name="image" type="url" label="Image URL"  borderLeft={"2"} sx={{ width: "89%" }} value={element.image || ""} onChange={e => handleUrl(e)}></MDInput>
+                      <MDInput  name="image" type="url" label="Image URL"  borderleft={"2"} sx={{ width: "89%" }} value={element.image || ""} onChange={e => handleUrl(e)}></MDInput>
                     </MDBox>
                   <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
                     <MDTypography variant="h6" fontWeight="medium" mb={2} pr={84} pt={2} pl={0.25}>

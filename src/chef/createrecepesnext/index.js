@@ -95,7 +95,7 @@ function CreateRecepesNext() {
     newFormValues.splice(i, 1);
     setFormValues(newFormValues)
   }
-
+console.log("cshdbv")
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -154,7 +154,7 @@ function CreateRecepesNext() {
                           <MDTypography variant="h6" fontWeight="medium" mb={2}>
                             Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           </MDTypography>
-                          <MDInput type="url" name="image" value={element.image || ""} label="Image URL"  borderLeft={"2"} sx={{ width: "86%" }} onChange={e => handleChange(index, e)} />
+                          <MDInput type="url" name="image" value={element.image || ""} label="Image URL"  borderleft={"2"} sx={{ width: "86%" }} onChange={e => handleChange(index, e)} />
                         </MDBox>
                         <MDBox mt={2} mb={5} sx={{ width: "100%" }}>
                             <MDTypography variant="h6" fontWeight="medium" mb={2}>
@@ -165,11 +165,11 @@ function CreateRecepesNext() {
                       </MDBox>
                     </MDBox>
                     ))}
-                    {/* <Link to="/createrecepesnext"> */}
+                    <Link to="/chef/createrecepes">
                       <MDButton type="submit" label= "create" variant="gradient" color="info">
                         &nbsp;Create
                       </MDButton>
-                    {/* </Link> */}
+                    </Link>
                   </Grid>
                   </form>
                   

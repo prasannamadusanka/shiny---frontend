@@ -141,28 +141,35 @@ function CreateRecepes() {
   const [description,setDescription] = useState("description")
 
 
-  let handleSubmit = (event) => {
-    event.preventDefault();
-    //alert(JSON.stringify(formValues));
-    console.log(JSON.stringify(formValues))
-    const formValues2 = JSON.stringify(formValues)
-    console.log(formValues2)
-
-    for(var i=0;i<JSON.stringify(formValues).length;i++){
-      var params={name:JSON.stringify(formValues[i].name),type:JSON.stringify(formValues[i].category),description:JSON.stringify(formValues[i].description), image:JSON.stringify(formValues[i].image), chef_tips:JSON.stringify(formValues[i].cheftips),}
-      console.log(params)
-      axios
-      .post("http://localhost:3001/chef/insert_create_recepe",params)
-      .then(res=>{
-        console.log("success")
-      })
-    }
-  }
+  
   let handleChange = (i, e) => {
-    let newFormValues = [...formValues];
-    newFormValues[i][e.target.name] = e.target.value;
-    console.log("dynamic part",e.target.value)
+    if(e.name=="ingredients"){
+
+      console.log("hashini",e.name)
+       let newFormValues = [...formValues];
+    newFormValues[i][e.name] = e.target.value;
+    console.log("dynamic part",e.value)
     setFormValues(newFormValues);
+    }
+  // else if(e.target.name=="quantity"){
+  //   console.log(
+  //     "paxjsvdc "
+  //   )
+  // }
+    
+    // else{
+    //   let newFormValues = [...formValues];
+    //   newFormValues[i][e.target.name] = e.target.value;
+    // }
+
+    
+    // else{
+
+    // }
+    // let newFormValues = [...formValues];
+    // newFormValues[i][e.target.name] = e.target.value;
+    // console.log("dynamic part",e.target.value)
+    // setFormValues(newFormValues);
   }
 
   let addFormFields = () => {
@@ -205,6 +212,25 @@ function CreateRecepes() {
     setDescription(e.target.value)
     console.log(description)
   }
+  let handleSubmit = (event) => {
+    console.log("hashimni")
+    event.preventDefault();
+    //alert(JSON.stringify(formValues));
+    console.log("suhdugsfgudvudhjscbjjdv",JSON.stringify(formValues))
+    const formValues2 = JSON.stringify(formValues)
+    console.log(formValues2)
+
+    for(var i=0;i<JSON.stringify(formValues).length;i++){
+      console.log(category)
+      var params={name:JSON.stringify(formValues[i].name),type:category,description:JSON.stringify(formValues[i].description), image:JSON.stringify(formValues[i].image), chef_tips:JSON.stringify(formValues[i].cheftips),}
+      console.log("params",params)
+      axios
+      .post("http://localhost:3001/chef/insert_create_recepe",params)
+      .then(res=>{
+        console.log("success")
+      })
+    }
+  }
 
   return (
     <DashboardLayout>
@@ -229,14 +255,14 @@ function CreateRecepes() {
                   </MDTypography>
                 </MDBox>
 
-                <form  onSubmit={handleSubmit}>
+                <form  >
                 <MDBox mt={5} ml={5}>
                     <MDBox key={uniquekey++} mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
                       {/* <MDInput name="name" type="text" label="Name"  sx={{ width: "89%" }} value={element.name || ""} onChange={e => handleChange(index, e)} ></MDInput> */}
-                      <MDInput name="name" type="text" label="Name"  sx={{ width: "89%" }} onChange={e => handleName(e)} ></MDInput>
+                      <MDInput name="name" type="text" label="Name"  value={name || ""} sx={{ width: "89%" }} onChange={e => handleName(e)} ></MDInput>
                     </MDBox>
                     <MDBox mt={2} display="flex">
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
@@ -248,7 +274,7 @@ function CreateRecepes() {
                           options={categoryies} 
                           style={{width: "auto"}}
                           name="category" 
-                          // value={element.category || ""} onChange={e => handleChange(index, e)}
+                          value={category || ""} 
                           onChange={handleCategory}
                         />
                         {/* <MDInput type="text" label="Category" sx={{ width: "89%" }} ></MDInput> */}
@@ -258,7 +284,7 @@ function CreateRecepes() {
                       <MDTypography variant="h6" fontWeight="medium" mb={2}>
                         Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </MDTypography>
-                      <MDInput  name="image" type="url" label="Image URL" borderLeft={"2"} sx={{ width: "89%" }} onChange={e =>handleUrl(e)} ></MDInput>
+                      <MDInput  name="image" type="url" label="Image URL" borderleft={"2"} sx={{ width: "89%" }} onChange={e =>handleUrl(e)} ></MDInput>
                       {/* <MDInput  name="image" type="url" label="Image URL"  borderLeft={"2"} sx={{ width: "89%" }} value={element.image || ""} onChange={e => handleChange(index, e)}></MDInput> */}
                     </MDBox>
                   <MDBox mt={2} display="flex" bgColor='#f0f2f5' borderRadius="lg" sx={{ width: "97%" }}>
@@ -273,16 +299,16 @@ function CreateRecepes() {
                   {formValues.map((element, index) => (
                   <Grid item xs={12} display='flex'mt={2}>
                     <MDBox key={uniquekey++} sx={{ width: "45%" }}>
-                    {/* <Select 
+                    <Select 
                         isSearchable={true} 
                         defaultValue={ingredients[0]} 
                         options={ingredients} 
                         style={{width: "auto"}}
-                        // name="ingredients"
-                        // value={element.ingredients || ""} onChange={e => handleChange(index, e)}
-                        // onChange={handleChange}
-                      /> */}
-                      <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }} onChange={e => handleChange(index, e)}></MDInput>
+                        name="ingredients"
+                        value={element.ingredients || ""} onChange={e => handleChange(index, e)}
+                    
+                      />
+                      {/* <MDInput type="text" name="name" value={element.name || ""} label="Name" sx={{ width: "90%" }} onChange={e => handleChange(index, e)}></MDInput> */}
                     </MDBox>
                     <MDBox key={uniquekey++} sx={{ width: "25%" }} ml={3}>
                       <MDInput type="number" name="quantity" label="quantity" sx={{ width: "90%" }} value={element.quantity || ""} onChange={e => handleChange(index, e)}></MDInput>
@@ -319,7 +345,7 @@ function CreateRecepes() {
                     {/* <MDInput name="description" type="text" label="" multiline rows={5} sx={{ width: '97%' }} value={element.description || ""} onChange={e => handleChange(index, e)}></MDInput> */}
                   </MDBox>
                   <Link to="/chef/createrecepes/next">
-                    <MDButton label= "next" variant="gradient" color="info">
+                    <MDButton onClick={handleSubmit} label= "next" variant="gradient" color="info">
                         &nbsp;Next
                     </MDButton>
                   </Link>
@@ -332,7 +358,6 @@ function CreateRecepes() {
                   </MDBox> */}
                 </MDBox>
                 </form>
-
 
               </MDBox>
             </Card>

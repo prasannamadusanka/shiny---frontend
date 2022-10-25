@@ -263,7 +263,7 @@ function Dashboard() {
                 <span className='bold'>Selected Date:</span>{' '} {DateReturn(date)}
                   {/* <span className='bold'>Selected Date:</span>{' '} {date.toISOString()} */}
                 </p>
-                <Calendar onChange={setDate} value={date}/>
+                <Calendar onChange={setDate} value={date} />
 
                 {/* <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} /> */}
                 
@@ -286,7 +286,7 @@ function Dashboard() {
                       startTime: item.start_time,
                       endTime: item.end_time,
                       date:item.date,
-                      id:item.event_id,
+                      // id:item.event_id,
                     }}
                     action={{ route: "/chef/eventchef", tooltip: "Goto Event", onClick:() => passeventid(item.event_id) }}
                     shadow={false}

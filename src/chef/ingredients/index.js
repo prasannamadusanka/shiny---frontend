@@ -172,15 +172,15 @@ export default function Ingredients () {
                   </MDTypography>
                 </MDBox>
                 <MDBox pt={3}>
-                  {/* <DataTable
+                  <DataTable
                     canSearch
                     table={{ columns: pColumns, rows: pRows }}
                     isSorted={false}
                     entriesPerPage={true}
                     showTotalEntries={true}
                     noEndBorder
-                  /> */}
-                  <TableContainer component={Paper}>
+                  />
+    {/* <TableContainer component={Paper}>
       <Table sx={{ minWidth: 0 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -220,7 +220,7 @@ export default function Ingredients () {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer> */}
                 </MDBox>
               </Card>
             </Grid>

@@ -42,23 +42,29 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "Remaining Days", accessor: "Remaining_Days", align: "left" },
-      { Header: "completion", accessor: "completion", align: "left" },
-      { Header: "action", accessor: "action", align: "center" },
+      { Header: "Date", accessor: "Remaining_Days", align: "left" },
+      { Header: "Remaining Days", accessor: "Remaining", align: "center" },
+      // { Header: "completion", accessor: "completion", align: "left" },
+      { Header: "", accessor: "action", align: "center" },
     ],
 
     rows: [
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/01
+            2022-10-28
           </MDTypography>
         ),
-        completion: <Progress color="success" value={95} />,
+        Remaining: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            02
+          </MDTypography>
+        ),
+        // completion: <Progress color="success" value={50} />,
         action: (
           <Link to="/chef/eventchef">
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
           </Link>
         ),
@@ -66,69 +72,54 @@ export default function data() {
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/02
+            2022-10-28
           </MDTypography>
         ),
-        completion: <Progress color="success" value={90} />,
-        action: (
-          <Link to="/chef/eventchef">
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
-          </MDTypography>
-          </Link>
-        ),
-      },
-      {
-        Remaining_Days: (
+        Remaining: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/04
+            02
           </MDTypography>
         ),
-        completion: <Progress color="success" value={60} />,
+        // completion: <Progress color="success" value={0} />,
         action: (
-          <Link to="/chef/eventchef">
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
-          </MDTypography>
-          </Link>
-        ),
-      },
-      {
-        Remaining_Days: (
-          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/05
-          </MDTypography>
-        ),
-        completion: <Progress color="success" value={65} />,
-        action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
         ),
       },
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/05
+            2022-10-30
           </MDTypography>
         ),
-        completion: <Progress color="success" value={50} />,
+        Remaining: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            04
+          </MDTypography>
+        ),
+        // completion: <Progress color="success" value={50} />,
         action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
         ),
       },
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/06
+            2022-10-31
           </MDTypography>
         ),
-        completion: <Progress color="success" value={50} />,
+        Remaining: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            05
+          </MDTypography>
+        ),
+        // completion: <Progress color="success" value={50} />,
         action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
         ),
       },
@@ -136,13 +127,18 @@ export default function data() {
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/06
+            2022-10-31
           </MDTypography>
         ),
-        completion: <Progress color="success" value={52} />,
+        Remaining: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            05
+          </MDTypography>
+        ),
+        // completion: <Progress color="success" value={0} />,
         action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
         ),
       },
@@ -150,13 +146,18 @@ export default function data() {
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/07
+            2022-11-01
           </MDTypography>
         ),
-        completion: <Progress color="success" value={40} />,
+        Remaining: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            06
+          </MDTypography>
+        ),
+        // completion: <Progress color="success" value={0} />,
         action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
         ),
       },
@@ -164,13 +165,18 @@ export default function data() {
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/08
+            2022-11-01
           </MDTypography>
         ),
-        completion: <Progress color="success" value={35} />,
+        Remaining: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            06
+          </MDTypography>
+        ),
+        // completion: <Progress color="success" value={0} />,
         action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
         ),
       },
@@ -178,13 +184,18 @@ export default function data() {
       {
         Remaining_Days: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
-            0000/00/08
+            2022-11-02
           </MDTypography>
         ),
-        completion: <Progress color="success" value={35} />,
+        Remaining: (
+          <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
+            07
+          </MDTypography>
+        ),
+        // completion: <Progress color="success" value={50} />,
         action: (
-          <MDTypography component="a" href="#" color="info">
-            <Icon>forward</Icon>
+          <MDTypography component="a" href="#" color="info" variant="h6">
+            {/* <Icon>forward</Icon> */}predict
           </MDTypography>
         ),
       },

@@ -98,12 +98,12 @@ function Header({ children }) {
           </Grid>
           <Grid item>
             <MDBox height="100%" mt={0.5} lineHeight={1}>
-              <MDTypography variant="h5" fontWeight="medium">
+              {/* <MDTypography variant="h5" fontWeight="medium">
                Wedding
-              </MDTypography>
-              <MDTypography variant="button" color="text" fontWeight="regular">
+              </MDTypography> */}
+              {/* <MDTypography variant="button" color="text" fontWeight="regular">
                 8th July
-              </MDTypography>
+              </MDTypography> */}
             </MDBox>
           </Grid>
           <Grid item xs={12} md={6} lg={6} sx={{ ml: "auto" }}>

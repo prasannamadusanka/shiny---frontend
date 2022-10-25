@@ -117,13 +117,13 @@ function Tables() {
               <Grid container xs={12} justifyContent= 'center' alignItems="center">
               <MDBox pt={3} width="70%">
                 
-                {/* <DataTable
+                <DataTable
                   table={{ columns: pColumns, rows: pRows }}
                   isSorted={false}
-                  entriesPerPage={true}
-                  showTotalEntries={true}
+                  // entriesPerPage={true}
+                  // showTotalEntries={true}
                   noEndBorder
-                /> */}
+                />
 
 
 
