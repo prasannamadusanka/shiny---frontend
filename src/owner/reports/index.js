@@ -23,14 +23,14 @@ import MDBox from "components/MDBox";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
-import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
+// import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
+// import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
+// import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 
 // Data
 import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
+import reportsLineChartData from "owner/dashboard/data/reportsLineChartData";
 // Dashboard components
 
 
@@ -48,11 +48,21 @@ import shinygarden from "assets/images/shinygarden.jpg"
 // import homeDecor2 from "assets/images/home-decor-2.jpg";
 // import homeDecor3 from "assets/images/home-decor-3.jpg";
 // import homeDecor4 from "assets/images/home-decor-4.jpeg";
+import { useMaterialUIController, setDirection } from "context";
+import { useEffect } from "react";
 
 
 
 function Reports(){
+
+  const [, dispatch] = useMaterialUIController();
   const { sales, tasks } = reportsLineChartData;
+  useEffect(() => {
+    setDirection(dispatch, "owner");
+
+    return () => setDirection(dispatch, "ltr");
+  }, []);
+  // const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardLayout>
@@ -70,13 +80,13 @@ function Reports(){
                   chart={{
                     labels: ["Jan", "Feb", "March", "April", "May", "June"],
                     datasets: [{
-                      label: "Sales by age",
+                      label: "Day events",
                       color: "primary",
                       data: [15, 20, 12, 60, 20, 15],
                      
                     },
                     {
-                      label: "Sales by ageS",
+                      label: "Night events",
                       color: "info",
                       data: [15, 20, 12, 60, 20, 15],
                      
